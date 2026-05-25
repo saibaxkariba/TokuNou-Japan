@@ -1340,6 +1340,30 @@
       .story-card { padding: 28px 24px; }
     }
 
+    /* Farm card link / clickable */
+    .farm-card-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .farm-card-link:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(11,31,58,.18);
+    }
+    .farm-card-cta {
+      margin-top: 16px;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: .02em;
+      transition: gap .2s;
+    }
+    .farm-card-link:hover .farm-card-cta {
+      text-decoration: underline;
+    }
+
     /* Scroll to top */
     .scroll-top {
       position: fixed;
@@ -1595,8 +1619,9 @@
       <p>Lupakan bayangan peternakan kumuh dan bau menyengat. Peternakan Jepang adalah tempat<br>kerja yang terorganisir, bersih, dan menggunakan teknologi mutakhir.</p>
     </div>
 
+    <!-- Klik card untuk ke halaman ujian SSW -->
     <div class="farm-grid">
-      <div class="farm-card fade-up fade-up-delay-1">
+      <a href="https://rivanfagliad.github.io/ssw-peternakan-jepang/" target="_blank" class="farm-card farm-card-link fade-up fade-up-delay-1">
         <div class="farm-card-header cow">🐄</div>
         <div class="farm-card-body">
           <h3>Peternakan Sapi</h3>
@@ -1606,9 +1631,10 @@
             <span class="tag">🥩 Sapi Pedaging</span>
             <span class="tag">⚙️ Mesin Pemerah</span>
           </div>
+          <div class="farm-card-cta">📝 Lihat Materi Ujian SSW →</div>
         </div>
-      </div>
-      <div class="farm-card fade-up fade-up-delay-2">
+      </a>
+      <a href="https://rivanfagliad.github.io/ssw-peternakan-jepang/" target="_blank" class="farm-card farm-card-link fade-up fade-up-delay-2">
         <div class="farm-card-header chick">🐓</div>
         <div class="farm-card-body">
           <h3>Peternakan Ayam</h3>
@@ -1618,9 +1644,10 @@
             <span class="tag">🍗 Ayam Pedaging</span>
             <span class="tag">🤖 Pakan Otomatis</span>
           </div>
+          <div class="farm-card-cta">📝 Lihat Materi Ujian SSW →</div>
         </div>
-      </div>
-      <div class="farm-card fade-up fade-up-delay-3">
+      </a>
+      <a href="https://rivanfagliad.github.io/ssw-peternakan-jepang/" target="_blank" class="farm-card farm-card-link fade-up fade-up-delay-3">
         <div class="farm-card-header pig">🐷</div>
         <div class="farm-card-body">
           <h3>Peternakan Babi</h3>
@@ -1630,8 +1657,9 @@
             <span class="tag">🔬 Monitoring</span>
             <span class="tag">📊 Data Tracking</span>
           </div>
+          <div class="farm-card-cta">📝 Lihat Materi Ujian SSW →</div>
         </div>
-      </div>
+      </a>
     </div>
 
     <div class="farm-tech-banner fade-up">
