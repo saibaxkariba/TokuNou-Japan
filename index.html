@@ -2007,59 +2007,488 @@
 <!-- =============================================
      SECTION 5: CERITA INSPIRATIF
 ============================================= -->
-<section id="cerita">
-  <div class="container">
-    <div class="section-header fade-up">
-      <span class="label eyebrow" style="color:var(--red);">Kisah Nyata</span>
-      <h2 class="display-lg">Mereka Berani Memulai —<br>Hidupnya Berubah</h2>
-      <p>Bukan motivasi kosong. Ini adalah perjalanan nyata orang-orang biasa<br>yang mengambil satu keputusan berani.</p>
-    </div>
+<!-- ============================================================
+     SECTION: Kreator Nyata — Ganti section "Kisah Nyata" lama
+     Paste section ini menggantikan section dengan id="cerita"
+     ============================================================ -->
 
-    <div class="stories-grid">
-      <!-- Story 1 -->
-      <div class="story-card fade-up fade-up-delay-1">
-        <div class="story-profile">
-          <div class="story-avatar blue">👨‍🌾</div>
-          <div class="story-meta">
-            <h4>Ridwan, 26 tahun</h4>
-            <div class="info">Dari Garut, Jawa Barat · Lulusan SMK Peternakan</div>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ── Variables (sesuaikan dengan warna utama websitemu) ── */
+  :root {
+    --kreator-bg: #f7f5f0;
+    --kreator-card: #ffffff;
+    --kreator-accent: #c0392b;   /* merah Jepang */
+    --kreator-gold: #d4a017;
+    --kreator-text: #1a1a1a;
+    --kreator-muted: #6b7280;
+    --kreator-border: #e5e0d8;
+    --fb-color: #1877f2;
+    --ig-color: #e1306c;
+    --tiktok-color: #000000;
+    --yt-color: #ff0000;
+  }
+
+  /* ── Section wrapper ── */
+  #kreator {
+    padding: 96px 24px;
+    background: var(--kreator-bg);
+    position: relative;
+    overflow: hidden;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  #kreator::before {
+    content: '証';
+    position: absolute;
+    right: -40px;
+    top: 20px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 240px;
+    color: rgba(192,57,43,0.04);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .kreator-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── Header ── */
+  .kreator-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--kreator-accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+
+  .kreator-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    color: var(--kreator-text);
+    line-height: 1.3;
+    margin: 0 0 12px;
+  }
+
+  .kreator-subtitle {
+    font-size: 16px;
+    color: var(--kreator-muted);
+    margin: 0 0 56px;
+    max-width: 520px;
+    line-height: 1.7;
+  }
+
+  /* ── Grid kartu ── */
+  .kreator-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  /* ── Kartu individual ── */
+  .kreator-card {
+    background: var(--kreator-card);
+    border: 1px solid var(--kreator-border);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .kreator-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--kreator-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .kreator-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.10);
+  }
+
+  .kreator-card:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* ── Header kartu: foto + nama ── */
+  .kreator-card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .kreator-avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .kreator-avatar {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--kreator-border);
+    display: block;
+  }
+
+  /* Placeholder avatar jika tidak ada foto */
+  .kreator-avatar-placeholder {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e8e0d5, #d4c9b8);
+    border: 3px solid var(--kreator-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+
+  .kreator-verified {
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 22px; height: 22px;
+    background: var(--kreator-accent);
+    border-radius: 50%;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+  }
+
+  .kreator-name-block {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .kreator-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--kreator-text);
+    margin: 0 0 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .kreator-role {
+    font-size: 13px;
+    color: var(--kreator-muted);
+    margin: 0;
+  }
+
+  /* ── Bio ── */
+  .kreator-bio {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.65;
+    margin: 0;
+    border-left: 3px solid var(--kreator-accent);
+    padding-left: 12px;
+  }
+
+  /* ── Stats / badges ── */
+  .kreator-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .kreator-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--kreator-bg);
+    border: 1px solid var(--kreator-border);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--kreator-text);
+  }
+
+  .kreator-badge .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-red   { background: var(--kreator-accent); }
+  .dot-green { background: #16a34a; }
+  .dot-blue  { background: #2563eb; }
+
+  /* ── Tombol sosial ── */
+  .kreator-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+  }
+
+  .kreator-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+    color: #fff;
+  }
+
+  .kreator-btn:hover {
+    opacity: 0.85;
+    transform: scale(1.03);
+  }
+
+  .kreator-btn svg {
+    width: 14px; height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  .btn-fb       { background: var(--fb-color); }
+  .btn-ig       { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+  .btn-tiktok   { background: #000; }
+  .btn-yt       { background: var(--yt-color); }
+
+  /* ── Catatan izin ── */
+  .kreator-note {
+    margin-top: 48px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--kreator-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    #kreator { padding: 64px 16px; }
+    .kreator-grid { grid-template-columns: 1fr; }
+    .kreator-card { padding: 22px; }
+  }
+</style>
+
+<!-- SVG Icons inline helper -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <!-- Facebook -->
+  <symbol id="icon-fb" viewBox="0 0 24 24">
+    <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+  </symbol>
+  <!-- Instagram -->
+  <symbol id="icon-ig" viewBox="0 0 24 24">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+  </symbol>
+  <!-- TikTok -->
+  <symbol id="icon-tiktok" viewBox="0 0 24 24">
+    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+  </symbol>
+  <!-- YouTube -->
+  <symbol id="icon-yt" viewBox="0 0 24 24">
+    <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+  </symbol>
+</svg>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION UTAMA
+═══════════════════════════════════════════════ -->
+<section id="kreator">
+  <div class="kreator-inner">
+
+    <!-- Header -->
+    <div class="kreator-label">🎥 Kreator Nyata</div>
+    <h2 class="kreator-title">Bukan Cerita Rekaan —<br>Ini Orang-Orang Nyata di Jepang</h2>
+    <p class="kreator-subtitle">
+      Mereka pekerja aktif sektor peternakan di Jepang yang berbagi pengalaman nyata lewat konten mereka.
+      Ikuti perjalanan mereka langsung dari sumbernya.
+    </p>
+
+    <!-- Grid kartu kreator -->
+    <div class="kreator-grid">
+
+      <!-- ── KARTU 1: Irwan Subaragoi ── -->
+      <div class="kreator-card">
+        <div class="kreator-card-header">
+          <div class="kreator-avatar-wrap">
+            <!--
+              GANTI src di bawah dengan foto profil Irwan yang sudah kamu host.
+              Contoh: src="assets/irwan.jpg"
+              Atau gunakan placeholder avatar dulu.
+            -->
+            <img
+              class="kreator-avatar"
+              src="https://ui-avatars.com/api/?name=Irwan+Subaragoi&background=c0392b&color=fff&size=128"
+              alt="Irwan Subaragoi"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            >
+            <div class="kreator-avatar-placeholder" style="display:none">🐄</div>
+            <div class="kreator-verified">✓</div>
+          </div>
+          <div class="kreator-name-block">
+            <p class="kreator-name">Irwan Subaragoi</p>
+            <p class="kreator-role">イルワン_すばらごい · Hokkaido, Jepang 🇯🇵</p>
           </div>
         </div>
-        <div class="story-location">📍 Hokkaido, Jepang</div>
-        <p class="story-text">
-          Ridwan tidak pernah menyangka hidupnya akan seperti ini. Dua tahun lalu, dia masih membantu orang tuanya di kandang sapi sederhana dengan penghasilan tidak menentu. Ketika temannya memberi tahu soal program Tokutei Ginou, dia awalnya skeptis. <em>"Bahasa Jepang itu susah,"</em> pikirnya.
-          <br><br>
-          Tapi dia coba saja. Sembilan bulan belajar bahasa secara mandiri lewat YouTube dan aplikasi, lulus ujian SSW sektor peternakan, dan kini bekerja di peternakan sapi modern di Hokkaido. Setiap bulan, dia rutin mengirim uang ke kampung. Dalam dua tahun, dia sudah bisa membantu merenovasi rumah orang tuanya.
-          <br><br>
-          <em>"Yang paling berubah bukan cuma rekening bank-ku, tapi cara aku melihat diri sendiri,"</em> katanya.
+
+        <p class="kreator-bio">
+          "Salam Kenal dari Tukang Angon Sapi Jepang" — kreator digital asal Pemalang yang berbagi
+          kehidupan nyata bekerja di peternakan sapi perah Hokkaido. 88 ribu pengikut di Facebook.
         </p>
-        <div class="story-result">
-          🎯 Tabungan 2 tahun: ±Rp 230 juta · Sekarang mempersiapkan modal usaha peternakan sendiri di Garut.
+
+        <div class="kreator-stats">
+          <span class="kreator-badge"><span class="dot dot-red"></span>Sapi Perah</span>
+          <span class="kreator-badge"><span class="dot dot-green"></span>Hokkaido</span>
+          <span class="kreator-badge"><span class="dot dot-blue"></span>88K Followers FB</span>
+        </div>
+
+        <div class="kreator-socials">
+          <a class="kreator-btn btn-fb"
+             href="https://web.facebook.com/irwan.subaragoi/"
+             target="_blank" rel="noopener noreferrer">
+            <svg><use href="#icon-fb"/></svg> Facebook
+          </a>
+          <a class="kreator-btn btn-tiktok"
+             href="https://www.tiktok.com/@tukang_angon_sapi_jepang"
+             target="_blank" rel="noopener noreferrer">
+            <svg><use href="#icon-tiktok"/></svg> TikTok
+          </a>
+          <a class="kreator-btn btn-ig"
+             href="https://www.instagram.com/irwan_subaragoi/"
+             target="_blank" rel="noopener noreferrer">
+            <svg><use href="#icon-ig"/></svg> Instagram
+          </a>
         </div>
       </div>
 
-      <!-- Story 2 -->
-      <div class="story-card fade-up fade-up-delay-2">
-        <div class="story-profile">
-          <div class="story-avatar red">👩‍🌾</div>
-          <div class="story-meta">
-            <h4>Sari Dewi, 24 tahun</h4>
-            <div class="info">Dari Ngawi, Jawa Timur · Sempat kerja di pabrik garmen</div>
+      <!-- ── KARTU 2: japanese_425 ── -->
+      <div class="kreator-card">
+        <div class="kreator-card-header">
+          <div class="kreator-avatar-wrap">
+            <img
+              class="kreator-avatar"
+              src="https://ui-avatars.com/api/?name=Japanese+425&background=1a1a2e&color=fff&size=128"
+              alt="japanese_425"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            >
+            <div class="kreator-avatar-placeholder" style="display:none">🌨️</div>
+            <div class="kreator-verified">✓</div>
+          </div>
+          <div class="kreator-name-block">
+            <p class="kreator-name">@japanese_425</p>
+            <p class="kreator-role">Pekerja di Jepang · TikTok Creator 🇯🇵</p>
           </div>
         </div>
-        <div class="story-location">📍 Miyazaki, Jepang</div>
-        <p class="story-text">
-          Sari tidak punya latar belakang peternakan sama sekali. Tiga tahun kerja di pabrik garmen dengan gaji Rp 2,4 juta, dia merasa hidupnya jalan di tempat. Saat membaca tentang Tokutei Ginou, satu kalimat yang mengubah pikirannya: <em>"Tidak perlu pengalaman, yang penting mau belajar."</em>
-          <br><br>
-          Dengan modal nekad dan dukungan keluarga, Sari ikut pelatihan bahasa Jepang selama 6 bulan. Dua kali gagal ujian, tapi tidak berhenti. Kali ketiga, dia lulus. Kini sudah 18 bulan bekerja di peternakan ayam di Miyazaki, menangani sistem pemberian pakan otomatis yang bahkan terasa seperti bermain teknologi.
-          <br><br>
-          <em>"Dulu aku takut. Sekarang aku bangga. Dan nggak nyesel sama sekali."</em>
+
+        <p class="kreator-bio">
+          "Halloo... Tempat berbagi pengalaman :)" — berbagi cerita kehidupan sehari-hari
+          sebagai pekerja Indonesia di Jepang lewat konten TikTok yang jujur dan apa adanya.
         </p>
-        <div class="story-result" style="background:var(--red-light); border-color:var(--red); color:var(--red-dark);">
-          💪 Kini memimpin tim kecil 3 orang di peternakannya. Sedang mempersiapkan perpanjangan kontrak tahun ke-3.
+
+        <div class="kreator-stats">
+          <span class="kreator-badge"><span class="dot dot-red"></span>Life in Japan</span>
+          <span class="kreator-badge"><span class="dot dot-blue"></span>890 Followers TikTok</span>
+          <span class="kreator-badge"><span class="dot dot-green"></span>53.1K Likes</span>
+        </div>
+
+        <div class="kreator-socials">
+          <a class="kreator-btn btn-tiktok"
+             href="https://www.tiktok.com/@japanese_425"
+             target="_blank" rel="noopener noreferrer">
+            <svg><use href="#icon-tiktok"/></svg> TikTok
+          </a>
         </div>
       </div>
-    </div>
+
+      <!-- ── KARTU 3: Irvan 水沢 ── -->
+      <div class="kreator-card">
+        <div class="kreator-card-header">
+          <div class="kreator-avatar-wrap">
+            <img
+              class="kreator-avatar"
+              src="https://ui-avatars.com/api/?name=Irvan+Mizusawa&background=2c3e50&color=fff&size=128"
+              alt="Irvan 水沢"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            >
+            <div class="kreator-avatar-placeholder" style="display:none">🌸</div>
+            <div class="kreator-verified">✓</div>
+          </div>
+          <div class="kreator-name-block">
+            <p class="kreator-name">Irvan 水沢</p>
+            <p class="kreator-role">@irvann_ia07 · Vlog Jepang 🇯🇵</p>
+          </div>
+        </div>
+
+        <p class="kreator-bio">
+          "Vlog jeme kite di Jepang" — Irvan Firmansyah berbagi kehidupan nyata
+          orang Indonesia di Jepang. 31,5K followers TikTok dengan 523K likes dan konten di YouTube.
+        </p>
+
+        <div class="kreator-stats">
+          <span class="kreator-badge"><span class="dot dot-red"></span>Vlog Jepang</span>
+          <span class="kreator-badge"><span class="dot dot-blue"></span>31.5K Followers</span>
+          <span class="kreator-badge"><span class="dot dot-green"></span>523K Likes</span>
+        </div>
+
+        <div class="kreator-socials">
+          <a class="kreator-btn btn-tiktok"
+             href="https://www.tiktok.com/@irvann_ia07"
+             target="_blank" rel="noopener noreferrer">
+            <svg><use href="#icon-tiktok"/></svg> TikTok
+          </a>
+          <a class="kreator-btn btn-ig"
+             href="https://www.instagram.com/irvann_ia07/"
+             target="_blank" rel="noopener noreferrer">
+            <svg><use href="#icon-ig"/></svg> Instagram
+          </a>
+          <a class="kreator-btn btn-yt"
+             href="https://www.youtube.com/@kohaiivan"
+             target="_blank" rel="noopener noreferrer">
+            <svg><use href="#icon-yt"/></svg> YouTube
+          </a>
+          <a class="kreator-btn btn-fb"
+             href="https://www.facebook.com/irvan.firmansyah"
+             target="_blank" rel="noopener noreferrer">
+            <svg><use href="#icon-fb"/></svg> Facebook
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /kreator-grid -->
+
+    <!-- Catatan izin -->
+    <p class="kreator-note">
+      🤝 Konten kreator ini ditampilkan atas izin yang bersangkutan.
+      Klik tombol untuk mengikuti mereka langsung di media sosial.
+    </p>
+
   </div>
 </section>
 
