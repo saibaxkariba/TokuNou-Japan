@@ -975,7 +975,7 @@
     }
     .quiz-progress {
       display: flex;
-      gap: 6px;
+      gap: 4px;
       margin-bottom: 32px;
     }
     .quiz-progress-dot {
@@ -2829,7 +2829,7 @@
     <div class="section-header fade-up">
       <span class="label eyebrow">Tes Dirimu Sendiri</span>
       <h2 class="display-lg">Apakah Kamu Cocok<br>Kerja di Jepang? 🎌</h2>
-      <p>Jawab 5 pertanyaan singkat ini untuk tahu seberapa siap kamu memulai perjalanan ke Jepang.</p>
+      <p>Jawab 15 pertanyaan singkat ini untuk tahu seberapa siap kamu memulai perjalanan ke Jepang.</p>
     </div>
 
     <div class="quiz-container fade-up">
@@ -2841,11 +2841,21 @@
           <div class="quiz-progress-dot" id="dot-2"></div>
           <div class="quiz-progress-dot" id="dot-3"></div>
           <div class="quiz-progress-dot" id="dot-4"></div>
+          <div class="quiz-progress-dot" id="dot-5"></div>
+          <div class="quiz-progress-dot" id="dot-6"></div>
+          <div class="quiz-progress-dot" id="dot-7"></div>
+          <div class="quiz-progress-dot" id="dot-8"></div>
+          <div class="quiz-progress-dot" id="dot-9"></div>
+          <div class="quiz-progress-dot" id="dot-10"></div>
+          <div class="quiz-progress-dot" id="dot-11"></div>
+          <div class="quiz-progress-dot" id="dot-12"></div>
+          <div class="quiz-progress-dot" id="dot-13"></div>
+          <div class="quiz-progress-dot" id="dot-14"></div>
         </div>
 
         <!-- Questions -->
         <div class="quiz-question active" data-index="0">
-          <div class="quiz-q-num">Pertanyaan 1 dari 5</div>
+          <div class="quiz-q-num">Pertanyaan 1 dari 15</div>
           <div class="quiz-q-text">Apakah kamu bersedia tinggal jauh dari keluarga selama 1–3 tahun demi penghasilan yang lebih baik?</div>
           <div class="quiz-options">
             <button class="quiz-option yes-opt" data-score="2" onclick="selectOption(this)">
@@ -2861,7 +2871,7 @@
         </div>
 
         <div class="quiz-question" data-index="1">
-          <div class="quiz-q-num">Pertanyaan 2 dari 5</div>
+          <div class="quiz-q-num">Pertanyaan 2 dari 15</div>
           <div class="quiz-q-text">Seberapa serius kamu bersedia belajar bahasa Jepang dari nol?</div>
           <div class="quiz-options">
             <button class="quiz-option yes-opt" data-score="2" onclick="selectOption(this)">
@@ -2877,7 +2887,7 @@
         </div>
 
         <div class="quiz-question" data-index="2">
-          <div class="quiz-q-num">Pertanyaan 3 dari 5</div>
+          <div class="quiz-q-num">Pertanyaan 3 dari 15</div>
           <div class="quiz-q-text">Apakah kamu punya pengalaman atau ketertarikan di bidang peternakan, pertanian, atau kerja fisik?</div>
           <div class="quiz-options">
             <button class="quiz-option yes-opt" data-score="2" onclick="selectOption(this)">
@@ -2893,7 +2903,7 @@
         </div>
 
         <div class="quiz-question" data-index="3">
-          <div class="quiz-q-num">Pertanyaan 4 dari 5</div>
+          <div class="quiz-q-num">Pertanyaan 4 dari 15</div>
           <div class="quiz-q-text">Bagaimana sikapmu jika menghadapi perbedaan budaya dan aturan kerja yang ketat?</div>
           <div class="quiz-options">
             <button class="quiz-option yes-opt" data-score="2" onclick="selectOption(this)">
@@ -2909,7 +2919,7 @@
         </div>
 
         <div class="quiz-question" data-index="4">
-          <div class="quiz-q-num">Pertanyaan 5 dari 5</div>
+          <div class="quiz-q-num">Pertanyaan 5 dari 15</div>
           <div class="quiz-q-text">Apa tujuan utamamu jika bekerja di Jepang?</div>
           <div class="quiz-options">
             <button class="quiz-option yes-opt" data-score="2" onclick="selectOption(this)">
@@ -2924,16 +2934,173 @@
           </div>
         </div>
 
+        <div class="quiz-question" data-index="5">
+          <div class="quiz-q-num">Pertanyaan 6 dari 15</div>
+          <div class="quiz-q-text">Bagaimana kondisi fisik dan kesehatanmu saat ini?</div>
+          <div class="quiz-options">
+            <button class="quiz-option yes-opt" data-score="2" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Fisik sehat dan prima, tidak ada riwayat penyakit serius
+            </button>
+            <button class="quiz-option" data-score="1" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Cukup sehat, ada sedikit keluhan tapi masih bisa kerja fisik
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Ada kondisi kesehatan yang membatasi aktivitas fisik berat
+            </button>
+          </div>
+        </div>
+
+        <div class="quiz-question" data-index="6">
+          <div class="quiz-q-num">Pertanyaan 7 dari 15</div>
+          <div class="quiz-q-text">Apakah kamu siap bekerja dalam kondisi cuaca ekstrem (salju, dingin)?</div>
+          <div class="quiz-options">
+            <button class="quiz-option yes-opt" data-score="2" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Siap — saya bisa beradaptasi dengan kondisi cuaca apapun
+            </button>
+            <button class="quiz-option" data-score="1" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Mungkin butuh waktu adaptasi, tapi saya mau mencoba
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Tidak siap — saya sangat tidak tahan udara dingin
+            </button>
+          </div>
+        </div>
+
+        <div class="quiz-question" data-index="7">
+          <div class="quiz-q-num">Pertanyaan 8 dari 15</div>
+          <div class="quiz-q-text">Bagaimana kemampuanmu dalam mengikuti instruksi dan prosedur kerja secara detail?</div>
+          <div class="quiz-options">
+            <button class="quiz-option yes-opt" data-score="2" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Saya teliti dan terbiasa mengikuti SOP tanpa banyak pertanyaan
+            </button>
+            <button class="quiz-option" data-score="1" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Bisa mengikuti, tapi kadang butuh penjelasan ulang
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Saya kurang sabar dengan prosedur yang terlalu kaku
+            </button>
+          </div>
+        </div>
+
+        <div class="quiz-question" data-index="8">
+          <div class="quiz-q-num">Pertanyaan 9 dari 15</div>
+          <div class="quiz-q-text">Apakah kamu pernah atau bersedia tinggal di asrama/mess bersama rekan kerja?</div>
+          <div class="quiz-options">
+            <button class="quiz-option yes-opt" data-score="2" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Tidak masalah — saya sudah pernah atau siap tinggal di asrama
+            </button>
+            <button class="quiz-option" data-score="1" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Mungkin perlu penyesuaian, tapi saya mau mencoba
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Saya butuh privasi dan tidak nyaman tinggal bersama orang lain
+            </button>
+          </div>
+        </div>
+
+        <div class="quiz-question" data-index="9">
+          <div class="quiz-q-num">Pertanyaan 10 dari 15</div>
+          <div class="quiz-q-text">Seberapa besar toleransimu terhadap bau dan kotoran hewan?</div>
+          <div class="quiz-options">
+            <button class="quiz-option yes-opt" data-score="2" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Tidak masalah — saya sudah terbiasa atau siap menghadapinya
+            </button>
+            <button class="quiz-option" data-score="1" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Agak kurang nyaman, tapi bisa diatasi jika harus
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Saya sangat sensitif dan tidak tahan bau atau kotoran hewan
+            </button>
+          </div>
+        </div>
+
+        <div class="quiz-question" data-index="10">
+          <div class="quiz-q-num">Pertanyaan 11 dari 15</div>
+          <div class="quiz-q-text">Apakah kamu memiliki paspor atau bersedia segera mengurus paspor?</div>
+          <div class="quiz-options">
+            <button class="quiz-option yes-opt" data-score="2" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Sudah punya paspor aktif
+            </button>
+            <button class="quiz-option" data-score="1" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Belum punya, tapi siap segera mengurus sekarang
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Belum punya dan belum tahu cara mengurusnya
+            </button>
+          </div>
+        </div>
+
+        <div class="quiz-question" data-index="11">
+          <div class="quiz-q-num">Pertanyaan 12 dari 15</div>
+          <div class="quiz-q-text">Bagaimana sikapmu jika harus bekerja di hari libur atau shift malam?</div>
+          <div class="quiz-options">
+            <button class="quiz-option yes-opt" data-score="2" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Siap — jadwal kerja apapun akan saya jalani demi tujuan saya
+            </button>
+            <button class="quiz-option" data-score="1" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Bisa, tapi lebih suka jadwal kerja yang teratur
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Sulit — saya butuh hari libur reguler dan tidak siap shift malam
+            </button>
+          </div>
+        </div>
+
+        <div class="quiz-question" data-index="12">
+          <div class="quiz-q-num">Pertanyaan 13 dari 15</div>
+          <div class="quiz-q-text">Apakah kamu punya tanggungan finansial (cicilan, keluarga) yang harus dipenuhi setiap bulan?</div>
+          <div class="quiz-options">
+            <button class="quiz-option yes-opt" data-score="2" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Tidak ada tanggungan besar, saya bisa fokus menabung
+            </button>
+            <button class="quiz-option" data-score="1" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Ada tanggungan, tapi gaji di Jepang masih cukup menutupnya
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Tanggungan saya besar, khawatir gaji tidak cukup untuk semua
+            </button>
+          </div>
+        </div>
+
+        <div class="quiz-question" data-index="13">
+          <div class="quiz-q-num">Pertanyaan 14 dari 15</div>
+          <div class="quiz-q-text">Seberapa cepat kamu bisa beradaptasi dengan teknologi dan alat baru?</div>
+          <div class="quiz-options">
+            <button class="quiz-option yes-opt" data-score="2" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Cepat beradaptasi — saya senang belajar hal dan teknologi baru
+            </button>
+            <button class="quiz-option" data-score="1" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Butuh sedikit waktu, tapi akhirnya bisa mengikuti
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Lambat beradaptasi — teknologi baru membuat saya kewalahan
+            </button>
+          </div>
+        </div>
+
+        <div class="quiz-question" data-index="14">
+          <div class="quiz-q-num">Pertanyaan 15 dari 15</div>
+          <div class="quiz-q-text">Apakah kamu memiliki kondisi medis yang bisa menghambat pekerjaan fisik?</div>
+          <div class="quiz-options">
+            <button class="quiz-option yes-opt" data-score="2" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Tidak ada kondisi medis apapun yang membatasi saya
+            </button>
+            <button class="quiz-option" data-score="1" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Ada riwayat ringan tapi sudah terkontrol dan tidak mengganggu kerja
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-dot"></span> Ada kondisi medis yang bisa kambuh saat kerja fisik berat
+            </button>
+          </div>
+        </div>
+
         <!-- Result panel -->
         <div class="quiz-result" id="quizResult">
           <div class="result-emoji" id="resultEmoji"></div>
           <div class="result-badge" id="resultBadge"></div>
           <div class="result-title" id="resultTitle"></div>
           <div class="result-desc"  id="resultDesc"></div>
-          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-            <a href="#alur" class="btn btn-primary">Lihat Cara Berangkat →</a>
-            <button class="quiz-retry" onclick="resetQuiz()">🔄 Ulangi Quiz</button>
-          </div>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" id="resultActions"></div>
         </div>
 
         <!-- Navigation -->
@@ -3202,8 +3369,8 @@
 
   /* ---- QUIZ LOGIC ---- */
   let currentQ = 0;
-  let scores   = [null, null, null, null, null];
-  const totalQ = 5;
+  let scores   = Array(15).fill(null);
+  const totalQ = 15;
 
   function selectOption(btn) {
     // Remove selected from siblings
@@ -3248,40 +3415,63 @@
     document.getElementById('quizNav').style.display = 'none';
 
     const total = scores.reduce((a, b) => a + b, 0);
-    const max   = totalQ * 2; // 10
+    // max = 30 (15 questions x 2)
 
     const resultEl    = document.getElementById('quizResult');
     const emojiEl     = document.getElementById('resultEmoji');
     const badgeEl     = document.getElementById('resultBadge');
     const titleEl     = document.getElementById('resultTitle');
     const descEl      = document.getElementById('resultDesc');
+    const actionsEl   = document.getElementById('resultActions');
 
     resultEl.classList.add('active');
 
-    if (total >= 8) {
-      emojiEl.textContent = '🏆';
-      badgeEl.textContent = '⭐ Siap Banget!';
+    if (total >= 26) {
+      // Level 1: Sangat Siap
+      emojiEl.textContent = '🔥';
+      badgeEl.textContent = '⭐ Sangat Siap — Tinggal Gas!';
       badgeEl.className   = 'result-badge high';
-      titleEl.textContent = 'Kamu Sangat Cocok Kerja di Jepang!';
-      descEl.textContent  = 'Profil kamu menunjukkan kesiapan yang luar biasa — niat kuat, tujuan jelas, dan mental yang tepat. Sekarang tinggal satu langkah: mulai belajar bahasa Jepang hari ini dan ikuti panduan keberangkatan yang ada di halaman ini!';
-    } else if (total >= 5) {
-      emojiEl.textContent = '🌱';
-      badgeEl.textContent = '💡 Potensi Besar!';
+      titleEl.textContent = 'Kamu Sangat Siap Kerja di Jepang!';
+      descEl.innerHTML    = 'Luar biasa! Dari semua aspek yang dinilai — mental, fisik, finansial, hingga kesiapan dokumen — kamu sudah berada di jalur yang tepat. Kamu tahu apa yang kamu mau, keluargamu mendukung, tubuhmu siap, dan semangatmu membara. Ini adalah kombinasi yang langka dan berharga.<br><br><strong>Yang perlu kamu lakukan sekarang:</strong> Daftar ujian JFT-Basic atau JLPT N4 terdekat, hubungi lembaga pengirim resmi terdaftar BP2MI, dan percepat belajar bahasa Jepang harian. Jangan tunda lagi — orang seperti kamu yang paling cepat sampai ke Jepang. 🚀';
+      actionsEl.innerHTML = '<a href="#alur" class="btn btn-primary">Mulai Proses Pendaftaran →</a><button class="quiz-retry" onclick="resetQuiz()">🔄 Ulangi Quiz</button>';
+    } else if (total >= 20) {
+      // Level 2: Siap dengan Persiapan Minor
+      emojiEl.textContent = '✅';
+      badgeEl.textContent = '💪 Hampir Siap!';
+      badgeEl.className   = 'result-badge high';
+      titleEl.textContent = 'Kamu Hampir Siap — Tinggal Sedikit Lagi!';
+      descEl.innerHTML    = 'Bagus sekali! Kamu sudah memiliki sebagian besar bekal yang dibutuhkan untuk bekerja di Jepang. Kesiapan mentalmu solid dan motivasimu jelas. Hanya ada satu atau dua aspek yang perlu sedikit diperkuat sebelum kamu benar-benar melangkah — mungkin paspor yang belum diurus, kondisi fisik yang perlu dijaga, atau diskusi keluarga yang belum tuntas.<br><br><strong>Yang perlu kamu lakukan:</strong> Identifikasi 1–2 hal yang masih kurang, urus paspor jika belum punya, dan tetap konsisten belajar bahasa Jepang. Kamu sudah 80% siap. Jangan berhenti di sini! 💪';
+      actionsEl.innerHTML = '<a href="#alur" class="btn btn-primary">Lihat Panduan Persiapan →</a><button class="quiz-retry" onclick="resetQuiz()">🔄 Ulangi Quiz</button>';
+    } else if (total >= 13) {
+      // Level 3: Cukup Siap
+      emojiEl.textContent = '⚠️';
+      badgeEl.textContent = '🌱 Potensi Ada — Perlu Persiapan';
       badgeEl.className   = 'result-badge mid';
-      titleEl.textContent = 'Kamu Punya Potensi — Perlu Persiapan Lebih';
-      descEl.textContent  = 'Ada beberapa hal yang perlu kamu kuatkan — mungkin motivasi, dukungan keluarga, atau keseriusan belajar bahasa. Jangan menyerah dulu! Baca lebih lanjut tentang perjalanan orang-orang yang berhasil, dan mulai diskusi dengan keluargamu.';
-    } else {
-      emojiEl.textContent = '📚';
-      badgeEl.textContent = '🔍 Masih Perlu Pertimbangan';
+      titleEl.textContent = 'Kamu Punya Potensi — Tapi Butuh Persiapan Lebih';
+      descEl.innerHTML    = 'Kamu punya keinginan dan keberanian — itu sudah menjadi modal awal yang bagus. Namun ada beberapa aspek penting yang masih perlu kamu persiapkan lebih serius sebelum berangkat ke Jepang. Mungkin kesiapan fisik, dukungan keluarga, atau kondisi finansialmu masih perlu dibenahi.<br><br><strong>Fokuskan perhatianmu pada:</strong> Diskusi serius dengan keluarga, menjaga kesehatan dan fisik mulai sekarang, membuat rencana keuangan yang matang, dan belajar bahasa Jepang minimal 30 menit/hari. Ribuan orang yang dulu di posisimu sekarang sudah ada di Jepang. Kamu bisa menyusul mereka! 🌱';
+      actionsEl.innerHTML = '<a href="#alur" class="btn btn-primary">Pelajari Cara Mempersiapkan Diri →</a><button class="quiz-retry" onclick="resetQuiz()">🔄 Ulangi Quiz</button>';
+    } else if (total >= 7) {
+      // Level 4: Belum Siap
+      emojiEl.textContent = '🔄';
+      badgeEl.textContent = '📚 Belum Siap — Mulai dari Dasar';
       badgeEl.className   = 'result-badge low';
-      titleEl.textContent = 'Belum Saat Ini, Tapi Bisa Berubah!';
-      descEl.textContent  = 'Skor kamu menunjukkan masih ada banyak hal yang perlu dipertimbangkan. Itu bukan masalah! Jepang membutuhkan kesiapan mental dan fisik. Luangkan waktu untuk membaca lebih banyak, berdiskusi dengan orang-orang yang sudah berpengalaman, dan pikirkan kembali tujuanmu.';
+      titleEl.textContent = 'Kamu Belum Siap — Tapi Bukan Berarti Tidak Bisa!';
+      descEl.innerHTML    = 'Terima kasih sudah jujur dalam menjawab! Ada cukup banyak hal yang perlu kamu siapkan sebelum bisa berangkat ke Jepang. Ini bukan kabar buruk — ini adalah informasi berharga agar kamu tidak terburu-buru dan justru gagal di tengah jalan.<br><br><strong>Langkah yang disarankan:</strong> Luangkan 3–6 bulan untuk mempersiapkan diri secara menyeluruh. Diskusikan dengan keluarga dan dapatkan dukungan mereka. Perbaiki kondisi fisik secara konsisten. Mulai belajar bahasa Jepang dari sekarang karena ini yang paling butuh waktu. Tidak ada yang instan, tapi dengan persiapan yang benar kamu akan berangkat dengan lebih percaya diri! 🌟';
+      actionsEl.innerHTML = '<a href="#kenapa" class="btn btn-primary">Pelajari Program Lebih Dalam →</a><button class="quiz-retry" onclick="resetQuiz()">🔄 Ulangi Quiz</button>';
+    } else {
+      // Level 5: Belum Cocok Saat Ini
+      emojiEl.textContent = '🙏';
+      badgeEl.textContent = '❌ Belum Cocok Saat Ini';
+      badgeEl.className   = 'result-badge low';
+      titleEl.textContent = 'Saat Ini Belum Cocok — Selesaikan Dulu yang di Rumah';
+      descEl.innerHTML    = 'Terima kasih sudah mengikuti quiz ini dengan jujur. Dari hasil yang ada, sepertinya ada hambatan serius yang perlu diselesaikan terlebih dahulu. Mungkin ada kondisi kesehatan yang perlu ditangani, tanggungan keluarga yang sangat besar, atau kamu belum siap secara mental untuk meninggalkan zona nyaman dalam waktu lama. Semua itu valid dan tidak perlu dipaksakan.<br><br><strong>Yang lebih baik kamu lakukan sekarang:</strong> Selesaikan kondisi kesehatan yang ada, kuatkan fondasi finansial, bangun dukungan keluarga secara perlahan, dan tetap pelajari informasi tentang program ini sambil menunggu waktu yang tepat. Jepang tidak akan kemana-mana — ketika kamu benar-benar siap, peluang itu akan selalu ada. 🙏';
+      actionsEl.innerHTML = '<a href="#faq" class="btn btn-primary">Baca FAQ Dulu →</a><button class="quiz-retry" onclick="resetQuiz()">🔄 Ulangi Quiz</button>';
     }
   }
 
   function resetQuiz() {
     currentQ = 0;
-    scores   = [null, null, null, null, null];
+    scores   = Array(15).fill(null);
 
     document.getElementById('quizResult').classList.remove('active');
     document.getElementById('quizNav').style.display = 'flex';
