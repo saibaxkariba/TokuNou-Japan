@@ -1705,6 +1705,7 @@
         <li><a href="#alur">Cara Berangkat</a></li>
         <li><a href="#jadwal">Jadwal Ujian</a></li>
         <li><a href="#quiz">Quiz</a></li>
+        <li><a href="#checklist">Dokumen</a></li>
         <li><a href="#tim-pengembang">Tim</a></li>
         <li><a href="#cta" class="nav-cta">Mulai Sekarang</a></li>
       </ul>
@@ -1723,6 +1724,7 @@
   <a href="#alur"   onclick="closeMobileMenu()">Cara Berangkat</a>
   <a href="#jadwal" onclick="closeMobileMenu()">Jadwal Ujian SSW</a>
   <a href="#quiz"   onclick="closeMobileMenu()">Quiz Cocok Atau Tidak</a>
+  <a href="#checklist" onclick="closeMobileMenu()">Checklist Dokumen</a>
   <a href="#tim-pengembang" onclick="closeMobileMenu()">Tim Pengembang</a>
   <a href="#cta"    onclick="closeMobileMenu()">Mulai Sekarang →</a>
 </div>
@@ -1757,7 +1759,7 @@
     <div class="hero-content">
       <div class="hero-eyebrow">
         <span class="dot"></span>
-        Program Resmi Jepang · Tokutei Ginou Sektor Peternakan
+        Program Resmi Jepang · Tokutei Ginou Sektor Pertanian & Peternakan
       </div>
 
       <h1 class="display-xl hero-title">
@@ -3418,6 +3420,470 @@
   .tim-btn.tt   { background: #000; }
 </style>
 
+  .tim-btn.fb   { background: #1877f2; }
+  .tim-btn.ig   { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+  .tim-btn.tt   { background: #000; }
+</style>
+
+<!-- =============================================
+     SECTION: CHECKLIST DOKUMEN
+============================================= -->
+<style>
+  #checklist {
+    padding: 96px 24px;
+    background: var(--navy, #0d1b3e);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #checklist::before {
+    content: '書類';
+    position: absolute;
+    right: -20px;
+    top: 10px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 220px;
+    color: rgba(255,255,255,0.03);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .checklist-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .checklist-eyebrow {
+    display: inline-block;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #FF9B9E;
+    border: 1px solid rgba(255,155,158,.3);
+    background: rgba(255,155,158,.08);
+    padding: 5px 14px;
+    border-radius: 99px;
+    margin-bottom: 20px;
+  }
+
+  .checklist-title {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .checklist-subtitle {
+    font-size: 1rem;
+    color: rgba(255,255,255,.55);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 560px;
+  }
+
+  .checklist-progress-wrap {
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .checklist-progress-bar-bg {
+    flex: 1;
+    height: 8px;
+    background: rgba(255,255,255,.12);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .checklist-progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #56D9A6, #38c98f);
+    border-radius: 99px;
+    transition: width .4s ease;
+  }
+
+  .checklist-progress-text {
+    font-size: .85rem;
+    font-weight: 700;
+    color: #56D9A6;
+    white-space: nowrap;
+    min-width: 70px;
+    text-align: right;
+  }
+
+  .checklist-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: background .2s, border-color .2s, transform .15s;
+    user-select: none;
+  }
+
+  .checklist-item:hover {
+    background: rgba(255,255,255,.09);
+    transform: translateX(3px);
+  }
+
+  .checklist-item.checked {
+    background: rgba(86,217,166,.08);
+    border-color: rgba(86,217,166,.3);
+  }
+
+  .checklist-item.checked .cl-label {
+    color: rgba(255,255,255,.45);
+    text-decoration: line-through;
+    text-decoration-color: rgba(86,217,166,.5);
+  }
+
+  .cl-box {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 2px solid rgba(255,255,255,.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: background .2s, border-color .2s;
+  }
+
+  .checklist-item.checked .cl-box {
+    background: #56D9A6;
+    border-color: #56D9A6;
+  }
+
+  .cl-check {
+    opacity: 0;
+    transition: opacity .2s;
+  }
+
+  .checklist-item.checked .cl-check {
+    opacity: 1;
+  }
+
+  .cl-content { flex: 1; }
+
+  .cl-label {
+    font-size: .95rem;
+    font-weight: 600;
+    color: rgba(255,255,255,.9);
+    line-height: 1.4;
+    transition: color .2s;
+  }
+
+  .cl-note {
+    font-size: .78rem;
+    color: rgba(255,255,255,.35);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+
+  .cl-number {
+    font-size: .72rem;
+    font-weight: 700;
+    color: rgba(255,255,255,.2);
+    min-width: 20px;
+    text-align: right;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .checklist-done-msg {
+    display: none;
+    text-align: center;
+    padding: 28px;
+    background: rgba(86,217,166,.1);
+    border: 1px solid rgba(86,217,166,.3);
+    border-radius: 16px;
+    margin-bottom: 24px;
+  }
+
+  .checklist-done-msg.visible { display: block; }
+
+  .checklist-done-msg .done-emoji { font-size: 2.5rem; margin-bottom: 8px; }
+  .checklist-done-msg .done-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #56D9A6;
+    margin-bottom: 6px;
+  }
+  .checklist-done-msg .done-sub {
+    font-size: .88rem;
+    color: rgba(255,255,255,.5);
+  }
+
+  .checklist-reset {
+    display: block;
+    margin: 0 auto;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,.15);
+    color: rgba(255,255,255,.4);
+    font-size: .8rem;
+    padding: 8px 20px;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+
+  .checklist-reset:hover {
+    border-color: rgba(255,255,255,.3);
+    color: rgba(255,255,255,.7);
+  }
+
+  @media (max-width: 640px) {
+    .checklist-progress-wrap { flex-direction: column; align-items: stretch; gap: 10px; }
+    .checklist-progress-text { text-align: left; }
+  }
+</style>
+
+<section id="checklist">
+  <div class="checklist-inner">
+
+    <span class="checklist-eyebrow">📋 Persiapan Dokumen</span>
+    <h2 class="checklist-title">Checklist Dokumen<br>Sebelum Berangkat ke Jepang</h2>
+    <p class="checklist-subtitle">
+      Pastikan semua dokumen berikut sudah siap sebelum mendaftar. Centang satu per satu saat sudah kamu penuhi!
+    </p>
+
+    <!-- Progress -->
+    <div class="checklist-progress-wrap">
+      <div class="checklist-progress-bar-bg">
+        <div class="checklist-progress-bar-fill" id="clProgressFill"></div>
+      </div>
+      <div class="checklist-progress-text" id="clProgressText">0 / 13</div>
+    </div>
+
+    <!-- Done message -->
+    <div class="checklist-done-msg" id="clDoneMsg">
+      <div class="done-emoji">🎉</div>
+      <div class="done-title">Semua Dokumen Siap!</div>
+      <div class="done-sub">Kamu sudah selangkah lebih dekat ke Jepang. Hubungi lembaga pengirim resmi sekarang!</div>
+    </div>
+
+    <!-- List -->
+    <div class="checklist-list" id="clList">
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="cl-box">
+          <svg class="cl-check" width="13" height="10" viewBox="0 0 13 10" fill="none">
+            <path d="M1 5L4.5 8.5L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cl-content">
+          <div class="cl-label">Paspor aktif</div>
+          <div class="cl-note">Masa berlaku minimal 6 bulan dari tanggal keberangkatan</div>
+        </div>
+        <div class="cl-number">01</div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="cl-box">
+          <svg class="cl-check" width="13" height="10" viewBox="0 0 13 10" fill="none">
+            <path d="M1 5L4.5 8.5L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cl-content">
+          <div class="cl-label">KTP (Kartu Tanda Penduduk)</div>
+          <div class="cl-note">Pastikan masih aktif dan data sesuai dokumen lainnya</div>
+        </div>
+        <div class="cl-number">02</div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="cl-box">
+          <svg class="cl-check" width="13" height="10" viewBox="0 0 13 10" fill="none">
+            <path d="M1 5L4.5 8.5L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cl-content">
+          <div class="cl-label">Kartu Keluarga (KK)</div>
+          <div class="cl-note">Dokumen asli dan fotokopi yang jelas</div>
+        </div>
+        <div class="cl-number">03</div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="cl-box">
+          <svg class="cl-check" width="13" height="10" viewBox="0 0 13 10" fill="none">
+            <path d="M1 5L4.5 8.5L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cl-content">
+          <div class="cl-label">Akta Kelahiran</div>
+          <div class="cl-note">Untuk verifikasi identitas dan usia</div>
+        </div>
+        <div class="cl-number">04</div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="cl-box">
+          <svg class="cl-check" width="13" height="10" viewBox="0 0 13 10" fill="none">
+            <path d="M1 5L4.5 8.5L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cl-content">
+          <div class="cl-label">SKCK (Surat Keterangan Catatan Kepolisian)</div>
+          <div class="cl-note">Diterbitkan oleh Polres/Polda setempat, masih berlaku</div>
+        </div>
+        <div class="cl-number">05</div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="cl-box">
+          <svg class="cl-check" width="13" height="10" viewBox="0 0 13 10" fill="none">
+            <path d="M1 5L4.5 8.5L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cl-content">
+          <div class="cl-label">Ijazah terakhir</div>
+          <div class="cl-note">Minimal SMA/SMK/sederajat beserta transkrip nilai</div>
+        </div>
+        <div class="cl-number">06</div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="cl-box">
+          <svg class="cl-check" width="13" height="10" viewBox="0 0 13 10" fill="none">
+            <path d="M1 5L4.5 8.5L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cl-content">
+          <div class="cl-label">Sertifikat bahasa Jepang (JFT-Basic / JLPT N4)</div>
+          <div class="cl-note">Bukti kemampuan bahasa yang diakui secara resmi</div>
+        </div>
+        <div class="cl-number">07</div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="cl-box">
+          <svg class="cl-check" width="13" height="10" viewBox="0 0 13 10" fill="none">
+            <path d="M1 5L4.5 8.5L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cl-content">
+          <div class="cl-label">Sertifikat uji keterampilan sektor agrikultur/peternakan</div>
+          <div class="cl-note">Lulus Agriculture Skill Assessment Test (Livestock) via Prometric</div>
+        </div>
+        <div class="cl-number">08</div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="cl-box">
+          <svg class="cl-check" width="13" height="10" viewBox="0 0 13 10" fill="none">
+            <path d="M1 5L4.5 8.5L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cl-content">
+          <div class="cl-label">CV format Jepang (Rirekisho / 履歴書) & riwayat kerja</div>
+          <div class="cl-note">Gunakan format standar Jepang, tulis tangan atau digital sesuai permintaan</div>
+        </div>
+        <div class="cl-number">09</div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="cl-box">
+          <svg class="cl-check" width="13" height="10" viewBox="0 0 13 10" fill="none">
+            <path d="M1 5L4.5 8.5L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cl-content">
+          <div class="cl-label">Kontrak kerja / offer letter dari pemberi kerja</div>
+          <div class="cl-note">Diterbitkan oleh perusahaan Jepang setelah proses matching</div>
+        </div>
+        <div class="cl-number">10</div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="cl-box">
+          <svg class="cl-check" width="13" height="10" viewBox="0 0 13 10" fill="none">
+            <path d="M1 5L4.5 8.5L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cl-content">
+          <div class="cl-label">Form aplikasi COE & foto terbaru</div>
+          <div class="cl-note">Certificate of Eligibility — diurus lembaga pengirim, foto sesuai ketentuan imigrasi Jepang</div>
+        </div>
+        <div class="cl-number">11</div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="cl-box">
+          <svg class="cl-check" width="13" height="10" viewBox="0 0 13 10" fill="none">
+            <path d="M1 5L4.5 8.5L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cl-content">
+          <div class="cl-label">Surat keterangan sehat & hasil MCU</div>
+          <div class="cl-note">Medical check-up lengkap di klinik/RS yang ditunjuk lembaga pengirim</div>
+        </div>
+        <div class="cl-number">12</div>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="cl-box">
+          <svg class="cl-check" width="13" height="10" viewBox="0 0 13 10" fill="none">
+            <path d="M1 5L4.5 8.5L12 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cl-content">
+          <div class="cl-label">Dokumen tambahan dari agen/perusahaan</div>
+          <div class="cl-note">Bervariasi tergantung perusahaan — selalu konfirmasi ke lembaga pengirim resmi</div>
+        </div>
+        <div class="cl-number">13</div>
+      </div>
+
+    </div><!-- /checklist-list -->
+
+    <button class="checklist-reset" onclick="resetChecklist()">↺ Reset Checklist</button>
+
+  </div>
+</section>
+
+<script>
+  const TOTAL_DOCS = 13;
+
+  function toggleCheck(item) {
+    item.classList.toggle('checked');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const checked = document.querySelectorAll('.checklist-item.checked').length;
+    const pct = Math.round((checked / TOTAL_DOCS) * 100);
+    document.getElementById('clProgressFill').style.width = pct + '%';
+    document.getElementById('clProgressText').textContent = checked + ' / ' + TOTAL_DOCS;
+    document.getElementById('clDoneMsg').classList.toggle('visible', checked === TOTAL_DOCS);
+  }
+
+  function resetChecklist() {
+    document.querySelectorAll('.checklist-item').forEach(i => i.classList.remove('checked'));
+    updateProgress();
+  }
+</script>
+
 <section id="tim-pengembang">
   <div class="tim-inner">
 
@@ -3438,7 +3904,7 @@
           </div>
           <div class="tim-name-block">
             <div class="tim-name">Dimas Saiful Bachtiar</div>
-            <div class="tim-role">Peneliti & Penulis Konten Tokutei Ginou</div>
+            <div class="tim-role">Kreator Konten & Edukasi Jepang</div>
           </div>
         </div>
         <span class="tim-role-badge konten">✍️ Pengembangan Konten</span>
