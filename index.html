@@ -1340,29 +1340,328 @@
       .story-card { padding: 28px 24px; }
     }
 
-    /* Farm card link / clickable */
+
+    /* =============================================
+       SECTION JADWAL UJIAN SSW
+    ============================================= */
+    #jadwal { background: var(--off-white); }
+    #jadwal .section-header .eyebrow { color: var(--red); }
+
+    .jadwal-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+    .jadwal-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .jadwal-card-header {
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .jadwal-card-header.blue-header { background: linear-gradient(135deg, var(--blue), #0E3270); }
+    .jadwal-card-header.red-header  { background: linear-gradient(135deg, var(--red), var(--red-dark)); }
+    .jadwal-card-header .header-icon { font-size: 2rem; }
+    .jadwal-card-header h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+    .jadwal-card-header p {
+      font-size: .78rem;
+      color: rgba(255,255,255,.65);
+    }
+    .jadwal-card-body { padding: 24px 28px; }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--gray-100);
+      gap: 16px;
+    }
+    .info-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .info-label {
+      font-size: .8rem;
+      color: var(--gray-400);
+      font-weight: 500;
+      flex-shrink: 0;
+      min-width: 110px;
+    }
+    .info-val {
+      font-size: .88rem;
+      color: var(--gray-800);
+      font-weight: 600;
+      text-align: right;
+    }
+    .info-val a {
+      color: var(--blue);
+      text-decoration: underline;
+    }
+    .info-val a:hover { color: var(--red); }
+
+    .lokasi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .lokasi-item {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .lokasi-item:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    .lokasi-item .kota {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: .92rem;
+      color: var(--navy);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lokasi-item .alamat {
+      font-size: .75rem;
+      color: var(--gray-600);
+      line-height: 1.5;
+    }
+
+    .cara-daftar-box {
+      background: linear-gradient(135deg, var(--blue-light), #DCE8FC);
+      border: 1px solid rgba(26,75,140,.15);
+      border-radius: var(--radius-md);
+      padding: 32px 36px;
+      margin-top: 32px;
+    }
+    .cara-daftar-box h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+    .cara-daftar-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+    }
+    .daftar-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
+    }
+    .daftar-step .step-circle {
+      width: 40px; height: 40px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: .9rem;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .daftar-step p {
+      font-size: .82rem;
+      color: var(--gray-600);
+      line-height: 1.5;
+    }
+
+    .warning-box {
+      background: #FFF8E6;
+      border: 1px solid #F0D080;
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .warning-box .warn-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .warning-box p { font-size: .85rem; color: #7A5800; line-height: 1.65; }
+
+    .link-resmi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .link-resmi-item {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      text-align: center;
+      transition: all var(--transition);
+    }
+    .link-resmi-item:hover {
+      border-color: var(--blue);
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-2px);
+    }
+    .link-resmi-item .link-icon { font-size: 1.5rem; margin-bottom: 6px; }
+    .link-resmi-item .link-label {
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      margin-bottom: 6px;
+    }
+    .link-resmi-item a {
+      font-size: .8rem;
+      color: var(--blue);
+      font-weight: 600;
+      text-decoration: underline;
+    }
+    .link-resmi-item a:hover { color: var(--red); }
+
+    @media (max-width: 900px) {
+      .jadwal-layout { grid-template-columns: 1fr; }
+      .cara-daftar-steps { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .cara-daftar-steps { grid-template-columns: 1fr; }
+    }
+
+    /* Farm card clickable */
     .farm-card-link {
       display: block;
       text-decoration: none;
       color: inherit;
       cursor: pointer;
-      transition: transform .25s ease, box-shadow .25s ease;
     }
     .farm-card-link:hover {
       transform: translateY(-6px);
-      box-shadow: 0 20px 48px rgba(11,31,58,.18);
+      box-shadow: var(--shadow-lg);
     }
     .farm-card-cta {
-      margin-top: 16px;
+      margin-top: 14px;
       font-size: .82rem;
       font-weight: 700;
       color: var(--red);
       letter-spacing: .02em;
-      transition: gap .2s;
     }
-    .farm-card-link:hover .farm-card-cta {
-      text-decoration: underline;
+    .farm-card-link:hover .farm-card-cta { text-decoration: underline; }
+
+    /* Kalkulator Interaktif */
+    .kalk-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      height: 100%;
     }
+    .kalk-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .kalk-title-icon { font-size: 2rem; }
+    .kalk-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin: 0 0 3px;
+    }
+    .kalk-sub { font-size: .78rem; color: rgba(255,255,255,.5); margin: 0; }
+    .kalk-row { margin-bottom: 20px; }
+    .kalk-row-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .kalk-label { font-size: .82rem; color: rgba(255,255,255,.65); }
+    .kalk-value {
+      font-family: var(--font-display);
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .kalk-slider {
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 5px;
+      border-radius: 3px;
+      background: rgba(255,255,255,.15);
+      outline: none;
+      cursor: pointer;
+    }
+    .kalk-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--red);
+      cursor: pointer;
+      box-shadow: 0 0 0 3px rgba(208,34,42,.3);
+      transition: box-shadow .2s;
+    }
+    .kalk-slider::-webkit-slider-thumb:hover {
+      box-shadow: 0 0 0 5px rgba(208,34,42,.4);
+    }
+    .kalk-slider::-moz-range-thumb {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--red);
+      cursor: pointer;
+      border: none;
+    }
+    .kalk-range-hint {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4px;
+    }
+    .kalk-range-hint span { font-size: .7rem; color: rgba(255,255,255,.3); }
+    .kalk-result-box {
+      background: rgba(86,217,166,.15);
+      border: 1px solid rgba(86,217,166,.3);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      text-align: center;
+      margin-top: 8px;
+    }
+    .kalk-result-label { font-size: .78rem; color: rgba(255,255,255,.55); margin-bottom: 6px; }
+    .kalk-result-yen {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      color: #7EECC2;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .kalk-result-idr {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: rgba(126,236,194,.75);
+      margin-bottom: 6px;
+    }
+    .kalk-result-note { font-size: .72rem; color: rgba(255,255,255,.35); }
 
     /* Scroll to top */
     .scroll-top {
@@ -1404,6 +1703,7 @@
         <li><a href="#kenapa">Kenapa Jepang?</a></li>
         <li><a href="#gaji">Gaji & Kehidupan</a></li>
         <li><a href="#alur">Cara Berangkat</a></li>
+        <li><a href="#jadwal">Jadwal Ujian</a></li>
         <li><a href="#quiz">Quiz</a></li>
         <li><a href="#cta" class="nav-cta">Mulai Sekarang</a></li>
       </ul>
@@ -1420,6 +1720,7 @@
   <a href="#gaji"   onclick="closeMobileMenu()">Gaji & Kehidupan</a>
   <a href="#peternakan" onclick="closeMobileMenu()">Kerja Peternakan</a>
   <a href="#alur"   onclick="closeMobileMenu()">Cara Berangkat</a>
+  <a href="#jadwal" onclick="closeMobileMenu()">Jadwal Ujian SSW</a>
   <a href="#quiz"   onclick="closeMobileMenu()">Quiz Cocok Atau Tidak</a>
   <a href="#cta"    onclick="closeMobileMenu()">Mulai Sekarang →</a>
 </div>
@@ -1583,25 +1884,50 @@
         </p>
       </div>
 
-      <!-- Side cards -->
-      <div class="salary-side">
-        <div class="salary-side-card fade-up fade-up-delay-1">
-          <div class="card-icon">🏠</div>
-          <h4>Tempat Tinggal</h4>
-          <div class="val">¥20.000–40.000</div>
-          <p class="note">Banyak peternakan menyediakan asrama karyawan dengan harga sangat terjangkau, bahkan ada yang gratis.</p>
-        </div>
-        <div class="salary-side-card fade-up fade-up-delay-2">
-          <div class="card-icon">🍱</div>
-          <h4>Biaya Makan</h4>
-          <div class="val">¥20.000–30.000</div>
-          <p class="note">Memasak sendiri jauh lebih hemat. Bahan makanan di minimarket dan supermarket tersedia lengkap dan terjangkau.</p>
-        </div>
-        <div class="salary-side-card saving-highlight fade-up fade-up-delay-3">
-          <div class="card-icon">🎯</div>
-          <h4>Potensi Tabungan 3 Tahun</h4>
-          <div class="val">Rp 250–340 jt</div>
-          <p class="note">Cukup untuk modal usaha, beli tanah, atau biaya pendidikan anak. Ini bukan mimpi — ini matematika!</p>
+      <!-- Kalkulator Interaktif -->
+      <div class="salary-side fade-up fade-up-delay-1">
+        <div class="kalk-card">
+          <div class="kalk-header">
+            <span class="kalk-title-icon">🧮</span>
+            <div>
+              <h4 class="kalk-title">Kalkulator Tabunganmu</h4>
+              <p class="kalk-sub">Geser slider untuk lihat hasil nyata</p>
+            </div>
+          </div>
+
+          <div class="kalk-row">
+            <div class="kalk-row-label">
+              <span class="kalk-label">💴 Gaji per bulan</span>
+              <span class="kalk-value" id="v-gaji">¥175.000</span>
+            </div>
+            <input type="range" class="kalk-slider" min="140000" max="250000" step="5000" value="175000" id="sl-gaji" oninput="hitungTabungan()">
+            <div class="kalk-range-hint"><span>¥140.000</span><span>¥250.000</span></div>
+          </div>
+
+          <div class="kalk-row">
+            <div class="kalk-row-label">
+              <span class="kalk-label">🏠 Biaya hidup per bulan</span>
+              <span class="kalk-value" id="v-hidup">¥80.000</span>
+            </div>
+            <input type="range" class="kalk-slider" min="40000" max="130000" step="5000" value="80000" id="sl-hidup" oninput="hitungTabungan()">
+            <div class="kalk-range-hint"><span>¥40.000</span><span>¥130.000</span></div>
+          </div>
+
+          <div class="kalk-row">
+            <div class="kalk-row-label">
+              <span class="kalk-label">📅 Durasi kerja</span>
+              <span class="kalk-value" id="v-tahun">3 tahun</span>
+            </div>
+            <input type="range" class="kalk-slider" min="1" max="5" step="1" value="3" id="sl-tahun" oninput="hitungTabungan()">
+            <div class="kalk-range-hint"><span>1 tahun</span><span>5 tahun</span></div>
+          </div>
+
+          <div class="kalk-result-box">
+            <div class="kalk-result-label">💰 Estimasi total tabungan</div>
+            <div class="kalk-result-yen" id="res-yen">¥3.420.000</div>
+            <div class="kalk-result-idr" id="res-idr">≈ Rp 356 juta</div>
+            <div class="kalk-result-note" id="res-note">Tabungan ¥95.000/bulan × 36 bulan</div>
+          </div>
         </div>
       </div>
     </div>
@@ -1619,7 +1945,6 @@
       <p>Lupakan bayangan peternakan kumuh dan bau menyengat. Peternakan Jepang adalah tempat<br>kerja yang terorganisir, bersih, dan menggunakan teknologi mutakhir.</p>
     </div>
 
-    <!-- Klik card untuk ke halaman ujian SSW -->
     <div class="farm-grid">
       <a href="https://rivanfagliad.github.io/ssw-peternakan-jepang/" target="_blank" class="farm-card farm-card-link fade-up fade-up-delay-1">
         <div class="farm-card-header cow">🐄</div>
@@ -1791,6 +2116,227 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+
+<!-- =============================================
+     SECTION JADWAL UJIAN SSW (BARU)
+============================================= -->
+<section id="jadwal">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label eyebrow">Informasi Penting</span>
+      <h2 class="display-lg">Jadwal & Info Ujian<br>SSW Peternakan</h2>
+      <p>Ada 2 ujian yang wajib lulus sebelum bisa berangkat ke Jepang.<br>Keduanya bisa diikuti di Indonesia — dan bisa diulang jika belum lulus.</p>
+    </div>
+
+    <div class="jadwal-layout">
+      <!-- Ujian 1: Keterampilan -->
+      <div class="jadwal-card fade-up fade-up-delay-1">
+        <div class="jadwal-card-header blue-header">
+          <div class="header-icon">🐄</div>
+          <div>
+            <h3>Ujian Keterampilan Peternakan</h3>
+            <p>Agriculture Skill Assessment Test (Livestock)</p>
+          </div>
+        </div>
+        <div class="jadwal-card-body">
+          <div class="info-row">
+            <span class="info-label">Penyelenggara</span>
+            <span class="info-val">Prometric Japan</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Biaya</span>
+            <span class="info-val" style="color:var(--red);">Rp 450.000</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Format Soal</span>
+            <span class="info-val">Komputer, bergambar, pilihan ganda</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Bahasa</span>
+            <span class="info-val">Jepang (dibantu gambar)</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Jadwal</span>
+            <span class="info-val">Tersedia tiap bulan — cek Prometric</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Batas Usia</span>
+            <span class="info-val">Min. 18 tahun saat ujian</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Pengulangan</span>
+            <span class="info-val" style="color:var(--blue);">Tidak terbatas ✓</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Link Daftar</span>
+            <span class="info-val">
+              <a href="http://ac.prometric-jp.com/testlist/ssw/index.html" target="_blank">Prometric SSW ↗</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ujian 2: Bahasa Jepang -->
+      <div class="jadwal-card fade-up fade-up-delay-2">
+        <div class="jadwal-card-header red-header">
+          <div class="header-icon">🗣️</div>
+          <div>
+            <h3>Ujian Bahasa Jepang</h3>
+            <p>JFT-Basic (Japanese Foundation Test)</p>
+          </div>
+        </div>
+        <div class="jadwal-card-body">
+          <div class="info-row">
+            <span class="info-label">Penyelenggara</span>
+            <span class="info-val">Japan Foundation</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Level</span>
+            <span class="info-val">Setara A2 (lebih mudah dari JLPT N4)</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Format Soal</span>
+            <span class="info-val">4 bagian: kosakata, percakapan, membaca, mendengar</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Jadwal</span>
+            <span class="info-val">Beberapa kali setahun di kota besar</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Kota Ujian</span>
+            <span class="info-val">Jakarta, Surabaya, Medan, dll</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Update 2026</span>
+            <span class="info-val" style="color:var(--blue);">Kini menilai level A1 & A2.1 ✓</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Pengulangan</span>
+            <span class="info-val" style="color:var(--blue);">Tidak terbatas ✓</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Link Info</span>
+            <span class="info-val">
+              <a href="https://www.jft-basic.jp" target="_blank">jft-basic.jp ↗</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lokasi Ujian -->
+    <div class="fade-up">
+      <h3 style="font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:6px;">
+        📍 Lokasi Ujian Keterampilan di Indonesia
+      </h3>
+      <p style="font-size:.9rem;color:var(--gray-600);margin-bottom:4px;">
+        Ujian Keterampilan Peternakan tersedia di 8 kota berikut:
+      </p>
+      <div class="lokasi-grid">
+        <div class="lokasi-item">
+          <div class="kota">🏙️ Jakarta Selatan</div>
+          <div class="alamat">Universitas Gunadarma, Graha Simatupang Tower 1A Lt. 4, Jl. Letjen Simatupang Kav. 38</div>
+        </div>
+        <div class="lokasi-item">
+          <div class="kota">🏙️ Jakarta Utara</div>
+          <div class="alamat">PT. ITC, Mall of Indonesia, Ruko Italian Walk Blok B 11a-11b, Kelapa Gading</div>
+        </div>
+        <div class="lokasi-item">
+          <div class="kota">🏙️ Jakarta Pademangan</div>
+          <div class="alamat">PT. ITC, Rukan Mangga Dua Square Blok C7, Jl. Gunung Sahari Raya No. 1</div>
+        </div>
+        <div class="lokasi-item">
+          <div class="kota">🌊 Surabaya</div>
+          <div class="alamat">KAPLAN Edupac, HR. Muhammad Square Blok C21-C22, Jl. Raya Darmo Permai II</div>
+        </div>
+        <div class="lokasi-item">
+          <div class="kota">🌺 Bandung</div>
+          <div class="alamat">ASMTB, Jl. L.L.R.E. Martadinata No. 93-95, Citarum, Bandung Wetan</div>
+        </div>
+        <div class="lokasi-item">
+          <div class="kota">🛕 Yogyakarta</div>
+          <div class="alamat">Universitas Islam Indonesia, Jl. Prawiro, Ngringin, Condongcatur, Depok, Sleman</div>
+        </div>
+        <div class="lokasi-item">
+          <div class="kota">🌴 Medan</div>
+          <div class="alamat">Binus Center Medan, Jl. Hayam Wuruk No. 56B, Medan, Sumatra Utara</div>
+        </div>
+        <div class="lokasi-item">
+          <div class="kota">⚓ Semarang</div>
+          <div class="alamat">Politeknik Akademi Bumi, Jl. Pawiyatan Luhur II No. 17, Gajahmungkur</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cara Daftar -->
+    <div class="cara-daftar-box fade-up">
+      <h3>📋 Cara Daftar Ujian Keterampilan Peternakan</h3>
+      <div class="cara-daftar-steps">
+        <div class="daftar-step">
+          <div class="step-circle">1</div>
+          <p><strong>Buat akun Prometric</strong> di website resmi ac.prometric-jp.com</p>
+        </div>
+        <div class="daftar-step">
+          <div class="step-circle">2</div>
+          <p><strong>Cek jadwal & kota</strong> yang tersedia sesuai domisilimu</p>
+        </div>
+        <div class="daftar-step">
+          <div class="step-circle">3</div>
+          <p><strong>Pilih tanggal & bayar</strong> online via kartu kredit atau Jenius</p>
+        </div>
+        <div class="daftar-step">
+          <div class="step-circle">4</div>
+          <p><strong>Download confirmation letter</strong> setelah pembayaran selesai</p>
+        </div>
+        <div class="daftar-step">
+          <div class="step-circle">5</div>
+          <p><strong>Datang ke lokasi</strong> bawa confirmation letter + KTP/paspor asli</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Warning -->
+    <div class="warning-box fade-up">
+      <div class="warn-icon">⚠️</div>
+      <p>
+        <strong>Penting:</strong> Jadwal ujian berubah setiap bulan — selalu cek langsung di website resmi Prometric sebelum mendaftar.
+        Voucher ujian <strong>tidak bisa dibeli di lokasi ujian</strong> — wajib beli online terlebih dahulu.
+        Bawa dokumen identitas <strong>asli</strong> (fotokopi tidak diterima).
+      </p>
+    </div>
+
+    <!-- Link Resmi -->
+    <div class="fade-up">
+      <h3 style="font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--navy);margin-top:40px;margin-bottom:4px;">
+        🔗 Link Resmi yang Perlu Disimpan
+      </h3>
+      <div class="link-resmi-grid">
+        <div class="link-resmi-item">
+          <div class="link-icon">🐄</div>
+          <div class="link-label">Daftar Ujian Keterampilan</div>
+          <a href="http://ac.prometric-jp.com/testlist/ssw/index.html" target="_blank">Prometric SSW ↗</a>
+        </div>
+        <div class="link-resmi-item">
+          <div class="link-icon">🗣️</div>
+          <div class="link-label">Info Ujian JFT-Basic</div>
+          <a href="https://www.jft-basic.jp" target="_blank">jft-basic.jp ↗</a>
+        </div>
+        <div class="link-resmi-item">
+          <div class="link-icon">🏛️</div>
+          <div class="link-label">Info Resmi SSW Jepang</div>
+          <a href="https://www.ssw.go.jp/id" target="_blank">ssw.go.jp ↗</a>
+        </div>
+        <div class="link-resmi-item">
+          <div class="link-icon">🇮🇩</div>
+          <div class="link-label">Lembaga Resmi Indonesia</div>
+          <a href="https://www.bp2mi.go.id" target="_blank">BP2MI ↗</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -2089,6 +2635,7 @@
           <li><a href="#peternakan">Kerja Peternakan</a></li>
           <li><a href="#cerita">Kisah Inspiratif</a></li>
           <li><a href="#alur">Cara Berangkat</a></li>
+          <li><a href="#jadwal">Jadwal Ujian SSW</a></li>
           <li><a href="#tantangan">Tantangan & Solusi</a></li>
           <li><a href="#quiz">Quiz Kesiapan</a></li>
           <li><a href="#faq">FAQ</a></li>
@@ -2126,6 +2673,27 @@
      JAVASCRIPT
 ============================================= -->
 <script>
+
+  /* ---- KALKULATOR TABUNGAN ---- */
+  function hitungTabungan() {
+    var gaji   = parseInt(document.getElementById('sl-gaji').value);
+    var hidup  = parseInt(document.getElementById('sl-hidup').value);
+    var tahun  = parseInt(document.getElementById('sl-tahun').value);
+
+    document.getElementById('v-gaji').textContent  = '¥' + gaji.toLocaleString('id-ID');
+    document.getElementById('v-hidup').textContent = '¥' + hidup.toLocaleString('id-ID');
+    document.getElementById('v-tahun').textContent = tahun + (tahun === 1 ? ' tahun' : ' tahun');
+
+    var tabBulan = Math.max(0, gaji - hidup);
+    var totalYen = tabBulan * 12 * tahun;
+    var totalIdr = Math.round(totalYen * 104 / 1000000);
+
+    document.getElementById('res-yen').textContent  = '¥' + totalYen.toLocaleString('id-ID');
+    document.getElementById('res-idr').textContent  = '≈ Rp ' + totalIdr + ' juta';
+    document.getElementById('res-note').textContent =
+      'Tabungan ¥' + tabBulan.toLocaleString('id-ID') + '/bulan × ' + (tahun * 12) + ' bulan';
+  }
+
   /* ---- NAVBAR: scroll effect ---- */
   const navbar = document.getElementById('navbar');
   const scrollTopBtn = document.getElementById('scrollTop');
