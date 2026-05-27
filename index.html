@@ -1702,8 +1702,10 @@
       <ul class="nav-links">
         <li><a href="#kenapa">Kenapa Jepang?</a></li>
         <li><a href="#gaji">Gaji & Kehidupan</a></li>
+        <li><a href="#pelajari">Panduan</a></li>
         <li><a href="#alur">Cara Berangkat</a></li>
         <li><a href="#jadwal">Jadwal Ujian</a></li>
+        <li><a href="#resource">Resource</a></li>
         <li><a href="#quiz">Quiz</a></li>
         <li><a href="#checklist">Dokumen</a></li>
         <li><a href="#tim-pengembang">Tim</a></li>
@@ -1723,8 +1725,10 @@
   <a href="#peternakan" onclick="closeMobileMenu()">Kerja Peternakan</a>
   <a href="#alur"   onclick="closeMobileMenu()">Cara Berangkat</a>
   <a href="#jadwal" onclick="closeMobileMenu()">Jadwal Ujian SSW</a>
+  <a href="#pelajari" onclick="closeMobileMenu()">Apa yang Akan Dipelajari</a>
   <a href="#quiz"   onclick="closeMobileMenu()">Quiz Cocok Atau Tidak</a>
   <a href="#checklist" onclick="closeMobileMenu()">Checklist Dokumen</a>
+  <a href="#resource" onclick="closeMobileMenu()">Resource Resmi</a>
   <a href="#tim-pengembang" onclick="closeMobileMenu()">Tim Pengembang</a>
   <a href="#cta"    onclick="closeMobileMenu()">Mulai Sekarang →</a>
 </div>
@@ -1800,6 +1804,203 @@
           <div class="desc">Level Bahasa Minimal</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     SECTION: APA YANG AKAN KAMU PELAJARI
+============================================= -->
+<style>
+  #pelajari {
+    padding: 96px 24px;
+    background: var(--off-white, #f7f5f0);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #pelajari::before {
+    content: '学';
+    position: absolute;
+    left: -30px;
+    bottom: -20px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 260px;
+    color: rgba(192,57,43,0.04);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .pelajari-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pelajari-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .pelajari-eyebrow {
+    display: inline-block;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #c0392b;
+    border: 1px solid rgba(192,57,43,.25);
+    background: rgba(192,57,43,.06);
+    padding: 5px 14px;
+    border-radius: 99px;
+    margin-bottom: 18px;
+  }
+
+  .pelajari-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+
+  .pelajari-sub {
+    font-size: .98rem;
+    color: #6b7280;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .pelajari-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .pelajari-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .pelajari-grid { grid-template-columns: 1fr; }
+  }
+
+  .pelajari-card {
+    background: #fff;
+    border: 1px solid #e5e0d8;
+    border-radius: 18px;
+    padding: 28px 24px;
+    transition: transform .25s ease, box-shadow .25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pelajari-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #c0392b, #e74c3c);
+    opacity: 0;
+    transition: opacity .25s;
+  }
+
+  .pelajari-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(0,0,0,.09);
+  }
+
+  .pelajari-card:hover::before { opacity: 1; }
+
+  .pelajari-icon {
+    font-size: 2rem;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .pelajari-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .pelajari-card-desc {
+    font-size: .84rem;
+    color: #6b7280;
+    line-height: 1.65;
+  }
+
+  .pelajari-card-tag {
+    display: inline-block;
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 99px;
+    margin-bottom: 12px;
+    background: rgba(192,57,43,.08);
+    color: #c0392b;
+    border: 1px solid rgba(192,57,43,.15);
+  }
+</style>
+
+<section id="pelajari">
+  <div class="pelajari-inner">
+    <div class="pelajari-header fade-up">
+      <span class="pelajari-eyebrow">📚 Isi Website Ini</span>
+      <h2 class="pelajari-title">Apa yang Akan Kamu Pelajari?</h2>
+      <p class="pelajari-sub">Semua informasi yang kamu butuhkan sebelum mengambil keputusan — disajikan jujur dan terstruktur.</p>
+    </div>
+
+    <div class="pelajari-grid fade-up">
+
+      <div class="pelajari-card">
+        <span class="pelajari-icon">🏛️</span>
+        <span class="pelajari-card-tag">Dasar</span>
+        <div class="pelajari-card-title">Sistem Tokutei Ginou</div>
+        <div class="pelajari-card-desc">Apa itu program SSW, siapa yang bisa mendaftar, berapa lama kontrak, dan apa bedanya dengan TKI biasa.</div>
+      </div>
+
+      <div class="pelajari-card">
+        <span class="pelajari-icon">🗣️</span>
+        <span class="pelajari-card-tag">Ujian</span>
+        <div class="pelajari-card-title">Ujian Bahasa Jepang</div>
+        <div class="pelajari-card-desc">Perbedaan JFT-Basic dan JLPT N4, jadwal ujian, lokasi, biaya, dan tips persiapan dari nol.</div>
+      </div>
+
+      <div class="pelajari-card">
+        <span class="pelajari-icon">🐄</span>
+        <span class="pelajari-card-tag">Keterampilan</span>
+        <div class="pelajari-card-title">Ujian Sektor Peternakan</div>
+        <div class="pelajari-card-desc">Materi ujian keterampilan SSW peternakan, cara daftar via Prometric, dan standar kompetensi yang diuji.</div>
+      </div>
+
+      <div class="pelajari-card">
+        <span class="pelajari-icon">🏠</span>
+        <span class="pelajari-card-tag">Kehidupan</span>
+        <div class="pelajari-card-title">Kehidupan di Jepang</div>
+        <div class="pelajari-card-desc">Gambaran nyata tinggal di asrama peternakan Jepang — cuaca, makanan, biaya hidup, hingga interaksi sosial.</div>
+      </div>
+
+      <div class="pelajari-card">
+        <span class="pelajari-icon">⚠️</span>
+        <span class="pelajari-card-tag">Realistis</span>
+        <div class="pelajari-card-title">Risiko & Tantangan</div>
+        <div class="pelajari-card-desc">Hal-hal yang jarang dibahas: kerja fisik berat, cuaca ekstrem, homesick, hingga potensi masalah kontrak.</div>
+      </div>
+
+      <div class="pelajari-card">
+        <span class="pelajari-icon">🧠</span>
+        <span class="pelajari-card-tag">Mental</span>
+        <div class="pelajari-card-title">Persiapan Mental</div>
+        <div class="pelajari-card-desc">Tips menjaga motivasi, cara komunikasi dengan keluarga dari jauh, dan strategi bertahan di tahun pertama.</div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -3112,6 +3313,268 @@
           <button class="quiz-btn quiz-btn-next" id="nextBtn" disabled onclick="nextQuestion()">Lanjut →</button>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     SECTION: RESOURCE RESMI
+============================================= -->
+<style>
+  #resource {
+    padding: 96px 24px;
+    background: var(--off-white, #f7f5f0);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #resource::after {
+    content: '公式';
+    position: absolute;
+    right: -20px;
+    bottom: -10px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 200px;
+    color: rgba(192,57,43,0.04);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .resource-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .resource-header {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .resource-eyebrow {
+    display: inline-block;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #c0392b;
+    border: 1px solid rgba(192,57,43,.25);
+    background: rgba(192,57,43,.06);
+    padding: 5px 14px;
+    border-radius: 99px;
+    margin-bottom: 18px;
+  }
+
+  .resource-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .resource-sub {
+    font-size: .95rem;
+    color: #6b7280;
+    max-width: 520px;
+    margin: 0 auto 48px;
+    line-height: 1.7;
+  }
+
+  .resource-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(192,57,43,.05);
+    border: 1px solid rgba(192,57,43,.15);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 36px;
+    font-size: .84rem;
+    color: #6b7280;
+    line-height: 1.6;
+  }
+
+  .resource-notice strong { color: #c0392b; }
+
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .resource-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .resource-grid { grid-template-columns: 1fr; }
+  }
+
+  .resource-card {
+    background: #fff;
+    border: 1px solid #e5e0d8;
+    border-radius: 16px;
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform .2s, box-shadow .2s;
+    text-decoration: none;
+  }
+
+  .resource-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,.08);
+  }
+
+  .resource-card-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .resource-logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .resource-logo.red    { background: rgba(192,57,43,.1); }
+  .resource-logo.blue   { background: rgba(26,86,160,.1); }
+  .resource-logo.green  { background: rgba(39,174,96,.1); }
+  .resource-logo.purple { background: rgba(142,68,173,.1); }
+  .resource-logo.orange { background: rgba(230,126,34,.1); }
+  .resource-logo.navy   { background: rgba(13,27,62,.1); }
+
+  .resource-card-name {
+    font-size: .9rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.3;
+  }
+
+  .resource-card-org {
+    font-size: .75rem;
+    color: #9ca3af;
+    font-weight: 500;
+  }
+
+  .resource-card-desc {
+    font-size: .8rem;
+    color: #6b7280;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .resource-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: .75rem;
+    font-weight: 700;
+    color: #c0392b;
+    text-decoration: none;
+    margin-top: 4px;
+  }
+
+  .resource-card-link:hover { text-decoration: underline; }
+</style>
+
+<section id="resource">
+  <div class="resource-inner">
+    <div class="resource-header fade-up">
+      <span class="resource-eyebrow">🔗 Sumber Terpercaya</span>
+      <h2 class="resource-title">Resource Resmi yang Wajib Kamu Tahu</h2>
+      <p class="resource-sub">Semua informasi di website ini bersumber dari lembaga-lembaga resmi berikut. Selalu cek langsung ke sumbernya untuk informasi terbaru.</p>
+    </div>
+
+    <div class="resource-notice fade-up">
+      <span style="font-size:1.1rem; flex-shrink:0;">💡</span>
+      <span><strong>Tips:</strong> Hati-hati dengan informasi dari sumber tidak resmi. Jika ada yang menjanjikan keberangkatan tanpa ujian atau meminta biaya tidak wajar, segera laporkan ke BP2MI.</span>
+    </div>
+
+    <div class="resource-grid fade-up">
+
+      <div class="resource-card">
+        <div class="resource-card-top">
+          <div class="resource-logo red">🏛️</div>
+          <div>
+            <div class="resource-card-name">BP2MI</div>
+            <div class="resource-card-org">Badan Perlindungan PMI</div>
+          </div>
+        </div>
+        <div class="resource-card-desc">Lembaga resmi pemerintah Indonesia yang mengatur penempatan dan perlindungan Pekerja Migran Indonesia ke luar negeri.</div>
+        <a href="https://bp2mi.go.id" target="_blank" rel="noopener" class="resource-card-link">Kunjungi bp2mi.go.id →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-card-top">
+          <div class="resource-logo blue">🗣️</div>
+          <div>
+            <div class="resource-card-name">JFT-Basic</div>
+            <div class="resource-card-org">Japan Foundation</div>
+          </div>
+        </div>
+        <div class="resource-card-desc">Ujian bahasa Jepang resmi untuk program SSW. Diselenggarakan oleh Japan Foundation, bisa diambil di beberapa kota Indonesia.</div>
+        <a href="https://www.jft-basic.jp/info/indonesian.html" target="_blank" rel="noopener" class="resource-card-link">Kunjungi jft-basic.jp →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-card-top">
+          <div class="resource-logo green">📝</div>
+          <div>
+            <div class="resource-card-name">JLPT</div>
+            <div class="resource-card-org">Japan Language Proficiency Test</div>
+          </div>
+        </div>
+        <div class="resource-card-desc">Ujian kemampuan bahasa Jepang tingkat N4 sebagai alternatif JFT-Basic. Diselenggarakan dua kali setahun (Juli & Desember).</div>
+        <a href="https://www.jlpt.jp/e/index.html" target="_blank" rel="noopener" class="resource-card-link">Kunjungi jlpt.jp →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-card-top">
+          <div class="resource-logo purple">🖥️</div>
+          <div>
+            <div class="resource-card-name">Prometric</div>
+            <div class="resource-card-org">Ujian Keterampilan SSW</div>
+          </div>
+        </div>
+        <div class="resource-card-desc">Platform pendaftaran ujian keterampilan SSW sektor peternakan. Ujian diselenggarakan secara berkala di Indonesia.</div>
+        <a href="https://www.prometric-japan.com/testee/index_id.html" target="_blank" rel="noopener" class="resource-card-link">Kunjungi prometric-japan.com →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-card-top">
+          <div class="resource-logo orange">🇯🇵</div>
+          <div>
+            <div class="resource-card-name">JICWELS</div>
+            <div class="resource-card-org">Japan Int'l Welfare Services</div>
+          </div>
+        </div>
+        <div class="resource-card-desc">Lembaga Jepang yang mengelola program SSW, termasuk pencocokan pekerja dengan perusahaan Jepang (matching support).</div>
+        <a href="https://www.jicwels.or.jp" target="_blank" rel="noopener" class="resource-card-link">Kunjungi jicwels.or.jp →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-card-top">
+          <div class="resource-logo navy">📋</div>
+          <div>
+            <div class="resource-card-name">OTIT</div>
+            <div class="resource-card-org">Organization for Technical Intern</div>
+          </div>
+        </div>
+        <div class="resource-card-desc">Lembaga pengawas program magang dan SSW di Jepang. Bisa digunakan untuk laporan jika ada pelanggaran hak pekerja.</div>
+        <a href="https://www.otit.go.jp/english/" target="_blank" rel="noopener" class="resource-card-link">Kunjungi otit.go.jp →</a>
+      </div>
+
     </div>
   </div>
 </section>
