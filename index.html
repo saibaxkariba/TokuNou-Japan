@@ -243,9 +243,7 @@
       font-weight: 400;
     }
     .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
+      display: none;
     }
     .nav-links a {
       color: rgba(255,255,255,.75);
@@ -264,11 +262,13 @@
     }
     .nav-cta:hover { background: var(--red-dark); }
     .hamburger {
-      display: none;
+      display: flex;
       flex-direction: column;
       gap: 5px;
       cursor: pointer;
       padding: 4px;
+      background: none;
+      border: none;
     }
     .hamburger span {
       display: block;
@@ -288,6 +288,8 @@
       border-bottom: 1px solid rgba(255,255,255,.1);
       padding: 20px 24px 28px;
       z-index: 999;
+      max-height: calc(100vh - 68px);
+      overflow-y: auto;
     }
     .mobile-menu.open { display: block; }
     .mobile-menu a {
@@ -1325,8 +1327,6 @@
       .challenges-grid{ grid-template-columns: 1fr; }
       .footer-grid    { grid-template-columns: 1fr 1fr; }
       .farm-tech-banner { flex-direction: column; text-align: center; }
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
       .jp-flag-deco { display: none; }
     }
     @media (max-width: 600px) {
@@ -1700,11 +1700,12 @@
         </div>
       </a>
       <ul class="nav-links">
-        <li><a href="#kenapa">Kenapa Jepang?</a></li>
-        <li><a href="#gaji">Gaji & Kehidupan</a></li>
+        <li><a href="#kenapa">Gambaran SSW</a></li>
         <li><a href="#pelajari">Panduan</a></li>
         <li><a href="#alur">Cara Berangkat</a></li>
         <li><a href="#jadwal">Jadwal Ujian</a></li>
+        <li><a href="#gaji">Simulasi Gaji</a></li>
+        <li><a href="#tantangan">Risiko</a></li>
         <li><a href="#resource">Resource</a></li>
         <li><a href="#quiz">Quiz</a></li>
         <li><a href="#checklist">Dokumen</a></li>
@@ -1720,17 +1721,19 @@
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#kenapa" onclick="closeMobileMenu()">Kenapa Jepang?</a>
-  <a href="#gaji"   onclick="closeMobileMenu()">Gaji & Kehidupan</a>
-  <a href="#peternakan" onclick="closeMobileMenu()">Kerja Peternakan</a>
-  <a href="#alur"   onclick="closeMobileMenu()">Cara Berangkat</a>
-  <a href="#jadwal" onclick="closeMobileMenu()">Jadwal Ujian SSW</a>
-  <a href="#pelajari" onclick="closeMobileMenu()">Apa yang Akan Dipelajari</a>
-  <a href="#quiz"   onclick="closeMobileMenu()">Quiz Cocok Atau Tidak</a>
+  <a href="#kenapa"    onclick="closeMobileMenu()">Gambaran Program SSW</a>
+  <a href="#pelajari"  onclick="closeMobileMenu()">Apa yang Akan Dipelajari</a>
+  <a href="#alur"      onclick="closeMobileMenu()">Alur Cara Berangkat</a>
+  <a href="#jadwal"    onclick="closeMobileMenu()">Jadwal Ujian SSW</a>
+  <a href="#gaji"      onclick="closeMobileMenu()">Simulasi Gaji</a>
+  <a href="#tantangan" onclick="closeMobileMenu()">Risiko & Tantangan</a>
+  <a href="#peternakan" onclick="closeMobileMenu()">Kerja di Peternakan</a>
+  <a href="#kreator"   onclick="closeMobileMenu()">Kreator Nyata di Jepang</a>
+  <a href="#resource"  onclick="closeMobileMenu()">Resource Resmi</a>
+  <a href="#quiz"      onclick="closeMobileMenu()">Quiz Kesiapan</a>
   <a href="#checklist" onclick="closeMobileMenu()">Checklist Dokumen</a>
-  <a href="#resource" onclick="closeMobileMenu()">Resource Resmi</a>
-  <a href="#tim-pengembang" onclick="closeMobileMenu()">Tim Pengembang</a>
-  <a href="#cta"    onclick="closeMobileMenu()">Mulai Sekarang →</a>
+  <a href="#faq"       onclick="closeMobileMenu()">FAQ</a>
+  <a href="#cta"       onclick="closeMobileMenu()">Mulai Sekarang →</a>
 </div>
 
 <!-- =============================================
@@ -1807,7 +1810,41 @@
     </div>
   </div>
 </section>
+<!-- =============================================
+     SECTION 2: KENAPA JEPANG
+============================================= -->
+<section id="kenapa">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label eyebrow">Gambaran Program SSW Peternakan</span>
+      <h2 class="display-lg">Apa yang Perlu Kamu<br>Ketahui Sebelum Memutuskan</h2>
+      <p>Informasi berikut dirangkum dari sumber resmi untuk membantu kamu memahami program ini secara objektif — bukan untuk membujuk, tapi untuk membekali.</p>
+    </div>
 
+    <div class="benefits-grid">
+      <div class="benefit-card fade-up fade-up-delay-1">
+        <div class="benefit-icon">💴</div>
+        <h3>Standar Gaji Sesuai Hukum Jepang</h3>
+        <p>Pekerja SSW mendapat upah setara pekerja lokal Jepang, mengikuti upah minimum prefektur. Rata-rata gaji kotor sektor peternakan sekitar ¥150.000–¥200.000/bulan sebelum dipotong pajak dan asuransi. <span style="font-size:.78rem;opacity:.6;">(Sumber: MHLW Jepang, 2024)</span></p>
+      </div>
+      <div class="benefit-card fade-up fade-up-delay-2">
+        <div class="benefit-icon">🏭</div>
+        <h3>Teknologi Peternakan Modern</h3>
+        <p>Peternakan di Jepang banyak menggunakan sistem otomasi dan manajemen ternak terkomputerisasi. Pekerja akan terekspos pada metode kerja yang terstruktur dan berbasis prosedur ketat.</p>
+      </div>
+      <div class="benefit-card fade-up fade-up-delay-3">
+        <div class="benefit-icon">📋</div>
+        <h3>Hak & Perlindungan Pekerja</h3>
+        <p>SSW adalah visa kerja resmi — bukan magang. Pekerja dilindungi oleh Undang-Undang Ketenagakerjaan Jepang, berhak atas asuransi kesehatan, pensiun, dan kompensasi kecelakaan kerja.</p>
+      </div>
+      <div class="benefit-card fade-up fade-up-delay-4">
+        <div class="benefit-icon">📈</div>
+        <h3>Durasi & Jalur Lanjutan</h3>
+        <p>SSW-1 berlaku maksimal 5 tahun. Jika lulus ujian SSW-2, masa tinggal bisa diperpanjang tanpa batas dan diperbolehkan membawa keluarga. Namun SSW-2 sektor peternakan belum tersedia saat ini.</p>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- =============================================
      SECTION: APA YANG AKAN KAMU PELAJARI
 ============================================= -->
@@ -2004,52 +2041,297 @@
     </div>
   </div>
 </section>
-
 <!-- =============================================
-     SECTION 2: KENAPA JEPANG
+     SECTION 6: ALUR BERANGKAT (TIMELINE)
 ============================================= -->
-<section id="kenapa">
+<section id="alur">
   <div class="container">
     <div class="section-header fade-up">
-      <span class="label eyebrow">Mengapa Memilih Jepang?</span>
-      <h2 class="display-lg">Bukan Sekadar Kerja —<br>Ini Investasi untuk Hidupmu</h2>
-      <p>Jepang bukan hanya negara maju. Ini adalah tempat di mana kerja kerasmu benar-benar dihargai,<br>dan peluang yang kamu dapatkan tidak bisa kamu temukan di tempat lain.</p>
+      <span class="label eyebrow" style="color:var(--red);">Peta Perjalanan</span>
+      <h2 class="display-lg">5 Langkah Menuju<br>Jepang — Sesederhana Ini</h2>
+      <p>Terlihat panjang? Tenang. Setiap langkah ada panduan dan komunitasnya.<br>Kamu tidak perlu berjalan sendiri.</p>
     </div>
 
-    <div class="benefits-grid">
-      <div class="benefit-card fade-up fade-up-delay-1">
-        <div class="benefit-icon">💴</div>
-        <h3>Gaji Kompetitif & Stabil</h3>
-        <p>Rata-rata gaji ¥150.000–¥200.000 per bulan. Dengan biaya hidup yang terkelola, potensi tabunganmu bisa mencapai Rp 5–8 juta per bulan.</p>
+    <div class="timeline fade-up">
+      <div class="timeline-item">
+        <div class="tl-dot">📚<span class="step-num">Step 1</span></div>
+        <div class="tl-content">
+          <h3>Belajar Bahasa Jepang</h3>
+          <p>Mulai dari nol pun bisa. Target minimal JLPT N4 atau setara. Bisa belajar mandiri lewat aplikasi Duolingo, Anki, YouTube, atau ikut kursus. Yang penting konsisten setiap hari, minimal 30 menit.</p>
+          <span class="tl-duration">⏱ 6–12 bulan</span>
+        </div>
       </div>
-      <div class="benefit-card fade-up fade-up-delay-2">
-        <div class="benefit-icon">🏭</div>
-        <h3>Lingkungan Kerja Modern</h3>
-        <p>Peternakan Jepang sudah menggunakan teknologi otomasi canggih. Kamu akan belajar cara kerja yang terstruktur, bersih, dan efisien.</p>
+      <div class="timeline-item">
+        <div class="tl-dot">📝<span class="step-num">Step 2</span></div>
+        <div class="tl-content">
+          <h3>Ujian Tokutei Ginou (SSW)</h3>
+          <p>Ada dua ujian: tes bahasa Jepang (JFT-Basic / JLPT N4) dan tes keterampilan sektor peternakan (Livestock Farming Skill Evaluation Test). Keduanya bisa diikuti di Indonesia.</p>
+          <span class="tl-duration">⏱ 1–3 bulan persiapan</span>
+        </div>
       </div>
-      <div class="benefit-card fade-up fade-up-delay-3">
-        <div class="benefit-icon">🌏</div>
-        <h3>Pengalaman Internasional</h3>
-        <p>Bekerja di luar negeri membuka wawasanmu. CV-mu jadi lebih kuat, dan kamu pulang dengan keahlian serta jaringan yang berharga.</p>
+      <div class="timeline-item">
+        <div class="tl-dot">🤝<span class="step-num">Step 3</span></div>
+        <div class="tl-content">
+          <h3>Proses Matching & Interview</h3>
+          <p>Setelah lulus ujian, kamu bisa mendaftar ke perusahaan peternakan Jepang melalui lembaga pengirim resmi (registered sending organization). Ada sesi wawancara online dengan perusahaan calon pemberi kerja.</p>
+          <span class="tl-duration">⏱ 1–2 bulan</span>
+        </div>
       </div>
-      <div class="benefit-card fade-up fade-up-delay-4">
-        <div class="benefit-icon">📈</div>
-        <h3>Peluang Karir Jangka Panjang</h3>
-        <p>Jika kamu berprestasi, ada jalur ke SSW-2 yang memungkinkan kamu tinggal permanen dan membawa keluarga ke Jepang.</p>
+      <div class="timeline-item">
+        <div class="tl-dot">📄<span class="step-num">Step 4</span></div>
+        <div class="tl-content">
+          <h3>Pengurusan Dokumen & Visa</h3>
+          <p>Setelah diterima, pengurusan visa dilakukan oleh pihak perusahaan Jepang dan lembaga pengirim. Kamu perlu menyiapkan dokumen seperti paspor, ijazah, SKCK, dan surat keterangan kesehatan.</p>
+          <span class="tl-duration">⏱ 1–3 bulan</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-dot">✈️<span class="step-num">Step 5</span></div>
+        <div class="tl-content">
+          <h3>Berangkat ke Jepang!</h3>
+          <p>Setelah semua dokumen beres dan visa terbit, saatnya berangkat. Kamu akan disambut, diberikan orientasi, dan mulai bekerja. Perjalanan barumu dimulai dari sini!</p>
+          <span class="tl-duration" style="background:var(--red-light); color:var(--red);">🎌 Selamat Datang di Jepang!</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
+<!-- =============================================
+     SECTION JADWAL UJIAN SSW (BARU)
+============================================= -->
+<section id="jadwal">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label eyebrow">Informasi Penting</span>
+      <h2 class="display-lg">Jadwal & Info Ujian<br>SSW Peternakan</h2>
+      <p>Ada 2 ujian yang wajib lulus sebelum bisa berangkat ke Jepang.<br>Keduanya bisa diikuti di Indonesia — dan bisa diulang jika belum lulus.</p>
+    </div>
 
+    <div class="jadwal-layout">
+      <!-- Ujian 1: Keterampilan -->
+      <div class="jadwal-card fade-up fade-up-delay-1">
+        <div class="jadwal-card-header blue-header">
+          <div class="header-icon">🐄</div>
+          <div>
+            <h3>Ujian Keterampilan Peternakan</h3>
+            <p>Agriculture Skill Assessment Test (Livestock)</p>
+          </div>
+        </div>
+        <div class="jadwal-card-body">
+          <div class="info-row">
+            <span class="info-label">Penyelenggara</span>
+            <span class="info-val">Prometric Japan</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Biaya</span>
+            <span class="info-val" style="color:var(--red);">Rp 450.000</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Format Soal</span>
+            <span class="info-val">Komputer, bergambar, pilihan ganda & mendengar</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Bahasa</span>
+            <span class="info-val">Jepang & Indonesia (dibantu gambar)</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Jadwal</span>
+            <span class="info-val">Tersedia tiap bulan — cek Prometric</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Batas Usia</span>
+            <span class="info-val">Min. 18 tahun saat ujian</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Pengulangan</span>
+            <span class="info-val" style="color:var(--blue);">Tidak terbatas ✓</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Link Daftar</span>
+            <span class="info-val">
+              <a href="https://www.prometric-jp.com/id/ssw/test_list/archives/5" target="_blank">Prometric SSW ↗</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ujian 2: Bahasa Jepang -->
+      <div class="jadwal-card fade-up fade-up-delay-2">
+        <div class="jadwal-card-header red-header">
+          <div class="header-icon">🗣️</div>
+          <div>
+            <h3>Ujian Bahasa Jepang</h3>
+            <p>JFT-Basic (Japanese Foundation Test)</p>
+          </div>
+        </div>
+        <div class="jadwal-card-body">
+          <div class="info-row">
+            <span class="info-label">Penyelenggara</span>
+            <span class="info-val">Japan Foundation</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Biaya</span>
+            <span class="info-val" style="color:var(--red);">Rp 550.000</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Level</span>
+            <span class="info-val">Setara A2 (lebih mudah dari JLPT N4)</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Format Soal</span>
+            <span class="info-val">Komputer — 4 bagian: kosakata, percakapan, membaca, mendengar</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Bahasa</span>
+            <span class="info-val">Jepang</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Jadwal</span>
+            <span class="info-val">Beberapa kali setahun di kota besar</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Kota Ujian</span>
+            <span class="info-val">Jakarta, Surabaya, Medan, dll</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Update 2026</span>
+            <span class="info-val" style="color:var(--blue);">Kini menilai level A1 & A2.1 ✓</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Pengulangan</span>
+            <span class="info-val" style="color:var(--blue);">Tidak terbatas ✓</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Link Info</span>
+            <span class="info-val">
+              <a href="https://www.jpf.go.jp/jft-basic/id/index.html" target="_blank">jft-basic.jp ↗</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lokasi Ujian -->
+    <div class="fade-up">
+      <h3 style="font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:6px;">
+        📍 Lokasi Ujian Keterampilan di Indonesia
+      </h3>
+      <p style="font-size:.9rem;color:var(--gray-600);margin-bottom:4px;">
+        Ujian Keterampilan Peternakan tersedia di 8 kota berikut:
+      </p>
+      <div class="lokasi-grid">
+        <div class="lokasi-item">
+          <div class="kota">🏙️ Jakarta Selatan</div>
+          <div class="alamat">Universitas Gunadarma, Graha Simatupang Tower 1A Lt. 4, Jl. Letjen Simatupang Kav. 38</div>
+        </div>
+        <div class="lokasi-item">
+          <div class="kota">🏙️ Jakarta Utara</div>
+          <div class="alamat">PT. ITC, Mall of Indonesia, Ruko Italian Walk Blok B 11a-11b, Kelapa Gading</div>
+        </div>
+        <div class="lokasi-item">
+          <div class="kota">🏙️ Jakarta Pademangan</div>
+          <div class="alamat">PT. ITC, Rukan Mangga Dua Square Blok C7, Jl. Gunung Sahari Raya No. 1</div>
+        </div>
+        <div class="lokasi-item">
+          <div class="kota">🌊 Surabaya</div>
+          <div class="alamat">KAPLAN Edupac, HR. Muhammad Square Blok C21-C22, Jl. Raya Darmo Permai II</div>
+        </div>
+        <div class="lokasi-item">
+          <div class="kota">🌺 Bandung</div>
+          <div class="alamat">ASMTB, Jl. L.L.R.E. Martadinata No. 93-95, Citarum, Bandung Wetan</div>
+        </div>
+        <div class="lokasi-item">
+          <div class="kota">🛕 Yogyakarta</div>
+          <div class="alamat">Universitas Islam Indonesia, Jl. Prawiro, Ngringin, Condongcatur, Depok, Sleman</div>
+        </div>
+        <div class="lokasi-item">
+          <div class="kota">🌴 Medan</div>
+          <div class="alamat">Binus Center Medan, Jl. Hayam Wuruk No. 56B, Medan, Sumatra Utara</div>
+        </div>
+        <div class="lokasi-item">
+          <div class="kota">⚓ Semarang</div>
+          <div class="alamat">Politeknik Akademi Bumi, Jl. Pawiyatan Luhur II No. 17, Gajahmungkur</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cara Daftar -->
+    <div class="cara-daftar-box fade-up">
+      <h3>📋 Cara Daftar Ujian Keterampilan Peternakan</h3>
+      <div class="cara-daftar-steps">
+        <div class="daftar-step">
+          <div class="step-circle">1</div>
+          <p><strong>Buat akun Prometric</strong> di website resmi ac.prometric-jp.com</p>
+        </div>
+        <div class="daftar-step">
+          <div class="step-circle">2</div>
+          <p><strong>Cek jadwal & kota</strong> yang tersedia sesuai domisilimu</p>
+        </div>
+        <div class="daftar-step">
+          <div class="step-circle">3</div>
+          <p><strong>Pilih tanggal & bayar</strong> online via kartu kredit atau Jenius</p>
+        </div>
+        <div class="daftar-step">
+          <div class="step-circle">4</div>
+          <p><strong>Download confirmation letter</strong> setelah pembayaran selesai</p>
+        </div>
+        <div class="daftar-step">
+          <div class="step-circle">5</div>
+          <p><strong>Datang ke lokasi</strong> bawa confirmation letter + KTP/paspor asli</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Warning -->
+    <div class="warning-box fade-up">
+      <div class="warn-icon">⚠️</div>
+      <p>
+        <strong>Penting:</strong> Jadwal ujian berubah setiap bulan — selalu cek langsung di website resmi Prometric sebelum mendaftar.
+        Voucher ujian <strong>tidak bisa dibeli di lokasi ujian</strong> — wajib beli online terlebih dahulu.
+        Bawa dokumen identitas <strong>asli</strong> (fotokopi tidak diterima).
+      </p>
+    </div>
+
+    <!-- Link Resmi -->
+    <div class="fade-up">
+      <h3 style="font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--navy);margin-top:40px;margin-bottom:4px;">
+        🔗 Link Resmi yang Perlu Disimpan
+      </h3>
+      <div class="link-resmi-grid">
+        <div class="link-resmi-item">
+          <div class="link-icon">🐄</div>
+          <div class="link-label">Daftar Ujian Keterampilan</div>
+          <a href="http://ac.prometric-jp.com/testlist/ssw/index.html" target="_blank">Prometric SSW ↗</a>
+        </div>
+        <div class="link-resmi-item">
+          <div class="link-icon">🗣️</div>
+          <div class="link-label">Info Ujian JFT-Basic</div>
+          <a href="https://www.jft-basic.jp" target="_blank">jft-basic.jp ↗</a>
+        </div>
+        <div class="link-resmi-item">
+          <div class="link-icon">🏛️</div>
+          <div class="link-label">Info Resmi SSW Jepang</div>
+          <a href="https://www.ssw.go.jp/id" target="_blank">ssw.go.jp ↗</a>
+        </div>
+        <div class="link-resmi-item">
+          <div class="link-icon">🇮🇩</div>
+          <div class="link-label">Lembaga Resmi Indonesia</div>
+          <a href="https://www.bp2mi.go.id" target="_blank">BP2MI ↗</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 <!-- =============================================
      SECTION 3: REALITA GAJI
 ============================================= -->
 <section id="gaji">
   <div class="container">
     <div class="section-header fade-up">
-      <span class="label eyebrow">Simulasi Keuangan</span>
-      <h2 class="display-lg">Berapa Sebenarnya<br>yang Bisa Kamu Tabung?</h2>
-      <p>Ini bukan angka ajaib. Ini simulasi nyata berdasarkan data kehidupan di Jepang pedesaan.</p>
+      <span class="label eyebrow">Data Gaji & Simulasi Keuangan</span>
+      <h2 class="display-lg">Gambaran Penghasilan<br>SSW Sektor Peternakan</h2>
+      <p>Data berikut bersumber dari Kementerian Kesehatan, Ketenagakerjaan, dan Kesejahteraan Jepang (MHLW) serta laporan BP2MI 2024. Angka bersifat estimasi — penghasilan aktual bergantung pada prefektur, perusahaan, dan jam kerja.</p>
     </div>
 
     <div class="salary-layout">
@@ -2057,12 +2339,12 @@
       <div class="salary-main-card fade-up">
         <div class="salary-badge">📊 Simulasi Bulanan</div>
         <div class="salary-amount"><span class="currency">¥</span>175.000</div>
-        <div class="salary-range">Rata-rata gaji Tokutei Ginou Peternakan</div>
+        <div class="salary-range">Estimasi gaji kotor SSW Peternakan — sebelum pajak & asuransi</div>
 
         <div class="salary-bars">
           <div class="salary-bar-item">
             <div class="salary-bar-label">
-              <span class="name">💴 Gaji Masuk</span>
+              <span class="name">💴 Gaji Kotor</span>
               <span class="val">¥175.000 (~Rp 17,5 jt)</span>
             </div>
             <div class="bar-track"><div class="bar-fill income" style="width:100%" id="bar1"></div></div>
@@ -2076,7 +2358,7 @@
           </div>
           <div class="salary-bar-item">
             <div class="salary-bar-label">
-              <span class="name">✅ Sisa Tabungan</span>
+              <span class="name">✅ Estimasi Sisa</span>
               <span class="val">¥95.000 (~Rp 9,5 jt)</span>
             </div>
             <div class="bar-track"><div class="bar-fill saving" style="width:54%" id="bar3"></div></div>
@@ -2084,7 +2366,7 @@
         </div>
 
         <p style="margin-top:20px; font-size:.8rem; color:rgba(255,255,255,.35); font-style:italic;">
-          *Angka estimasi. Gaji dan biaya hidup dapat bervariasi tergantung wilayah dan perusahaan.
+          *Estimasi berdasarkan rata-rata gaji SSW sektor pertanian/peternakan (MHLW Jepang, 2024). Gaji bersih setelah potongan pajak & asuransi umumnya berkisar ¥130.000–¥150.000/bulan. Biaya hidup sangat bervariasi antar prefektur.
         </p>
       </div>
 
@@ -2137,7 +2419,57 @@
     </div>
   </div>
 </section>
+<!-- =============================================
+     SECTION 7: TANTANGAN & SOLUSI
+============================================= -->
+<section id="tantangan">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label eyebrow" style="color:var(--red);">Jujur & Transparan</span>
+      <h2 class="display-lg">Ada Tantangan, Tapi<br>Ada Juga Solusinya</h2>
+      <p>Kami tidak akan bilang ini mudah. Tapi semua tantangan ini bisa dihadapi dengan persiapan yang tepat.</p>
+    </div>
 
+    <div class="challenges-grid">
+      <div class="challenge-card fade-up fade-up-delay-1">
+        <div class="challenge-problem">
+          <div class="prob-icon">🗣️</div>
+          <h3>Bahasa Jepang Itu Susah</h3>
+          <p>Huruf kanji, hiragana, dan katakana terasa membingungkan di awal.</p>
+        </div>
+        <div class="challenge-solution">
+          <div class="solution-label">✅ Solusinya</div>
+          <h4>Belajar Bertahap, Pakai Aplikasi</h4>
+          <p>Banyak pekerja lulus ujian SSW hanya dengan 6–9 bulan belajar mandiri. Duolingo, Anki, dan channel YouTube berbahasa Indonesia tersedia gratis. Komunitas belajar bareng juga banyak!</p>
+        </div>
+      </div>
+      <div class="challenge-card fade-up fade-up-delay-2">
+        <div class="challenge-problem">
+          <div class="prob-icon">🌸</div>
+          <h3>Adaptasi Budaya & Kebiasaan</h3>
+          <p>Budaya kerja Jepang berbeda: tepat waktu, disiplin, dan komunikasi tidak langsung.</p>
+        </div>
+        <div class="challenge-solution">
+          <div class="solution-label">✅ Solusinya</div>
+          <h4>Komunitas WNI di Jepang</h4>
+          <p>Di Jepang ada ratusan komunitas WNI aktif di setiap prefektur. Kamu tidak akan sendirian. Senior yang sudah lebih dulu di sana siap bantu orientasi dan adaptasi.</p>
+        </div>
+      </div>
+      <div class="challenge-card fade-up fade-up-delay-3">
+        <div class="challenge-problem">
+          <div class="prob-icon">💪</div>
+          <h3>Kerja Fisik yang Berat</h3>
+          <p>Beberapa tugas di peternakan memang membutuhkan fisik yang prima, terutama di awal.</p>
+        </div>
+        <div class="challenge-solution">
+          <div class="solution-label">✅ Solusinya</div>
+          <h4>Pelatihan & Teknologi Membantu</h4>
+          <p>Sebagian besar peternakan Jepang sudah otomatis. Kamu juga akan mendapat orientasi dan pelatihan dari perusahaan. Tubuh pun akan beradaptasi dalam beberapa minggu pertama.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- =============================================
      SECTION 4: KERJA DI PETERNAKAN
 ============================================= -->
@@ -2207,7 +2539,6 @@
     </div>
   </div>
 </section>
-
 <!-- =============================================
      SECTION 5: CERITA INSPIRATIF
 ============================================= -->
@@ -2695,336 +3026,267 @@
 
   </div>
 </section>
-
 <!-- =============================================
-     SECTION 6: ALUR BERANGKAT (TIMELINE)
+     SECTION: RESOURCE RESMI
 ============================================= -->
-<section id="alur">
-  <div class="container">
-    <div class="section-header fade-up">
-      <span class="label eyebrow" style="color:var(--red);">Peta Perjalanan</span>
-      <h2 class="display-lg">5 Langkah Menuju<br>Jepang — Sesederhana Ini</h2>
-      <p>Terlihat panjang? Tenang. Setiap langkah ada panduan dan komunitasnya.<br>Kamu tidak perlu berjalan sendiri.</p>
+<style>
+  #resource {
+    padding: 96px 24px;
+    background: var(--off-white, #f7f5f0);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #resource::after {
+    content: '公式';
+    position: absolute;
+    right: -20px;
+    bottom: -10px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 200px;
+    color: rgba(192,57,43,0.04);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .resource-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .resource-header {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .resource-eyebrow {
+    display: inline-block;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #c0392b;
+    border: 1px solid rgba(192,57,43,.25);
+    background: rgba(192,57,43,.06);
+    padding: 5px 14px;
+    border-radius: 99px;
+    margin-bottom: 18px;
+  }
+
+  .resource-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .resource-sub {
+    font-size: .95rem;
+    color: #6b7280;
+    max-width: 520px;
+    margin: 0 auto 48px;
+    line-height: 1.7;
+  }
+
+  .resource-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(192,57,43,.05);
+    border: 1px solid rgba(192,57,43,.15);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 36px;
+    font-size: .84rem;
+    color: #6b7280;
+    line-height: 1.6;
+  }
+
+  .resource-notice strong { color: #c0392b; }
+
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .resource-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .resource-grid { grid-template-columns: 1fr; }
+  }
+
+  .resource-card {
+    background: #fff;
+    border: 1px solid #e5e0d8;
+    border-radius: 16px;
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform .2s, box-shadow .2s;
+    text-decoration: none;
+  }
+
+  .resource-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,.08);
+  }
+
+  .resource-card-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .resource-logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .resource-logo.red    { background: rgba(192,57,43,.1); }
+  .resource-logo.blue   { background: rgba(26,86,160,.1); }
+  .resource-logo.green  { background: rgba(39,174,96,.1); }
+  .resource-logo.purple { background: rgba(142,68,173,.1); }
+  .resource-logo.orange { background: rgba(230,126,34,.1); }
+  .resource-logo.navy   { background: rgba(13,27,62,.1); }
+
+  .resource-card-name {
+    font-size: .9rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.3;
+  }
+
+  .resource-card-org {
+    font-size: .75rem;
+    color: #9ca3af;
+    font-weight: 500;
+  }
+
+  .resource-card-desc {
+    font-size: .8rem;
+    color: #6b7280;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .resource-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: .75rem;
+    font-weight: 700;
+    color: #c0392b;
+    text-decoration: none;
+    margin-top: 4px;
+  }
+
+  .resource-card-link:hover { text-decoration: underline; }
+</style>
+
+<section id="resource">
+  <div class="resource-inner">
+    <div class="resource-header fade-up">
+      <span class="resource-eyebrow">🔗 Sumber Terpercaya</span>
+      <h2 class="resource-title">Resource Resmi yang Wajib Kamu Tahu</h2>
+      <p class="resource-sub">Semua informasi di website ini bersumber dari lembaga-lembaga resmi berikut. Selalu cek langsung ke sumbernya untuk informasi terbaru.</p>
     </div>
 
-    <div class="timeline fade-up">
-      <div class="timeline-item">
-        <div class="tl-dot">📚<span class="step-num">Step 1</span></div>
-        <div class="tl-content">
-          <h3>Belajar Bahasa Jepang</h3>
-          <p>Mulai dari nol pun bisa. Target minimal JLPT N4 atau setara. Bisa belajar mandiri lewat aplikasi Duolingo, Anki, YouTube, atau ikut kursus. Yang penting konsisten setiap hari, minimal 30 menit.</p>
-          <span class="tl-duration">⏱ 6–12 bulan</span>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-dot">📝<span class="step-num">Step 2</span></div>
-        <div class="tl-content">
-          <h3>Ujian Tokutei Ginou (SSW)</h3>
-          <p>Ada dua ujian: tes bahasa Jepang (JFT-Basic / JLPT N4) dan tes keterampilan sektor peternakan (Livestock Farming Skill Evaluation Test). Keduanya bisa diikuti di Indonesia.</p>
-          <span class="tl-duration">⏱ 1–3 bulan persiapan</span>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-dot">🤝<span class="step-num">Step 3</span></div>
-        <div class="tl-content">
-          <h3>Proses Matching & Interview</h3>
-          <p>Setelah lulus ujian, kamu bisa mendaftar ke perusahaan peternakan Jepang melalui lembaga pengirim resmi (registered sending organization). Ada sesi wawancara online dengan perusahaan calon pemberi kerja.</p>
-          <span class="tl-duration">⏱ 1–2 bulan</span>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-dot">📄<span class="step-num">Step 4</span></div>
-        <div class="tl-content">
-          <h3>Pengurusan Dokumen & Visa</h3>
-          <p>Setelah diterima, pengurusan visa dilakukan oleh pihak perusahaan Jepang dan lembaga pengirim. Kamu perlu menyiapkan dokumen seperti paspor, ijazah, SKCK, dan surat keterangan kesehatan.</p>
-          <span class="tl-duration">⏱ 1–3 bulan</span>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-dot">✈️<span class="step-num">Step 5</span></div>
-        <div class="tl-content">
-          <h3>Berangkat ke Jepang!</h3>
-          <p>Setelah semua dokumen beres dan visa terbit, saatnya berangkat. Kamu akan disambut, diberikan orientasi, dan mulai bekerja. Perjalanan barumu dimulai dari sini!</p>
-          <span class="tl-duration" style="background:var(--red-light); color:var(--red);">🎌 Selamat Datang di Jepang!</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- =============================================
-     SECTION JADWAL UJIAN SSW (BARU)
-============================================= -->
-<section id="jadwal">
-  <div class="container">
-    <div class="section-header fade-up">
-      <span class="label eyebrow">Informasi Penting</span>
-      <h2 class="display-lg">Jadwal & Info Ujian<br>SSW Peternakan</h2>
-      <p>Ada 2 ujian yang wajib lulus sebelum bisa berangkat ke Jepang.<br>Keduanya bisa diikuti di Indonesia — dan bisa diulang jika belum lulus.</p>
+    <div class="resource-notice fade-up">
+      <span style="font-size:1.1rem; flex-shrink:0;">💡</span>
+      <span><strong>Tips:</strong> Hati-hati dengan informasi dari sumber tidak resmi. Jika ada yang menjanjikan keberangkatan tanpa ujian atau meminta biaya tidak wajar, segera laporkan ke BP2MI.</span>
     </div>
 
-    <div class="jadwal-layout">
-      <!-- Ujian 1: Keterampilan -->
-      <div class="jadwal-card fade-up fade-up-delay-1">
-        <div class="jadwal-card-header blue-header">
-          <div class="header-icon">🐄</div>
+    <div class="resource-grid fade-up">
+
+      <div class="resource-card">
+        <div class="resource-card-top">
+          <div class="resource-logo red">🏛️</div>
           <div>
-            <h3>Ujian Keterampilan Peternakan</h3>
-            <p>Agriculture Skill Assessment Test (Livestock)</p>
+            <div class="resource-card-name">BP2MI</div>
+            <div class="resource-card-org">Badan Perlindungan PMI</div>
           </div>
         </div>
-        <div class="jadwal-card-body">
-          <div class="info-row">
-            <span class="info-label">Penyelenggara</span>
-            <span class="info-val">Prometric Japan</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Biaya</span>
-            <span class="info-val" style="color:var(--red);">Rp 450.000</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Format Soal</span>
-            <span class="info-val">Komputer, bergambar, pilihan ganda</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Bahasa</span>
-            <span class="info-val">Jepang (dibantu gambar)</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Jadwal</span>
-            <span class="info-val">Tersedia tiap bulan — cek Prometric</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Batas Usia</span>
-            <span class="info-val">Min. 18 tahun saat ujian</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Pengulangan</span>
-            <span class="info-val" style="color:var(--blue);">Tidak terbatas ✓</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Link Daftar</span>
-            <span class="info-val">
-              <a href="https://www.prometric-jp.com/id/ssw/test_list/archives/5" target="_blank">Prometric SSW ↗</a>
-            </span>
-          </div>
-        </div>
+        <div class="resource-card-desc">Lembaga resmi pemerintah Indonesia yang mengatur penempatan dan perlindungan Pekerja Migran Indonesia ke luar negeri.</div>
+        <a href="https://bp2mi.go.id" target="_blank" rel="noopener" class="resource-card-link">Kunjungi bp2mi.go.id →</a>
       </div>
 
-      <!-- Ujian 2: Bahasa Jepang -->
-      <div class="jadwal-card fade-up fade-up-delay-2">
-        <div class="jadwal-card-header red-header">
-          <div class="header-icon">🗣️</div>
+      <div class="resource-card">
+        <div class="resource-card-top">
+          <div class="resource-logo blue">🗣️</div>
           <div>
-            <h3>Ujian Bahasa Jepang</h3>
-            <p>JFT-Basic (Japanese Foundation Test)</p>
+            <div class="resource-card-name">JFT-Basic</div>
+            <div class="resource-card-org">Japan Foundation</div>
           </div>
         </div>
-        <div class="jadwal-card-body">
-          <div class="info-row">
-            <span class="info-label">Penyelenggara</span>
-            <span class="info-val">Japan Foundation</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Level</span>
-            <span class="info-val">Setara A2 (lebih mudah dari JLPT N4)</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Format Soal</span>
-            <span class="info-val">4 bagian: kosakata, percakapan, membaca, mendengar</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Jadwal</span>
-            <span class="info-val">Beberapa kali setahun di kota besar</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Kota Ujian</span>
-            <span class="info-val">Jakarta, Surabaya, Medan, dll</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Update 2026</span>
-            <span class="info-val" style="color:var(--blue);">Kini menilai level A1 & A2.1 ✓</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Pengulangan</span>
-            <span class="info-val" style="color:var(--blue);">Tidak terbatas ✓</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Link Info</span>
-            <span class="info-val">
-              <a href="https://www.prometric-jp.com/id/ssw/test_list/archives/1" target="_blank">jft-basic.jp ↗</a>
-            </span>
-          </div>
-        </div>
+        <div class="resource-card-desc">Ujian bahasa Jepang resmi untuk program SSW. Diselenggarakan oleh Japan Foundation, bisa diambil di beberapa kota Indonesia.</div>
+        <a href="https://www.jpf.go.jp/jft-basic/id/index.html" target="_blank" rel="noopener" class="resource-card-link">Kunjungi jpf.go.jp/jft-basic →</a>
       </div>
-    </div>
 
-    <!-- Lokasi Ujian -->
-    <div class="fade-up">
-      <h3 style="font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:6px;">
-        📍 Lokasi Ujian Keterampilan di Indonesia
-      </h3>
-      <p style="font-size:.9rem;color:var(--gray-600);margin-bottom:4px;">
-        Ujian Keterampilan Peternakan tersedia di 8 kota berikut:
-      </p>
-      <div class="lokasi-grid">
-        <div class="lokasi-item">
-          <div class="kota">🏙️ Jakarta Selatan</div>
-          <div class="alamat">Universitas Gunadarma, Graha Simatupang Tower 1A Lt. 4, Jl. Letjen Simatupang Kav. 38</div>
+      <div class="resource-card">
+        <div class="resource-card-top">
+          <div class="resource-logo green">📝</div>
+          <div>
+            <div class="resource-card-name">JLPT</div>
+            <div class="resource-card-org">Japan Language Proficiency Test</div>
+          </div>
         </div>
-        <div class="lokasi-item">
-          <div class="kota">🏙️ Jakarta Utara</div>
-          <div class="alamat">PT. ITC, Mall of Indonesia, Ruko Italian Walk Blok B 11a-11b, Kelapa Gading</div>
-        </div>
-        <div class="lokasi-item">
-          <div class="kota">🏙️ Jakarta Pademangan</div>
-          <div class="alamat">PT. ITC, Rukan Mangga Dua Square Blok C7, Jl. Gunung Sahari Raya No. 1</div>
-        </div>
-        <div class="lokasi-item">
-          <div class="kota">🌊 Surabaya</div>
-          <div class="alamat">KAPLAN Edupac, HR. Muhammad Square Blok C21-C22, Jl. Raya Darmo Permai II</div>
-        </div>
-        <div class="lokasi-item">
-          <div class="kota">🌺 Bandung</div>
-          <div class="alamat">ASMTB, Jl. L.L.R.E. Martadinata No. 93-95, Citarum, Bandung Wetan</div>
-        </div>
-        <div class="lokasi-item">
-          <div class="kota">🛕 Yogyakarta</div>
-          <div class="alamat">Universitas Islam Indonesia, Jl. Prawiro, Ngringin, Condongcatur, Depok, Sleman</div>
-        </div>
-        <div class="lokasi-item">
-          <div class="kota">🌴 Medan</div>
-          <div class="alamat">Binus Center Medan, Jl. Hayam Wuruk No. 56B, Medan, Sumatra Utara</div>
-        </div>
-        <div class="lokasi-item">
-          <div class="kota">⚓ Semarang</div>
-          <div class="alamat">Politeknik Akademi Bumi, Jl. Pawiyatan Luhur II No. 17, Gajahmungkur</div>
-        </div>
+        <div class="resource-card-desc">Ujian kemampuan bahasa Jepang tingkat N4 sebagai alternatif JFT-Basic. Diselenggarakan dua kali setahun (Juli & Desember).</div>
+        <a href="https://www.jlpt.jp/e/index.html" target="_blank" rel="noopener" class="resource-card-link">Kunjungi jlpt.jp →</a>
       </div>
-    </div>
 
-    <!-- Cara Daftar -->
-    <div class="cara-daftar-box fade-up">
-      <h3>📋 Cara Daftar Ujian Keterampilan Peternakan</h3>
-      <div class="cara-daftar-steps">
-        <div class="daftar-step">
-          <div class="step-circle">1</div>
-          <p><strong>Buat akun Prometric</strong> di website resmi ac.prometric-jp.com</p>
+      <div class="resource-card">
+        <div class="resource-card-top">
+          <div class="resource-logo purple">🖥️</div>
+          <div>
+            <div class="resource-card-name">Prometric</div>
+            <div class="resource-card-org">Ujian Keterampilan SSW</div>
+          </div>
         </div>
-        <div class="daftar-step">
-          <div class="step-circle">2</div>
-          <p><strong>Cek jadwal & kota</strong> yang tersedia sesuai domisilimu</p>
-        </div>
-        <div class="daftar-step">
-          <div class="step-circle">3</div>
-          <p><strong>Pilih tanggal & bayar</strong> online via kartu kredit atau Jenius</p>
-        </div>
-        <div class="daftar-step">
-          <div class="step-circle">4</div>
-          <p><strong>Download confirmation letter</strong> setelah pembayaran selesai</p>
-        </div>
-        <div class="daftar-step">
-          <div class="step-circle">5</div>
-          <p><strong>Datang ke lokasi</strong> bawa confirmation letter + KTP/paspor asli</p>
-        </div>
+        <div class="resource-card-desc">Platform pendaftaran ujian keterampilan SSW sektor peternakan. Ujian diselenggarakan secara berkala di Indonesia.</div>
+        <a href="https://www.prometric-japan.com/testee/index_id.html" target="_blank" rel="noopener" class="resource-card-link">Kunjungi prometric-japan.com →</a>
       </div>
-    </div>
 
-    <!-- Warning -->
-    <div class="warning-box fade-up">
-      <div class="warn-icon">⚠️</div>
-      <p>
-        <strong>Penting:</strong> Jadwal ujian berubah setiap bulan — selalu cek langsung di website resmi Prometric sebelum mendaftar.
-        Voucher ujian <strong>tidak bisa dibeli di lokasi ujian</strong> — wajib beli online terlebih dahulu.
-        Bawa dokumen identitas <strong>asli</strong> (fotokopi tidak diterima).
-      </p>
-    </div>
-
-    <!-- Link Resmi -->
-    <div class="fade-up">
-      <h3 style="font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--navy);margin-top:40px;margin-bottom:4px;">
-        🔗 Link Resmi yang Perlu Disimpan
-      </h3>
-      <div class="link-resmi-grid">
-        <div class="link-resmi-item">
-          <div class="link-icon">🐄</div>
-          <div class="link-label">Daftar Ujian Keterampilan</div>
-          <a href="http://ac.prometric-jp.com/testlist/ssw/index.html" target="_blank">Prometric SSW ↗</a>
+      <div class="resource-card">
+        <div class="resource-card-top">
+          <div class="resource-logo orange">🇯🇵</div>
+          <div>
+            <div class="resource-card-name">JICWELS</div>
+            <div class="resource-card-org">Japan Int'l Welfare Services</div>
+          </div>
         </div>
-        <div class="link-resmi-item">
-          <div class="link-icon">🗣️</div>
-          <div class="link-label">Info Ujian JFT-Basic</div>
-          <a href="https://www.jft-basic.jp" target="_blank">jft-basic.jp ↗</a>
-        </div>
-        <div class="link-resmi-item">
-          <div class="link-icon">🏛️</div>
-          <div class="link-label">Info Resmi SSW Jepang</div>
-          <a href="https://www.ssw.go.jp/id" target="_blank">ssw.go.jp ↗</a>
-        </div>
-        <div class="link-resmi-item">
-          <div class="link-icon">🇮🇩</div>
-          <div class="link-label">Lembaga Resmi Indonesia</div>
-          <a href="https://www.bp2mi.go.id" target="_blank">BP2MI ↗</a>
-        </div>
+        <div class="resource-card-desc">Lembaga Jepang yang mengelola program SSW, termasuk pencocokan pekerja dengan perusahaan Jepang (matching support).</div>
+        <a href="https://www.jicwels.or.jp" target="_blank" rel="noopener" class="resource-card-link">Kunjungi jicwels.or.jp →</a>
       </div>
-    </div>
 
-  </div>
-</section>
+      <div class="resource-card">
+        <div class="resource-card-top">
+          <div class="resource-logo navy">📋</div>
+          <div>
+            <div class="resource-card-name">OTIT</div>
+            <div class="resource-card-org">Organization for Technical Intern</div>
+          </div>
+        </div>
+        <div class="resource-card-desc">Lembaga pengawas program magang dan SSW di Jepang. Bisa digunakan untuk laporan jika ada pelanggaran hak pekerja.</div>
+        <a href="https://www.otit.go.jp/english/" target="_blank" rel="noopener" class="resource-card-link">Kunjungi otit.go.jp →</a>
+      </div>
 
-<!-- =============================================
-     SECTION 7: TANTANGAN & SOLUSI
-============================================= -->
-<section id="tantangan">
-  <div class="container">
-    <div class="section-header fade-up">
-      <span class="label eyebrow" style="color:var(--red);">Jujur & Transparan</span>
-      <h2 class="display-lg">Ada Tantangan, Tapi<br>Ada Juga Solusinya</h2>
-      <p>Kami tidak akan bilang ini mudah. Tapi semua tantangan ini bisa dihadapi dengan persiapan yang tepat.</p>
-    </div>
-
-    <div class="challenges-grid">
-      <div class="challenge-card fade-up fade-up-delay-1">
-        <div class="challenge-problem">
-          <div class="prob-icon">🗣️</div>
-          <h3>Bahasa Jepang Itu Susah</h3>
-          <p>Huruf kanji, hiragana, dan katakana terasa membingungkan di awal.</p>
-        </div>
-        <div class="challenge-solution">
-          <div class="solution-label">✅ Solusinya</div>
-          <h4>Belajar Bertahap, Pakai Aplikasi</h4>
-          <p>Banyak pekerja lulus ujian SSW hanya dengan 6–9 bulan belajar mandiri. Duolingo, Anki, dan channel YouTube berbahasa Indonesia tersedia gratis. Komunitas belajar bareng juga banyak!</p>
-        </div>
-      </div>
-      <div class="challenge-card fade-up fade-up-delay-2">
-        <div class="challenge-problem">
-          <div class="prob-icon">🌸</div>
-          <h3>Adaptasi Budaya & Kebiasaan</h3>
-          <p>Budaya kerja Jepang berbeda: tepat waktu, disiplin, dan komunikasi tidak langsung.</p>
-        </div>
-        <div class="challenge-solution">
-          <div class="solution-label">✅ Solusinya</div>
-          <h4>Komunitas WNI di Jepang</h4>
-          <p>Di Jepang ada ratusan komunitas WNI aktif di setiap prefektur. Kamu tidak akan sendirian. Senior yang sudah lebih dulu di sana siap bantu orientasi dan adaptasi.</p>
-        </div>
-      </div>
-      <div class="challenge-card fade-up fade-up-delay-3">
-        <div class="challenge-problem">
-          <div class="prob-icon">💪</div>
-          <h3>Kerja Fisik yang Berat</h3>
-          <p>Beberapa tugas di peternakan memang membutuhkan fisik yang prima, terutama di awal.</p>
-        </div>
-        <div class="challenge-solution">
-          <div class="solution-label">✅ Solusinya</div>
-          <h4>Pelatihan & Teknologi Membantu</h4>
-          <p>Sebagian besar peternakan Jepang sudah otomatis. Kamu juga akan mendapat orientasi dan pelatihan dari perusahaan. Tubuh pun akan beradaptasi dalam beberapa minggu pertama.</p>
-        </div>
-      </div>
     </div>
   </div>
 </section>
-
 <!-- =============================================
      SECTION 8: QUIZ
 ============================================= -->
@@ -3316,339 +3578,6 @@
     </div>
   </div>
 </section>
-
-<!-- =============================================
-     SECTION: RESOURCE RESMI
-============================================= -->
-<style>
-  #resource {
-    padding: 96px 24px;
-    background: var(--off-white, #f7f5f0);
-    position: relative;
-    overflow: hidden;
-  }
-
-  #resource::after {
-    content: '公式';
-    position: absolute;
-    right: -20px;
-    bottom: -10px;
-    font-family: 'Noto Serif JP', serif;
-    font-size: 200px;
-    color: rgba(192,57,43,0.04);
-    pointer-events: none;
-    line-height: 1;
-  }
-
-  .resource-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-
-  .resource-header {
-    text-align: center;
-    margin-bottom: 16px;
-  }
-
-  .resource-eyebrow {
-    display: inline-block;
-    font-size: .72rem;
-    font-weight: 700;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: #c0392b;
-    border: 1px solid rgba(192,57,43,.25);
-    background: rgba(192,57,43,.06);
-    padding: 5px 14px;
-    border-radius: 99px;
-    margin-bottom: 18px;
-  }
-
-  .resource-title {
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-    font-weight: 800;
-    color: #1a1a1a;
-    line-height: 1.2;
-    margin-bottom: 12px;
-  }
-
-  .resource-sub {
-    font-size: .95rem;
-    color: #6b7280;
-    max-width: 520px;
-    margin: 0 auto 48px;
-    line-height: 1.7;
-  }
-
-  .resource-notice {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    background: rgba(192,57,43,.05);
-    border: 1px solid rgba(192,57,43,.15);
-    border-radius: 12px;
-    padding: 16px 20px;
-    margin-bottom: 36px;
-    font-size: .84rem;
-    color: #6b7280;
-    line-height: 1.6;
-  }
-
-  .resource-notice strong { color: #c0392b; }
-
-  .resource-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 20px;
-  }
-
-  @media (max-width: 768px) {
-    .resource-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 480px) {
-    .resource-grid { grid-template-columns: 1fr; }
-  }
-
-  .resource-card {
-    background: #fff;
-    border: 1px solid #e5e0d8;
-    border-radius: 16px;
-    padding: 22px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    transition: transform .2s, box-shadow .2s;
-    text-decoration: none;
-  }
-
-  .resource-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0,0,0,.08);
-  }
-
-  .resource-card-top {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .resource-logo {
-    width: 42px;
-    height: 42px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    flex-shrink: 0;
-  }
-
-  .resource-logo.red    { background: rgba(192,57,43,.1); }
-  .resource-logo.blue   { background: rgba(26,86,160,.1); }
-  .resource-logo.green  { background: rgba(39,174,96,.1); }
-  .resource-logo.purple { background: rgba(142,68,173,.1); }
-  .resource-logo.orange { background: rgba(230,126,34,.1); }
-  .resource-logo.navy   { background: rgba(13,27,62,.1); }
-
-  .resource-card-name {
-    font-size: .9rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    line-height: 1.3;
-  }
-
-  .resource-card-org {
-    font-size: .75rem;
-    color: #9ca3af;
-    font-weight: 500;
-  }
-
-  .resource-card-desc {
-    font-size: .8rem;
-    color: #6b7280;
-    line-height: 1.6;
-    flex: 1;
-  }
-
-  .resource-card-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: .75rem;
-    font-weight: 700;
-    color: #c0392b;
-    text-decoration: none;
-    margin-top: 4px;
-  }
-
-  .resource-card-link:hover { text-decoration: underline; }
-</style>
-
-<section id="resource">
-  <div class="resource-inner">
-    <div class="resource-header fade-up">
-      <span class="resource-eyebrow">🔗 Sumber Terpercaya</span>
-      <h2 class="resource-title">Resource Resmi yang Wajib Kamu Tahu</h2>
-      <p class="resource-sub">Semua informasi di website ini bersumber dari lembaga-lembaga resmi berikut. Selalu cek langsung ke sumbernya untuk informasi terbaru.</p>
-    </div>
-
-    <div class="resource-notice fade-up">
-      <span style="font-size:1.1rem; flex-shrink:0;">💡</span>
-      <span><strong>Tips:</strong> Hati-hati dengan informasi dari sumber tidak resmi. Jika ada yang menjanjikan keberangkatan tanpa ujian atau meminta biaya tidak wajar, segera laporkan ke BP2MI.</span>
-    </div>
-
-    <div class="resource-grid fade-up">
-
-      <div class="resource-card">
-        <div class="resource-card-top">
-          <div class="resource-logo red">🏛️</div>
-          <div>
-            <div class="resource-card-name">BP2MI</div>
-            <div class="resource-card-org">Badan Perlindungan PMI</div>
-          </div>
-        </div>
-        <div class="resource-card-desc">Lembaga resmi pemerintah Indonesia yang mengatur penempatan dan perlindungan Pekerja Migran Indonesia ke luar negeri.</div>
-        <a href="https://bp2mi.go.id" target="_blank" rel="noopener" class="resource-card-link">Kunjungi bp2mi.go.id →</a>
-      </div>
-
-      <div class="resource-card">
-        <div class="resource-card-top">
-          <div class="resource-logo blue">🗣️</div>
-          <div>
-            <div class="resource-card-name">JFT-Basic</div>
-            <div class="resource-card-org">Japan Foundation</div>
-          </div>
-        </div>
-        <div class="resource-card-desc">Ujian bahasa Jepang resmi untuk program SSW. Diselenggarakan oleh Japan Foundation, bisa diambil di beberapa kota Indonesia.</div>
-        <a href="https://www.jft-basic.jp/info/indonesian.html" target="_blank" rel="noopener" class="resource-card-link">Kunjungi jft-basic.jp →</a>
-      </div>
-
-      <div class="resource-card">
-        <div class="resource-card-top">
-          <div class="resource-logo green">📝</div>
-          <div>
-            <div class="resource-card-name">JLPT</div>
-            <div class="resource-card-org">Japan Language Proficiency Test</div>
-          </div>
-        </div>
-        <div class="resource-card-desc">Ujian kemampuan bahasa Jepang tingkat N4 sebagai alternatif JFT-Basic. Diselenggarakan dua kali setahun (Juli & Desember).</div>
-        <a href="https://www.jlpt.jp/e/index.html" target="_blank" rel="noopener" class="resource-card-link">Kunjungi jlpt.jp →</a>
-      </div>
-
-      <div class="resource-card">
-        <div class="resource-card-top">
-          <div class="resource-logo purple">🖥️</div>
-          <div>
-            <div class="resource-card-name">Prometric</div>
-            <div class="resource-card-org">Ujian Keterampilan SSW</div>
-          </div>
-        </div>
-        <div class="resource-card-desc">Platform pendaftaran ujian keterampilan SSW sektor peternakan. Ujian diselenggarakan secara berkala di Indonesia.</div>
-        <a href="https://www.prometric-japan.com/testee/index_id.html" target="_blank" rel="noopener" class="resource-card-link">Kunjungi prometric-japan.com →</a>
-      </div>
-
-      <div class="resource-card">
-        <div class="resource-card-top">
-          <div class="resource-logo orange">🇯🇵</div>
-          <div>
-            <div class="resource-card-name">JICWELS</div>
-            <div class="resource-card-org">Japan Int'l Welfare Services</div>
-          </div>
-        </div>
-        <div class="resource-card-desc">Lembaga Jepang yang mengelola program SSW, termasuk pencocokan pekerja dengan perusahaan Jepang (matching support).</div>
-        <a href="https://www.jicwels.or.jp" target="_blank" rel="noopener" class="resource-card-link">Kunjungi jicwels.or.jp →</a>
-      </div>
-
-      <div class="resource-card">
-        <div class="resource-card-top">
-          <div class="resource-logo navy">📋</div>
-          <div>
-            <div class="resource-card-name">OTIT</div>
-            <div class="resource-card-org">Organization for Technical Intern</div>
-          </div>
-        </div>
-        <div class="resource-card-desc">Lembaga pengawas program magang dan SSW di Jepang. Bisa digunakan untuk laporan jika ada pelanggaran hak pekerja.</div>
-        <a href="https://www.otit.go.jp/english/" target="_blank" rel="noopener" class="resource-card-link">Kunjungi otit.go.jp →</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- =============================================
-     FAQ SECTION
-============================================= -->
-<section id="faq">
-  <div class="container">
-    <div class="section-header fade-up">
-      <span class="label eyebrow" style="color:var(--red);">Pertanyaan Umum</span>
-      <h2 class="display-lg">Masih Ada yang<br>Ingin Ditanyakan?</h2>
-    </div>
-
-    <div class="faq-list fade-up">
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          Apakah perlu bisa bahasa Jepang sebelum mendaftar?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Ya, kemampuan bahasa Jepang adalah syarat utama. Kamu perlu lulus JFT-Basic atau JLPT N4 sebagai bukti kemampuan bahasa. Kabar baiknya, level ini bisa dicapai dalam 6–12 bulan belajar mandiri dengan tekun. Banyak sumber belajar gratis tersedia secara online.
-          </div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          Berapa biaya yang dibutuhkan untuk berangkat ke Jepang?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Biaya bervariasi tergantung lembaga pengirim. Secara umum, kamu perlu menyiapkan sekitar Rp 15–35 juta untuk biaya administrasi, pelatihan, tiket, dan keperluan awal. Beberapa perusahaan Jepang bahkan menanggung sebagian biaya ini. Hindari lembaga yang meminta biaya sangat tinggi — pilih yang terdaftar resmi di BP2MI.
-          </div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          Apa bedanya SSW-1 dan SSW-2?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            SSW-1 (Tokutei Ginou No. 1) adalah visa kerja terampil dengan durasi maksimal 5 tahun, tidak bisa membawa keluarga. SSW-2 (Tokutei Ginou No. 2) adalah tingkat lebih tinggi yang memungkinkan tinggal permanen dan membawa keluarga ke Jepang. Untuk naik ke SSW-2 di sektor peternakan, kamu perlu ujian keterampilan tingkat lanjut dan pengalaman kerja yang cukup.
-          </div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          Bagaimana dengan hari libur dan waktu istirahat?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Hak pekerja asing di Jepang dilindungi oleh undang-undang ketenagakerjaan Jepang yang sangat ketat. Kamu berhak mendapat cuti tahunan, libur nasional, dan waktu istirahat sesuai aturan. Jam kerja maksimal 8 jam/hari dan 40 jam/minggu, dengan lembur yang dibayar tambahan.
-          </div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          Apakah ada risiko penipuan? Bagaimana cara menghindarinya?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Risiko ini nyata dan harus diwaspadai. Cara terbaik untuk menghindarinya: (1) Pastikan lembaga pengirim terdaftar resmi di BP2MI (Badan Pelindungan Pekerja Migran Indonesia). (2) Jangan percaya tawaran yang terlihat "terlalu mudah" atau biaya yang tidak wajar. (3) Selalu cek informasi melalui situs resmi pemerintah Indonesia dan JITCO Jepang.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- =============================================
      SECTION: TIM PENGEMBANG
 ============================================= -->
@@ -4292,40 +4221,86 @@
 
   </div>
 </section>
+<!-- =============================================
+     FAQ SECTION
+============================================= -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label eyebrow" style="color:var(--red);">Pertanyaan Umum</span>
+      <h2 class="display-lg">Masih Ada yang<br>Ingin Ditanyakan?</h2>
+    </div>
 
-<script>
-  const TOTAL_DOCS = 13;
-
-  function toggleCheck(item) {
-    item.classList.toggle('checked');
-    updateProgress();
-  }
-
-  function updateProgress() {
-    const checked = document.querySelectorAll('.checklist-item.checked').length;
-    const pct = Math.round((checked / TOTAL_DOCS) * 100);
-    document.getElementById('clProgressFill').style.width = pct + '%';
-    document.getElementById('clProgressText').textContent = checked + ' / ' + TOTAL_DOCS;
-    document.getElementById('clDoneMsg').classList.toggle('visible', checked === TOTAL_DOCS);
-  }
-
-  function resetChecklist() {
-    document.querySelectorAll('.checklist-item').forEach(i => i.classList.remove('checked'));
-    updateProgress();
-  }
-</script>
-
+    <div class="faq-list fade-up">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Apakah perlu bisa bahasa Jepang sebelum mendaftar?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Ya, kemampuan bahasa Jepang adalah syarat utama. Kamu perlu lulus JFT-Basic atau JLPT N4 sebagai bukti kemampuan bahasa. Kabar baiknya, level ini bisa dicapai dalam 6–12 bulan belajar mandiri dengan tekun. Banyak sumber belajar gratis tersedia secara online.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Berapa biaya yang dibutuhkan untuk berangkat ke Jepang?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Biaya bervariasi tergantung lembaga pengirim. Secara umum, kamu perlu menyiapkan sekitar Rp 15–35 juta untuk biaya administrasi, pelatihan, tiket, dan keperluan awal. Beberapa perusahaan Jepang bahkan menanggung sebagian biaya ini. Hindari lembaga yang meminta biaya sangat tinggi — pilih yang terdaftar resmi di BP2MI.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Apa bedanya SSW-1 dan SSW-2?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            SSW-1 (Tokutei Ginou No. 1) adalah visa kerja terampil dengan durasi maksimal 5 tahun, tidak bisa membawa keluarga. SSW-2 (Tokutei Ginou No. 2) adalah tingkat lebih tinggi yang memungkinkan tinggal permanen dan membawa keluarga ke Jepang. Untuk naik ke SSW-2 di sektor peternakan, kamu perlu ujian keterampilan tingkat lanjut dan pengalaman kerja yang cukup.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Bagaimana dengan hari libur dan waktu istirahat?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Hak pekerja asing di Jepang dilindungi oleh undang-undang ketenagakerjaan Jepang yang sangat ketat. Kamu berhak mendapat cuti tahunan, libur nasional, dan waktu istirahat sesuai aturan. Jam kerja maksimal 8 jam/hari dan 40 jam/minggu, dengan lembur yang dibayar tambahan.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Apakah ada risiko penipuan? Bagaimana cara menghindarinya?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Risiko ini nyata dan harus diwaspadai. Cara terbaik untuk menghindarinya: (1) Pastikan lembaga pengirim terdaftar resmi di BP2MI (Badan Pelindungan Pekerja Migran Indonesia). (2) Jangan percaya tawaran yang terlihat "terlalu mudah" atau biaya yang tidak wajar. (3) Selalu cek informasi melalui situs resmi pemerintah Indonesia dan JITCO Jepang.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- =============================================
      SECTION: CTA FINAL
 ============================================= -->
 <section id="cta">
   <div class="container">
     <div class="cta-content">
-      <span class="cta-jp-text jp-accent">夢を叶えよう</span>
-      <h2 class="display-xl cta-title">Satu Langkah Kecil<br>Bisa Mengubah Segalanya</h2>
+      <span class="cta-jp-text jp-accent">情報は力なり</span>
+      <h2 class="display-xl cta-title">Informasi yang Tepat<br>adalah Langkah Pertama</h2>
       <p class="cta-sub">
-        Ribuan orang Indonesia sudah membuktikannya. Sekarang giliran kamu untuk
-        mengambil langkah pertama. Mulai belajar bahasa Jepang hari ini — gratis.
+        Keputusan bekerja ke luar negeri adalah keputusan besar. Pelajari alurnya,
+        kenali risikonya, dan pastikan kamu berangkat dengan persiapan yang matang — bukan sekadar semangat.
       </p>
       <div class="cta-btns">
         <a href="#alur" class="btn btn-white btn-lg">
@@ -4336,7 +4311,7 @@
         </a>
       </div>
       <p style="margin-top:32px; font-size:.85rem; color:rgba(255,255,255,.45);">
-        夢を叶えよう — "Mari wujudkan mimpi" 🌸
+        情報は力なり — "Informasi adalah kekuatan" 📖
       </p>
     </div>
   </div>
@@ -4411,7 +4386,6 @@
     </div><!-- /tim-grid -->
   </div><!-- /tim-inner -->
 </section>
-
 <!-- =============================================
      FOOTER
 ============================================= -->
