@@ -378,35 +378,18 @@
       50% { transform: translateY(-18px); }
     }
 
-    /* ── SAKURA FALLING ANIMATION ── */
+    /* ── SAKURA CANVAS ── */
     .sakura-container {
       position: absolute;
       inset: 0;
       pointer-events: none;
-      overflow: hidden;
       z-index: 1;
     }
-    .sakura-petal {
+    #sakura-canvas {
       position: absolute;
-      top: -30px;
-      width: 14px;
-      height: 14px;
-      opacity: 0;
-      animation: sakuraFall linear infinite;
-    }
-    .sakura-petal svg {
+      inset: 0;
       width: 100%;
       height: 100%;
-    }
-    @keyframes sakuraFall {
-      0%   { opacity: 0; transform: translateY(0) rotate(0deg) scale(0.8); }
-      5%   { opacity: 0.85; }
-      90%  { opacity: 0.7; }
-      100% { opacity: 0; transform: translateY(110vh) rotate(720deg) scale(1.1); }
-    }
-    @keyframes sakuraSway {
-      0%, 100% { transform: translateX(0); }
-      50% { transform: translateX(var(--sway, 30px)); }
     }
 
     .hero-content {
@@ -1778,8 +1761,10 @@
     <div class="grid-overlay"></div>
   </div>
 
-  <!-- Sakura petals -->
-  <div class="sakura-container" id="sakura-container"></div>
+  <!-- Sakura petals canvas -->
+  <div class="sakura-container">
+    <canvas id="sakura-canvas"></canvas>
+  </div>
 
   <!-- Fuji SVG decoration -->
   <svg class="fuji-deco" viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg" fill="none">
@@ -4713,52 +4698,89 @@
     });
   }, { passive: true });
 
-  /* ---- SAKURA FALLING PETALS ---- */
+  /* ---- SAKURA CANVAS ANIMATION ---- */
   (function() {
-    const container = document.getElementById('sakura-container');
-    if (!container) return;
+    const canvas = document.getElementById('sakura-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const hero = document.getElementById('hero');
 
-    const petalColors = [
-      ['#FFB7C5','#FF91A8'],
-      ['#FFCDD6','#FFA0B8'],
-      ['#FFD6DF','#FFB0C8'],
-      ['#FFC0CB','#FF88AA'],
-      ['#F9D0D8','#FFABC0'],
-    ];
+    function resize() {
+      canvas.width  = hero.offsetWidth;
+      canvas.height = hero.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
 
-    function createPetalSVG(c1, c2) {
-      return `<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="10" cy="6" rx="5" ry="7" fill="${c1}" transform="rotate(-20,10,10)"/>
-        <ellipse cx="10" cy="6" rx="5" ry="7" fill="${c2}" transform="rotate(20,10,10)" opacity="0.85"/>
-        <ellipse cx="10" cy="6" rx="5" ry="7" fill="${c1}" transform="rotate(-70,10,10)" opacity="0.8"/>
-        <ellipse cx="10" cy="6" rx="5" ry="7" fill="${c2}" transform="rotate(70,10,10)" opacity="0.75"/>
-        <circle cx="10" cy="10" r="2" fill="#FFE0E8"/>
-      </svg>`;
+    const COLORS = ['#FFB7C5','#FFCDD6','#FFC0CB','#FF91A8','#FFD0DB','#FFAABF','#F9D0D8'];
+
+    function drawPetal(ctx, x, y, size, rotation, color) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation);
+      ctx.globalAlpha = 0.82;
+
+      const petalCount = 5;
+      for (let i = 0; i < petalCount; i++) {
+        ctx.save();
+        ctx.rotate((i / petalCount) * Math.PI * 2);
+        ctx.beginPath();
+        ctx.ellipse(0, -size * 0.55, size * 0.28, size * 0.52, 0, 0, Math.PI * 2);
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // Center circle
+      ctx.beginPath();
+      ctx.arc(0, 0, size * 0.18, 0, Math.PI * 2);
+      ctx.fillStyle = '#FFE8EF';
+      ctx.fill();
+
+      ctx.restore();
     }
 
-    function spawnPetal() {
-      const petal = document.createElement('div');
-      petal.className = 'sakura-petal';
+    const petals = [];
+    const COUNT = 35;
 
-      const [c1, c2] = petalColors[Math.floor(Math.random() * petalColors.length)];
-      const size = 10 + Math.random() * 14;
-      const left = Math.random() * 100;
-      const duration = 6 + Math.random() * 10;
-      const delay = Math.random() * 4;
-      const swayAmt = 20 + Math.random() * 50;
-
-      petal.style.cssText = `
-        left: ${left}%;
-        width: ${size}px;
-        height: ${size}px;
-        animation: sakuraFall ${duration}s ${delay}s linear infinite, sakuraSway ${duration * 0.6}s ${delay}s ease-in-out infinite alternate;
-        --sway: ${swayAmt}px;
-      `;
-      petal.innerHTML = createPetalSVG(c1, c2);
-      container.appendChild(petal);
+    for (let i = 0; i < COUNT; i++) {
+      petals.push({
+        x:        Math.random() * 1200,
+        y:        -20 - Math.random() * 600,
+        size:     7 + Math.random() * 10,
+        speedY:   0.6 + Math.random() * 1.2,
+        speedX:   (Math.random() - 0.5) * 0.8,
+        rotation: Math.random() * Math.PI * 2,
+        rotSpeed: (Math.random() - 0.5) * 0.04,
+        sway:     Math.random() * Math.PI * 2,
+        swaySpeed:0.008 + Math.random() * 0.012,
+        swayAmp:  18 + Math.random() * 28,
+        color:    COLORS[Math.floor(Math.random() * COLORS.length)],
+      });
     }
 
-    for (let i = 0; i < 28; i++) spawnPetal();
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      petals.forEach(p => {
+        p.sway     += p.swaySpeed;
+        p.y        += p.speedY;
+        p.x        += p.speedX + Math.sin(p.sway) * 0.6;
+        p.rotation += p.rotSpeed;
+
+        if (p.y > canvas.height + 20) {
+          p.y = -20;
+          p.x = Math.random() * canvas.width;
+        }
+        if (p.x > canvas.width + 30)  p.x = -30;
+        if (p.x < -30) p.x = canvas.width + 30;
+
+        drawPetal(ctx, p.x, p.y, p.size, p.rotation, p.color);
+      });
+
+      requestAnimationFrame(animate);
+    }
+    animate();
   })();
 </script>
 
