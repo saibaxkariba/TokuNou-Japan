@@ -16,22 +16,22 @@
        CSS VARIABLES & RESET
     ============================================= */
     :root {
-      --red:       #D0222A;
-      --red-dark:  #A51920;
-      --red-light: #F5E8E9;
-      --navy:      #0B1F3A;
-      --blue:      #1A4B8C;
-      --blue-mid:  #2E6BC4;
-      --blue-light:#EBF2FB;
+      --red:       #2E86DE;
+      --red-dark:  #1A6BBF;
+      --red-light: #E8F4FD;
+      --navy:      #0A2550;
+      --blue:      #1A5DAD;
+      --blue-mid:  #3B82C4;
+      --blue-light:#DBEEFF;
       --white:     #FFFFFF;
-      --off-white: #F8F9FC;
-      --gray-100:  #F1F3F8;
-      --gray-200:  #E2E6EF;
-      --gray-400:  #9BA3B8;
-      --gray-600:  #5C657D;
-      --gray-800:  #2C3348;
-      --gold:      #C9962A;
-      --gold-light:#FFF6E0;
+      --off-white: #F0F6FF;
+      --gray-100:  #EDF4FF;
+      --gray-200:  #C9DFFF;
+      --gray-400:  #7BAAD4;
+      --gray-600:  #3D6A9E;
+      --gray-800:  #1A3A6B;
+      --gold:      #5BAEE8;
+      --gold-light:#E0F0FF;
 
       --font-display: 'Sora', sans-serif;
       --font-jp:      'Noto Serif JP', serif;
@@ -140,11 +140,11 @@
     .btn-primary {
       background: var(--red);
       color: var(--white);
-      box-shadow: 0 4px 16px rgba(208,34,42,.35);
+      box-shadow: 0 4px 16px rgba(46,134,222,.35);
     }
     .btn-primary:hover {
       background: var(--red-dark);
-      box-shadow: 0 8px 24px rgba(208,34,42,.45);
+      box-shadow: 0 8px 24px rgba(46,134,222,.45);
     }
     .btn-outline {
       background: transparent;
@@ -221,7 +221,7 @@
     .nav-logo .logo-mark {
       width: 36px;
       height: 36px;
-      background: var(--red);
+      background: var(--blue-mid);
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -253,14 +253,14 @@
     }
     .nav-links a:hover { color: var(--white); }
     .nav-cta {
-      background: var(--red);
+      background: var(--blue-mid);
       color: var(--white) !important;
       padding: 8px 20px;
       border-radius: 50px;
       font-weight: 600 !important;
       font-size: .85rem !important;
     }
-    .nav-cta:hover { background: var(--red-dark); }
+    .nav-cta:hover { background: var(--blue); }
     .hamburger {
       display: flex;
       flex-direction: column;
@@ -308,7 +308,7 @@
     #hero {
       position: relative;
       min-height: 100vh;
-      background: var(--navy);
+      background: linear-gradient(160deg, #0A2550 0%, #1A5DAD 55%, #5BA8E8 100%);
       display: flex;
       align-items: center;
       padding: 120px 0 80px;
@@ -325,22 +325,22 @@
       position: absolute;
       top: -120px; right: -120px;
       width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(26,75,140,.6) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(91,168,232,.45) 0%, transparent 70%);
       border-radius: 50%;
     }
     .hero-bg-shapes .circle-2 {
       position: absolute;
       bottom: -80px; left: -80px;
       width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(208,34,42,.25) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(219,238,255,.18) 0%, transparent 70%);
       border-radius: 50%;
     }
     .hero-bg-shapes .grid-overlay {
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
       background-size: 48px 48px;
     }
 
@@ -350,25 +350,25 @@
       bottom: 0;
       right: 0;
       width: min(520px, 48vw);
-      opacity: .13;
+      opacity: .18;
       pointer-events: none;
     }
 
-    /* Japan flag circle */
+    /* Japan flag circle — ganti ke biru muda */
     .jp-flag-deco {
       position: absolute;
       top: 140px;
       right: 80px;
       width: 180px; height: 180px;
       border-radius: 50%;
-      background: rgba(208,34,42,.12);
-      border: 1px solid rgba(208,34,42,.2);
+      background: rgba(219,238,255,.15);
+      border: 1px solid rgba(219,238,255,.35);
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--font-jp);
       font-size: 3.5rem;
-      color: rgba(208,34,42,.5);
+      color: rgba(219,238,255,.7);
       pointer-events: none;
       animation: floatY 6s ease-in-out infinite;
     }
@@ -376,6 +376,37 @@
     @keyframes floatY {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-18px); }
+    }
+
+    /* ── SAKURA FALLING ANIMATION ── */
+    .sakura-container {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .sakura-petal {
+      position: absolute;
+      top: -30px;
+      width: 14px;
+      height: 14px;
+      opacity: 0;
+      animation: sakuraFall linear infinite;
+    }
+    .sakura-petal svg {
+      width: 100%;
+      height: 100%;
+    }
+    @keyframes sakuraFall {
+      0%   { opacity: 0; transform: translateY(0) rotate(0deg) scale(0.8); }
+      5%   { opacity: 0.85; }
+      90%  { opacity: 0.7; }
+      100% { opacity: 0; transform: translateY(110vh) rotate(720deg) scale(1.1); }
+    }
+    @keyframes sakuraSway {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(var(--sway, 30px)); }
     }
 
     .hero-content {
@@ -387,9 +418,9 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(208,34,42,.2);
-      border: 1px solid rgba(208,34,42,.4);
-      color: #FF9B9E;
+      background: rgba(219,238,255,.18);
+      border: 1px solid rgba(219,238,255,.45);
+      color: #C8E6FF;
       padding: 6px 16px;
       border-radius: 50px;
       font-size: .8rem;
@@ -401,7 +432,7 @@
     }
     .hero-eyebrow .dot {
       width: 6px; height: 6px;
-      background: #FF9B9E;
+      background: #C8E6FF;
       border-radius: 50%;
       animation: pulse 2s ease infinite;
     }
@@ -416,7 +447,7 @@
       animation: fadeInUp .8s .1s ease both;
     }
     .hero-title .highlight {
-      color: #FF6B6B;
+      color: #A8D8FF;
       position: relative;
       display: inline-block;
     }
@@ -425,12 +456,12 @@
       position: absolute;
       left: 0; right: 0; bottom: -4px;
       height: 3px;
-      background: var(--red);
+      background: #5BA8E8;
       border-radius: 2px;
     }
 
     .hero-sub {
-      color: rgba(255,255,255,.7);
+      color: rgba(255,255,255,.75);
       font-size: 1.15rem;
       line-height: 1.75;
       margin-bottom: 40px;
@@ -447,7 +478,7 @@
       gap: 40px;
       margin-top: 56px;
       padding-top: 40px;
-      border-top: 1px solid rgba(255,255,255,.1);
+      border-top: 1px solid rgba(255,255,255,.15);
       animation: fadeInUp .8s .4s ease both;
       flex-wrap: wrap;
     }
@@ -458,7 +489,7 @@
       color: var(--white);
       line-height: 1;
     }
-    .hero-stat .num span { color: #FF9B9E; }
+    .hero-stat .num span { color: #A8D8FF; }
     .hero-stat .desc {
       color: rgba(255,255,255,.55);
       font-size: .8rem;
@@ -1747,6 +1778,9 @@
     <div class="grid-overlay"></div>
   </div>
 
+  <!-- Sakura petals -->
+  <div class="sakura-container" id="sakura-container"></div>
+
   <!-- Fuji SVG decoration -->
   <svg class="fuji-deco" viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg" fill="none">
     <path d="M250 20 L460 290 H40 Z" fill="white" opacity="0.6"/>
@@ -1755,8 +1789,8 @@
     <rect x="0" y="290" width="500" height="30" fill="white" opacity="0.15"/>
     <!-- Snow cap -->
     <path d="M250 20 L285 90 Q250 75 215 90 Z" fill="white" opacity="0.9"/>
-    <!-- Sun / hinomaru -->
-    <circle cx="420" cy="80" r="42" fill="#D0222A" opacity="0.5"/>
+    <!-- Sun — biru muda -->
+    <circle cx="420" cy="80" r="42" fill="#A8D8FF" opacity="0.4"/>
   </svg>
 
   <!-- Japan floating decoration -->
@@ -4678,6 +4712,54 @@
         ? 'white' : '';
     });
   }, { passive: true });
+
+  /* ---- SAKURA FALLING PETALS ---- */
+  (function() {
+    const container = document.getElementById('sakura-container');
+    if (!container) return;
+
+    const petalColors = [
+      ['#FFB7C5','#FF91A8'],
+      ['#FFCDD6','#FFA0B8'],
+      ['#FFD6DF','#FFB0C8'],
+      ['#FFC0CB','#FF88AA'],
+      ['#F9D0D8','#FFABC0'],
+    ];
+
+    function createPetalSVG(c1, c2) {
+      return `<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="10" cy="6" rx="5" ry="7" fill="${c1}" transform="rotate(-20,10,10)"/>
+        <ellipse cx="10" cy="6" rx="5" ry="7" fill="${c2}" transform="rotate(20,10,10)" opacity="0.85"/>
+        <ellipse cx="10" cy="6" rx="5" ry="7" fill="${c1}" transform="rotate(-70,10,10)" opacity="0.8"/>
+        <ellipse cx="10" cy="6" rx="5" ry="7" fill="${c2}" transform="rotate(70,10,10)" opacity="0.75"/>
+        <circle cx="10" cy="10" r="2" fill="#FFE0E8"/>
+      </svg>`;
+    }
+
+    function spawnPetal() {
+      const petal = document.createElement('div');
+      petal.className = 'sakura-petal';
+
+      const [c1, c2] = petalColors[Math.floor(Math.random() * petalColors.length)];
+      const size = 10 + Math.random() * 14;
+      const left = Math.random() * 100;
+      const duration = 6 + Math.random() * 10;
+      const delay = Math.random() * 4;
+      const swayAmt = 20 + Math.random() * 50;
+
+      petal.style.cssText = `
+        left: ${left}%;
+        width: ${size}px;
+        height: ${size}px;
+        animation: sakuraFall ${duration}s ${delay}s linear infinite, sakuraSway ${duration * 0.6}s ${delay}s ease-in-out infinite alternate;
+        --sway: ${swayAmt}px;
+      `;
+      petal.innerHTML = createPetalSVG(c1, c2);
+      container.appendChild(petal);
+    }
+
+    for (let i = 0; i < 28; i++) spawnPetal();
+  })();
 </script>
 
 </body>
