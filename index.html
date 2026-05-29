@@ -4597,55 +4597,247 @@
     const total = scores.reduce((a, b) => a + b, 0);
     // max = 30 (15 questions x 2)
 
-    const resultEl    = document.getElementById('quizResult');
-    const emojiEl     = document.getElementById('resultEmoji');
-    const badgeEl     = document.getElementById('resultBadge');
-    const titleEl     = document.getElementById('resultTitle');
-    const descEl      = document.getElementById('resultDesc');
-    const actionsEl   = document.getElementById('resultActions');
+    const resultEl  = document.getElementById('quizResult');
+    const emojiEl   = document.getElementById('resultEmoji');
+    const badgeEl   = document.getElementById('resultBadge');
+    const titleEl   = document.getElementById('resultTitle');
+    const descEl    = document.getElementById('resultDesc');
+    const actionsEl = document.getElementById('resultActions');
 
     resultEl.classList.add('active');
 
+    // ─────────────────────────────────────────────
+    // PETA TOPIK: index soal → metadata
+    // ─────────────────────────────────────────────
+    const topicMap = [
+      { key: 'keluarga',   label: 'Dukungan Keluarga',
+        saran0: 'Diskusi serius dengan keluarga adalah fondasi utama — tanpa restu mereka, mental kamu akan goyah saat di Jepang. Jadwalkan obrolan terbuka tentang rencana dan manfaatnya.',
+        saran1: 'Diskusi dengan keluarga masih perlu dilanjutkan. Pastikan semua pihak benar-benar setuju sebelum kamu melangkah lebih jauh.' },
+      { key: 'bahasa',     label: 'Kemampuan Bahasa Jepang',
+        saran0: 'Bahasa Jepang adalah kunci utama — tanpanya kamu tidak bisa lolos seleksi. Mulai belajar sekarang dengan target lulus JFT-Basic atau JLPT N4 dalam 6–12 bulan ke depan.',
+        saran1: 'Tingkatkan konsistensi belajar bahasa Jepang. Minimal 30 menit setiap hari sudah cukup jika rutin. Gunakan aplikasi seperti Duolingo, Anki, atau NHK Web Easy.' },
+      { key: 'pengalaman', label: 'Pengalaman di Bidang Peternakan',
+        saran0: 'Cari kesempatan untuk mendapat pengalaman di bidang pertanian atau peternakan — magang, volunteer di kebun, atau belajar langsung di lapangan. Pengalaman nyata akan jadi nilai plus saat seleksi.',
+        saran1: 'Perkuat pengetahuan tentang dunia peternakan. Tonton video, baca materi, atau coba terjun langsung meski sebentar agar kamu punya gambaran nyata pekerjaan yang akan dihadapi.' },
+      { key: 'budaya',     label: 'Adaptasi Budaya & Aturan Kerja',
+        saran0: 'Pelajari budaya kerja Jepang secara mendalam — disiplin waktu, hierarki, dan aturan di sana sangat berbeda. Tanpa persiapan ini, banyak pekerja Indonesia gagal di bulan pertama.',
+        saran1: 'Perdalam pemahaman tentang budaya kerja Jepang. Tonton konten kreator Indonesia yang sudah di Jepang agar gambaran kamu lebih realistis.' },
+      { key: 'motivasi',   label: 'Tujuan & Motivasi',
+        saran0: 'Tanpa tujuan yang jelas, kamu akan mudah menyerah saat menghadapi kesulitan di Jepang. Luangkan waktu untuk menuliskan tujuan konkret: berapa target tabungan, untuk apa, dan berapa lama.',
+        saran1: 'Perjelas tujuanmu lebih spesifik. "Ingin pengalaman baru" kurang kuat sebagai motivasi jangka panjang. Tetapkan angka dan target yang bisa kamu ukur.' },
+      { key: 'fisik',      label: 'Kondisi Fisik & Kesehatan',
+        saran0: 'Kondisi fisik adalah syarat mutlak — kerja peternakan di Jepang sangat berat. Mulai rutinitas olahraga dan perbaiki pola makan dari sekarang sebelum MCU (Medical Check-Up) wajib.',
+        saran1: 'Jaga dan tingkatkan kondisi fisik dari sekarang. Olahraga rutin minimal 3x seminggu, perbaiki pola tidur dan makan agar stamina terjaga saat kerja fisik berat.' },
+      { key: 'cuaca',      label: 'Ketahanan Terhadap Cuaca Ekstrem',
+        saran0: 'Udara dingin Jepang bisa sangat mengejutkan, apalagi saat musim dingin di peternakan outdoor. Cari informasi tentang cara adaptasi suhu dingin dan persiapkan perlengkapannya.',
+        saran1: 'Persiapkan mental dan fisik untuk adaptasi cuaca. Perlengkapan yang tepat (pakaian thermal, dll.) dan latihan fisik di udara dingin bisa membantu proses adaptasi.' },
+      { key: 'disiplin',   label: 'Kedisiplinan & Mengikuti Prosedur',
+        saran0: 'Budaya kerja Jepang sangat prosedural dan detail. Latih diri untuk bekerja sesuai SOP tanpa banyak improvisasi — ini bukan kekakuan, tapi standar kualitas yang harus dipenuhi.',
+        saran1: 'Tingkatkan kebiasaan mengikuti instruksi secara detail. Cobalah membiasakan diri mendokumentasikan cara kerja dan mengikuti urutan langkah yang sudah ditentukan.' },
+      { key: 'asrama',     label: 'Kesiapan Tinggal di Asrama/Mess',
+        saran0: 'Tinggal di asrama bersama rekan kerja dari berbagai negara adalah realita yang harus siap dihadapi. Pertimbangkan ini matang-matang dan latih diri untuk hidup berbagi ruang.',
+        saran1: 'Persiapkan mental untuk kehidupan asrama. Komunikasi yang baik dengan sesama penghuni adalah kunci — pelajari etika tinggal bersama agar tidak jadi konflik.' },
+      { key: 'hewan',      label: 'Toleransi Lingkungan Peternakan',
+        saran0: 'Bau dan kotoran hewan adalah bagian tak terpisahkan dari kerja peternakan — kamu akan bertemu ini setiap hari. Jika ini masalah besar, pertimbangkan ulang apakah sektor ini cocok untukmu.',
+        saran1: 'Coba ekspos diri perlahan ke lingkungan peternakan sebelum berangkat — kunjungi peternakan lokal agar terbiasa. Toleransi ini bisa dilatih seiring waktu.' },
+      { key: 'paspor',     label: 'Dokumen Paspor',
+        saran0: 'Paspor adalah dokumen paling mendasar yang harus kamu miliki. Segera urus di kantor imigrasi terdekat — prosesnya sekitar 3–7 hari kerja dan biayanya terjangkau.',
+        saran1: 'Pastikan paspor sudah diurus dalam waktu dekat. Jangan tunda karena paspor dibutuhkan untuk hampir semua tahapan pendaftaran berikutnya.' },
+      { key: 'shift',      label: 'Fleksibilitas Jadwal Kerja',
+        saran0: 'Kerja peternakan sering tidak mengenal hari libur reguler — hewan tetap butuh perawatan setiap hari. Pastikan kamu benar-benar siap mental dengan konsekuensi ini.',
+        saran1: 'Biasakan diri dengan jadwal yang tidak menentu. Cobalah sesekali berlatih bangun dan bekerja di luar jam normal untuk mempersiapkan mental.' },
+      { key: 'finansial',  label: 'Kondisi & Tanggungan Finansial',
+        saran0: 'Tanggungan finansial yang besar bisa jadi bom waktu saat di Jepang. Buat perencanaan keuangan yang matang: hitung kebutuhan bulanan di Jepang vs cicilan/tanggungan di Indonesia agar tidak tekor.',
+        saran1: 'Buat simulasi keuangan yang lebih detail. Pastikan gaji Jepang cukup menutup tanggungan di Indonesia plus biaya hidup di sana, dengan sisa yang masih layak ditabung.' },
+      { key: 'teknologi',  label: 'Adaptasi Teknologi & Alat Baru',
+        saran0: 'Peternakan modern di Jepang banyak menggunakan teknologi dan alat canggih. Latih diri untuk lebih terbuka terhadap teknologi baru — kemampuan belajar cepat adalah nilai plus yang besar.',
+        saran1: 'Tingkatkan kenyamananmu dengan teknologi. Sering-sering coba alat atau aplikasi baru agar otak terbiasa beradaptasi dengan hal-hal yang belum pernah dipelajari sebelumnya.' },
+      { key: 'medis',      label: 'Kondisi Medis',
+        saran0: 'Kondisi medis yang bisa kambuh saat kerja fisik berat adalah hambatan serius. Konsultasikan ke dokter sekarang — pastikan kondisimu terkontrol dan bisa lulus MCU yang diwajibkan.',
+        saran1: 'Pastikan kondisi medismu benar-benar terkontrol dengan baik. Konsultasi rutin ke dokter dan bawa dokumentasi medis yang lengkap untuk proses MCU nanti.' },
+    ];
+
+    // ─────────────────────────────────────────────
+    // KUMPULKAN KEKURANGAN BERDASARKAN SKOR
+    // skor 0 = kekurangan kritis, skor 1 = perlu diperkuat
+    // ─────────────────────────────────────────────
+    const kritis   = []; // skor 0
+    const perluKuat = []; // skor 1
+
+    scores.forEach((s, i) => {
+      if (s === 0) kritis.push(topicMap[i]);
+      else if (s === 1) perluKuat.push(topicMap[i]);
+    });
+
+    // ─────────────────────────────────────────────
+    // BANGUN BLOK HTML SARAN DINAMIS
+    // ─────────────────────────────────────────────
+    function buildSaranHTML(level) {
+      // Jika sempurna total 30 (semua skor 2), berikan motivasi khusus
+      if (kritis.length === 0 && perluKuat.length === 0) {
+        return '<div style="margin-top:16px; padding:14px 18px; background:rgba(46,134,222,.08); border-left:3px solid #2E86DE; border-radius:8px; font-size:.92rem; color:#1A3A6B;">'
+          + '✨ <strong>Luar biasa — skormu sempurna!</strong> Semua aspek sudah kamu kuasai. Langkah selanjutnya: daftarkan diri ke ujian JFT-Basic atau JLPT N4 terdekat dan hubungi lembaga pengirim resmi (BP2MI) untuk memulai proses resmi.'
+          + '</div>';
+      }
+
+      let html = '';
+
+      if (kritis.length > 0) {
+        html += '<div style="margin-top:18px;">'
+          + '<div style="font-size:.78rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#c0392b; margin-bottom:10px;">⚠️ Perlu Diselesaikan Segera</div>';
+        kritis.forEach(t => {
+          html += '<div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:10px; padding:12px 14px; background:rgba(192,57,43,.06); border:1px solid rgba(192,57,43,.18); border-radius:10px;">'
+            + '<span style="font-size:1rem; flex-shrink:0; margin-top:1px;">🔴</span>'
+            + '<div><div style="font-size:.85rem; font-weight:700; color:#1A3A6B; margin-bottom:2px;">' + t.label + '</div>'
+            + '<div style="font-size:.82rem; color:#3D6A9E; line-height:1.55;">' + t.saran0 + '</div></div>'
+            + '</div>';
+        });
+        html += '</div>';
+      }
+
+      if (perluKuat.length > 0) {
+        html += '<div style="margin-top:' + (kritis.length > 0 ? '12px' : '18px') + ';">'
+          + '<div style="font-size:.78rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#1A6BBF; margin-bottom:10px;">💡 Bisa Lebih Diperkuat</div>';
+        perluKuat.forEach(t => {
+          html += '<div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:10px; padding:12px 14px; background:rgba(46,134,222,.06); border:1px solid rgba(46,134,222,.18); border-radius:10px;">'
+            + '<span style="font-size:1rem; flex-shrink:0; margin-top:1px;">🟡</span>'
+            + '<div><div style="font-size:.85rem; font-weight:700; color:#1A3A6B; margin-bottom:2px;">' + t.label + '</div>'
+            + '<div style="font-size:.82rem; color:#3D6A9E; line-height:1.55;">' + t.saran1 + '</div></div>'
+            + '</div>';
+        });
+        html += '</div>';
+      }
+
+      return html;
+    }
+
+    // ─────────────────────────────────────────────
+    // TENTUKAN LEVEL & TEKS BERDASARKAN SKOR TOTAL
+    // ─────────────────────────────────────────────
+
+    // Hitung berapa aspek kuat (skor 2) untuk variasi kalimat
+    const skorPenuh   = scores.filter(s => s === 2).length;
+    const adaKritis   = kritis.length > 0;
+    const banyakKritis = kritis.length >= 4;
+
     if (total >= 26) {
-      // Level 1: Sangat Siap
+      // ── LEVEL 1: SANGAT SIAP (26–30) ──
       emojiEl.textContent = '🔥';
-      badgeEl.textContent = '⭐ Sangat Siap — Tinggal Gas!';
-      badgeEl.className   = 'result-badge high';
-      titleEl.textContent = 'Kamu Sangat Siap Kerja di Jepang!';
-      descEl.innerHTML    = 'Luar biasa! Dari semua aspek yang dinilai — mental, fisik, finansial, hingga kesiapan dokumen — kamu sudah berada di jalur yang tepat. Kamu tahu apa yang kamu mau, keluargamu mendukung, tubuhmu siap, dan semangatmu membara. Ini adalah kombinasi yang langka dan berharga.<br><br><strong>Yang perlu kamu lakukan sekarang:</strong> Daftar ujian JFT-Basic atau JLPT N4 terdekat, hubungi lembaga pengirim resmi terdaftar BP2MI, dan percepat belajar bahasa Jepang harian. Jangan tunda lagi — orang seperti kamu yang paling cepat sampai ke Jepang. 🚀';
       actionsEl.innerHTML = '<a href="#alur" class="btn btn-primary">Mulai Proses Pendaftaran →</a><button class="quiz-retry" onclick="resetQuiz()">🔄 Ulangi Quiz</button>';
+
+      if (total === 30) {
+        // Skor sempurna
+        badgeEl.textContent = '⭐ Sempurna — Kamu Siap 100%!';
+        badgeEl.className   = 'result-badge high';
+        titleEl.textContent = 'Kamu Sangat Siap Kerja di Jepang!';
+        descEl.innerHTML    = 'Luar biasa! Semua aspek yang dinilai mendapat skor penuh — mental baja, fisik prima, dukungan keluarga solid, dokumen siap, dan motivasimu sangat jelas. Kombinasi seperti ini adalah yang paling dicari oleh perusahaan Jepang.'
+          + '<br><br>Jangan buang waktu lagi. Daftar ujian JFT-Basic atau JLPT N4 sekarang, dan segera hubungi lembaga pengirim resmi (BP2MI). Orang dengan persiapan seperti kamu yang paling cepat sampai ke Jepang. 🚀'
+          + buildSaranHTML('sempurna');
+      } else if (perluKuat.length <= 2 && kritis.length === 0) {
+        // Hampir sempurna, hanya ada skor 1
+        badgeEl.textContent = '⭐ Sangat Siap — Tinggal Gas!';
+        badgeEl.className   = 'result-badge high';
+        titleEl.textContent = 'Kamu Sangat Siap Kerja di Jepang!';
+        descEl.innerHTML    = 'Luar biasa! Hampir semua aspek sudah kamu kuasai dengan sangat baik. Dari mental, fisik, hingga kesiapan dokumen — kamu sudah berada di jalur yang tepat. Ada ' + perluKuat.length + ' hal kecil yang bisa kamu poles agar persiapanmu benar-benar sempurna.'
+          + buildSaranHTML('sangat-siap');
+      } else {
+        // Ada beberapa skor 1, atau ada 1 skor 0
+        badgeEl.textContent = '⭐ Sangat Siap — Tinggal Finishing!';
+        badgeEl.className   = 'result-badge high';
+        titleEl.textContent = 'Kamu Sangat Siap — Poles Beberapa Hal Ini!';
+        descEl.innerHTML    = 'Skor totalmu sangat tinggi dan kamu jelas sudah siap mental maupun fisik. Namun ada beberapa aspek yang jika diperkuat akan membuat keberangkatanmu jauh lebih mulus dan percaya diri. Perhatikan catatan di bawah ini:'
+          + buildSaranHTML('sangat-siap-kritis');
+      }
+
     } else if (total >= 20) {
-      // Level 2: Siap dengan Persiapan Minor
-      emojiEl.textContent = '✅';
-      badgeEl.textContent = '💪 Hampir Siap!';
-      badgeEl.className   = 'result-badge high';
-      titleEl.textContent = 'Kamu Hampir Siap — Tinggal Sedikit Lagi!';
-      descEl.innerHTML    = 'Bagus sekali! Kamu sudah memiliki sebagian besar bekal yang dibutuhkan untuk bekerja di Jepang. Kesiapan mentalmu solid dan motivasimu jelas. Hanya ada satu atau dua aspek yang perlu sedikit diperkuat sebelum kamu benar-benar melangkah — mungkin paspor yang belum diurus, kondisi fisik yang perlu dijaga, atau diskusi keluarga yang belum tuntas.<br><br><strong>Yang perlu kamu lakukan:</strong> Identifikasi 1–2 hal yang masih kurang, urus paspor jika belum punya, dan tetap konsisten belajar bahasa Jepang. Kamu sudah 80% siap. Jangan berhenti di sini! 💪';
+      // ── LEVEL 2: HAMPIR SIAP (20–25) ──
       actionsEl.innerHTML = '<a href="#alur" class="btn btn-primary">Lihat Panduan Persiapan →</a><button class="quiz-retry" onclick="resetQuiz()">🔄 Ulangi Quiz</button>';
+
+      if (kritis.length === 0) {
+        // Tidak ada skor 0, hanya skor 1
+        emojiEl.textContent = '✅';
+        badgeEl.textContent = '💪 Hampir Siap!';
+        badgeEl.className   = 'result-badge high';
+        titleEl.textContent = 'Kamu Hampir Siap — Tinggal Poles ' + perluKuat.length + ' Hal Ini!';
+        descEl.innerHTML    = 'Bagus sekali! Kesiapan dasarmu sudah solid — tidak ada aspek yang benar-benar kritis. Yang ada hanyalah beberapa hal yang perlu sedikit lebih diperkuat. Ini adalah posisi yang sangat bagus untuk memulai proses persiapan formal.'
+          + buildSaranHTML('hampir-siap');
+      } else if (kritis.length === 1) {
+        // Hanya 1 yang kritis
+        emojiEl.textContent = '✅';
+        badgeEl.textContent = '💪 Hampir Siap — 1 Hal Kritis!';
+        badgeEl.className   = 'result-badge high';
+        titleEl.textContent = 'Kamu Hampir Siap — Selesaikan Dulu ' + kritis[0].label + '!';
+        descEl.innerHTML    = 'Kamu sudah sangat baik di hampir semua aspek. Namun ada <strong>satu hal kritis</strong> yang harus diselesaikan terlebih dahulu sebelum kamu bisa melangkah lebih jauh. Jangan biarkan satu hambatan ini menghentikan perjalananmu.'
+          + buildSaranHTML('hampir-siap-1kritis');
+      } else {
+        // 2+ kritis
+        emojiEl.textContent = '✅';
+        badgeEl.textContent = '💪 Hampir Siap — Perlu Fokus!';
+        badgeEl.className   = 'result-badge high';
+        titleEl.textContent = 'Kamu Punya Modal Kuat — Tapi Ada ' + kritis.length + ' Hal yang Harus Dibenahi!';
+        descEl.innerHTML    = 'Skor totalmu tergolong baik dan menunjukkan kamu punya tekad yang kuat. Namun ada beberapa aspek yang jika dibiarkan bisa jadi penghalang nyata. Selesaikan ini satu per satu dan kamu akan siap lebih cepat dari yang kamu kira.'
+          + buildSaranHTML('hampir-siap-kritis');
+      }
+
     } else if (total >= 13) {
-      // Level 3: Cukup Siap
+      // ── LEVEL 3: POTENSI ADA (13–19) ──
       emojiEl.textContent = '⚠️';
-      badgeEl.textContent = '🌱 Potensi Ada — Perlu Persiapan';
       badgeEl.className   = 'result-badge mid';
-      titleEl.textContent = 'Kamu Punya Potensi — Tapi Butuh Persiapan Lebih';
-      descEl.innerHTML    = 'Kamu punya keinginan dan keberanian — itu sudah menjadi modal awal yang bagus. Namun ada beberapa aspek penting yang masih perlu kamu persiapkan lebih serius sebelum berangkat ke Jepang. Mungkin kesiapan fisik, dukungan keluarga, atau kondisi finansialmu masih perlu dibenahi.<br><br><strong>Fokuskan perhatianmu pada:</strong> Diskusi serius dengan keluarga, menjaga kesehatan dan fisik mulai sekarang, membuat rencana keuangan yang matang, dan belajar bahasa Jepang minimal 30 menit/hari. Ribuan orang yang dulu di posisimu sekarang sudah ada di Jepang. Kamu bisa menyusul mereka! 🌱';
       actionsEl.innerHTML = '<a href="#alur" class="btn btn-primary">Pelajari Cara Mempersiapkan Diri →</a><button class="quiz-retry" onclick="resetQuiz()">🔄 Ulangi Quiz</button>';
+
+      if (banyakKritis) {
+        badgeEl.textContent = '🌱 Potensi Ada — Persiapan Serius Dibutuhkan';
+        titleEl.textContent = 'Kamu Punya Niat — Tapi Butuh Banyak Persiapan';
+        descEl.innerHTML    = 'Kamu berani mengikuti quiz ini dan itu sudah langkah pertama yang bagus. Namun dari hasil ini, ada cukup banyak aspek mendasar yang perlu dibenahi secara serius. Jangan terburu-buru mendaftar sebelum hal-hal di bawah ini diselesaikan.'
+          + buildSaranHTML('potensi-banyak-kritis');
+      } else if (kritis.length > 0) {
+        badgeEl.textContent = '🌱 Potensi Ada — Perlu Persiapan';
+        titleEl.textContent = 'Kamu Punya Potensi — Fokus Benahi Ini Dulu!';
+        descEl.innerHTML    = 'Ada keinginan dan keberanian dalam dirimu — itu modal yang tidak semua orang punya. Namun ada beberapa aspek yang perlu perhatian lebih sebelum kamu siap melangkah. Ribuan orang yang dulu di posisimu sekarang sudah bekerja di Jepang — kamu bisa menyusul mereka!'
+          + buildSaranHTML('potensi-ada-kritis');
+      } else {
+        // Semua 1, tidak ada yang 0
+        badgeEl.textContent = '🌱 Lumayan — Tinggal Konsisten!';
+        titleEl.textContent = 'Kamu di Jalur yang Benar — Tingkatkan Konsistensinya!';
+        descEl.innerHTML    = 'Tidak ada aspek yang benar-benar buruk — semua masih dalam kategori "bisa, tapi belum optimal". Artinya kamu hanya perlu meningkatkan konsistensi dan keseriusan di setiap bidang. Dengan komitmen 3–6 bulan ke depan, kamu bisa naik ke level siap berangkat.'
+          + buildSaranHTML('potensi-semua1');
+      }
+
     } else if (total >= 7) {
-      // Level 4: Belum Siap
+      // ── LEVEL 4: BELUM SIAP (7–12) ──
       emojiEl.textContent = '🔄';
-      badgeEl.textContent = '📚 Belum Siap — Mulai dari Dasar';
       badgeEl.className   = 'result-badge low';
-      titleEl.textContent = 'Kamu Belum Siap — Tapi Bukan Berarti Tidak Bisa!';
-      descEl.innerHTML    = 'Terima kasih sudah jujur dalam menjawab! Ada cukup banyak hal yang perlu kamu siapkan sebelum bisa berangkat ke Jepang. Ini bukan kabar buruk — ini adalah informasi berharga agar kamu tidak terburu-buru dan justru gagal di tengah jalan.<br><br><strong>Langkah yang disarankan:</strong> Luangkan 3–6 bulan untuk mempersiapkan diri secara menyeluruh. Diskusikan dengan keluarga dan dapatkan dukungan mereka. Perbaiki kondisi fisik secara konsisten. Mulai belajar bahasa Jepang dari sekarang karena ini yang paling butuh waktu. Tidak ada yang instan, tapi dengan persiapan yang benar kamu akan berangkat dengan lebih percaya diri! 🌟';
       actionsEl.innerHTML = '<a href="#kenapa" class="btn btn-primary">Pelajari Program Lebih Dalam →</a><button class="quiz-retry" onclick="resetQuiz()">🔄 Ulangi Quiz</button>';
+
+      if (kritis.length >= 6) {
+        badgeEl.textContent = '📚 Belum Siap — Mulai dari Dasar';
+        titleEl.textContent = 'Kamu Belum Siap — Tapi Masih Bisa Dikejar!';
+        descEl.innerHTML    = 'Terima kasih sudah menjawab dengan jujur! Ada banyak hal yang perlu dipersiapkan, tapi ini bukan akhir dari segalanya. Anggap hasil ini sebagai peta — kamu tahu persis di mana titik lemahmu dan bisa fokus memperbaikinya satu per satu. Luangkan 6–12 bulan untuk persiapan yang serius.'
+          + buildSaranHTML('belum-siap-banyak');
+      } else {
+        badgeEl.textContent = '📚 Perlu Persiapan Lebih Matang';
+        titleEl.textContent = 'Kamu Belum Siap — Tapi Bukan Berarti Tidak Bisa!';
+        descEl.innerHTML    = 'Jangan patah semangat — hasil ini bukan vonis, melainkan panduan. Kamu tahu sekarang aspek mana yang perlu diperkuat. Dengan persiapan yang tepat dan konsisten selama 3–6 bulan, posisimu bisa berubah drastis. Yang penting: mulai sekarang, jangan tunda lagi.'
+          + buildSaranHTML('belum-siap');
+      }
+
     } else {
-      // Level 5: Belum Cocok Saat Ini
+      // ── LEVEL 5: BELUM COCOK SAAT INI (0–6) ──
       emojiEl.textContent = '🙏';
-      badgeEl.textContent = '❌ Belum Cocok Saat Ini';
       badgeEl.className   = 'result-badge low';
-      titleEl.textContent = 'Saat Ini Belum Cocok — Selesaikan Dulu yang di Rumah';
-      descEl.innerHTML    = 'Terima kasih sudah mengikuti quiz ini dengan jujur. Dari hasil yang ada, sepertinya ada hambatan serius yang perlu diselesaikan terlebih dahulu. Mungkin ada kondisi kesehatan yang perlu ditangani, tanggungan keluarga yang sangat besar, atau kamu belum siap secara mental untuk meninggalkan zona nyaman dalam waktu lama. Semua itu valid dan tidak perlu dipaksakan.<br><br><strong>Yang lebih baik kamu lakukan sekarang:</strong> Selesaikan kondisi kesehatan yang ada, kuatkan fondasi finansial, bangun dukungan keluarga secara perlahan, dan tetap pelajari informasi tentang program ini sambil menunggu waktu yang tepat. Jepang tidak akan kemana-mana — ketika kamu benar-benar siap, peluang itu akan selalu ada. 🙏';
       actionsEl.innerHTML = '<a href="#faq" class="btn btn-primary">Baca FAQ Dulu →</a><button class="quiz-retry" onclick="resetQuiz()">🔄 Ulangi Quiz</button>';
+
+      if (kritis.length >= 10) {
+        badgeEl.textContent = '❌ Belum Cocok Saat Ini';
+        titleEl.textContent = 'Saat Ini Belum Cocok — Selesaikan yang di Rumah Dulu';
+        descEl.innerHTML    = 'Terima kasih sudah mengikuti quiz dengan jujur. Dari hasil ini, ada banyak hambatan mendasar yang perlu diselesaikan lebih dulu — baik dari sisi kesehatan, finansial, keluarga, maupun mental. Semua ini valid dan tidak perlu dipaksakan. Jepang tidak akan kemana-mana — selesaikan fondasi hidupmu dulu.'
+          + buildSaranHTML('belum-cocok-banyak');
+      } else {
+        badgeEl.textContent = '❌ Belum Siap — Perlu Waktu Lebih';
+        titleEl.textContent = 'Kamu Belum Siap — Selesaikan Dulu yang di Rumah';
+        descEl.innerHTML    = 'Hasil quiz ini menunjukkan ada beberapa hambatan serius yang perlu diselesaikan sebelum kamu bisa melangkah ke Jepang. Ini bukan kegagalan — ini adalah kejujuran yang akan menyelamatkanmu dari keputusan yang terburu-buru. Perbaiki satu per satu, dan coba quiz ini lagi dalam 3–6 bulan.'
+          + buildSaranHTML('belum-cocok');
+      }
     }
   }
 
