@@ -3349,9 +3349,9 @@
     .zpreset.active{background:#059669;color:#fff;border-color:#047857;}
 
     /* MAP WRAPPER */
-    #mapOuter{overflow:hidden;border:1px solid #d1fae5;border-radius:16px;background:#f0fdf4;cursor:grab;position:relative;min-height:420px;}
+    #mapOuter{overflow:auto;border:1px solid #d1fae5;border-radius:16px;background:#f0fdf4;cursor:grab;position:relative;min-height:420px;}
     #mapOuter:active{cursor:grabbing;}
-    #mapInner{transform-origin:top left;transition:transform .25s ease;width:100%;height:100%;}
+    #mapInner{transform-origin:top center;transition:transform .25s ease;width:100%;}
 
     /* svg-japan plugin overrides — green only */
     #svgJapanWrap svg{width:100%!important;height:auto!important;}
@@ -3480,22 +3480,20 @@
 <script src="svg-japan.min.js"></script>
 <script>
 // ── ZOOM ────────────────────────────────────────────────────
-let curZoom = 100;
-function zoom(delta){ setZoom(Math.min(300, Math.max(60, curZoom + delta)); }
+var curZoom = 100;
+function zoom(delta){ setZoom(Math.min(300, Math.max(60, curZoom + delta))); }
 function setZoom(v){
   curZoom = v;
-  document.getElementById('mapInner').style.transform = 'scale('+v/100+')';
-  document.getElementById('mapInner').style.transformOrigin = 'top center';
+  var inner = document.getElementById('mapInner');
+  if(!inner) return;
+  inner.style.transform = 'scale('+v/100+')';
+  inner.style.transformOrigin = 'top center';
   document.getElementById('zoomPct').textContent = v+'%';
-  document.querySelectorAll('.zpreset').forEach(b => b.classList.toggle('active', parseInt(b.textContent)===v));
+  document.querySelectorAll('.zpreset').forEach(function(b){
+    b.classList.toggle('active', parseInt(b.textContent)===v);
+  });
 }
 function resetZoom(){ setZoom(100); }
-
-// Fix typo in zoom()
-(function(){
-  var orig = zoom;
-  window.zoom = function(delta){ setZoom(Math.min(300, Math.max(60, curZoom + delta))); };
-})();
 
 // ── PREF DATA ────────────────────────────────────────────────
 const PD = {
@@ -3523,20 +3521,37 @@ const PD = {
 const LV = {3:"pref-lv3",2:"pref-lv2",1:"pref-lv1",0:"pref-lv0"};
 let mapReady = false;
 
-// Init svg-japan library
-document.addEventListener('DOMContentLoaded', function(){
+// ── INIT MAP ────────────────────────────────────────────────
+function initMap(){
+  var wrap = document.getElementById('svgJapanWrap');
+  if(!wrap) return;
+  if(typeof svgJapan === 'undefined'){
+    wrap.innerHTML = '<div style="padding:40px;text-align:center;color:#ef4444;font-size:.82rem;">⚠️ File svg-japan.min.js belum ter-load. Pastikan file sudah diupload ke repository dan nama filenya tepat.</div>';
+    return;
+  }
   try {
-    svgJapan({
-      element: '#svgJapanWrap',
-      onClick: function(code){ selPref(String(code).padStart(2,'0')); }
-    });
-    setTimeout(applyLevels, 600);
-    mapReady = true;
+    var mapInst = svgJapan({ element: '#svgJapanWrap' });
+    // attach click to each prefecture after render
+    function attachClicks(){
+      var prefs = document.querySelectorAll('#svgJapanWrap .prefecture');
+      if(prefs.length === 0){ setTimeout(attachClicks, 200); return; }
+      prefs.forEach(function(el){
+        el.addEventListener('click', function(){
+          var code = String(el.dataset.code||'').padStart(2,'0');
+          selPref(code);
+        });
+        el.style.cursor = 'pointer';
+      });
+      applyLevels();
+    }
+    setTimeout(attachClicks, 400);
   } catch(e){
     document.getElementById('svgJapanWrap').innerHTML =
-      '<div style="padding:40px;text-align:center;color:#6b7280;font-size:.82rem;">⚠️ Peta membutuhkan koneksi internet. Pastikan internet aktif lalu refresh.</div>';
+      '<div style="padding:40px;text-align:center;color:#ef4444;font-size:.82rem;">⚠️ Error: '+e.message+'</div>';
   }
-});
+}
+
+window.addEventListener('load', initMap);
 
 function applyLevels(){
   const svgEl = document.querySelector('#svgJapanWrap svg');
