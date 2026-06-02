@@ -3308,313 +3308,239 @@
 <!-- =============================================
      SECTION PETA PETERNAKAN JEPANG
 ============================================= -->
-<!-- =============================================
-     SECTION PETA PETERNAKAN JEPANG
-============================================= -->
-<!-- =============================================
-     SECTION PETA PETERNAKAN JEPANG
-============================================= -->
-<section id="peta-peternakan" style="padding:80px 0;background:#ffffff;position:relative;">
-<div class="container">
+<section id="peta-peternakan" style="padding:96px 0;background:#ffffff;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(16,185,129,.04) 0%,transparent 65%);pointer-events:none;"></div>
+  <div class="container">
 
-  <div class="section-header fade-up" style="margin-bottom:36px;">
-    <span class="label eyebrow" style="color:#059669;">Sebaran Peternakan SSW</span>
-    <h2 class="display-lg" style="color:#0f172a;">Di Mana Peternakan SSW<br>Berada di Jepang?</h2>
-    <p style="color:#64748b;">Klik prefektur pada peta untuk melihat info di samping. Data lengkap tersedia di bawah peta.</p>
-  </div>
+    <div class="section-header fade-up" style="margin-bottom:40px;">
+      <span class="label eyebrow" style="color:#059669;">Sebaran Peternakan SSW</span>
+      <h2 class="display-lg" style="color:#0A2550;">Di Mana Peternakan SSW<br>Berada di Jepang?</h2>
+      <p style="color:#3D6A9E;">Klik prefektur pada peta untuk melihat jenis peternakan, data populasi ternak, dan informasi penting bagi calon pekerja SSW. Data bersumber dari MAFF Jepang &amp; USDA 2024.</p>
+    </div>
 
-  <!-- FILTER -->
-  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:28px;">
-    <button class="mfbtn active" data-f="all"        onclick="mf('all',this)">🗾 Semua</button>
-    <button class="mfbtn"        data-f="sapi-perah"  onclick="mf('sapi-perah',this)">🐄 Sapi Perah</button>
-    <button class="mfbtn"        data-f="sapi-potong" onclick="mf('sapi-potong',this)">🥩 Sapi Potong</button>
-    <button class="mfbtn"        data-f="ayam"        onclick="mf('ayam',this)">🐔 Ayam</button>
-    <button class="mfbtn"        data-f="babi"        onclick="mf('babi',this)">🐷 Babi</button>
-    <button class="mfbtn"        data-f="sayuran"     onclick="mf('sayuran',this)">🥬 Sayuran/Buah</button>
-  </div>
+    <!-- FILTER BUTTONS -->
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:36px;">
+      <button class="mfbtn active" data-filter="all"         onclick="filterMap('all',this)">🗾 Semua</button>
+      <button class="mfbtn"        data-filter="sapi-perah"  onclick="filterMap('sapi-perah',this)">🐄 Sapi Perah</button>
+      <button class="mfbtn"        data-filter="sapi-potong" onclick="filterMap('sapi-potong',this)">🥩 Sapi Potong</button>
+      <button class="mfbtn"        data-filter="ayam"        onclick="filterMap('ayam',this)">🐔 Ayam</button>
+      <button class="mfbtn"        data-filter="babi"        onclick="filterMap('babi',this)">🐷 Babi</button>
+      <button class="mfbtn"        data-filter="sayuran"     onclick="filterMap('sayuran',this)">🥬 Sayuran/Buah</button>
+    </div>
 
-  <style>
-    #peta-peternakan { font-family:'Plus Jakarta Sans',sans-serif; }
-    .mfbtn{padding:8px 16px;border:1px solid #d1fae5;border-radius:100px;background:#f0fdf4;color:#065f46;font-family:'Plus Jakarta Sans',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s;}
-    .mfbtn:hover{background:#d1fae5;border-color:#10B981;}
-    .mfbtn.active{background:#059669;border-color:#047857;color:#ffffff;}
+    <style>
+      /* FILTER BUTTONS — light theme */
+      .mfbtn{padding:9px 18px;border:1.5px solid #d1e8da;border-radius:100px;background:#f0faf5;color:#3d7a60;font-family:'Sora',sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;}
+      .mfbtn:hover{border-color:#10B981;color:#059669;background:#e0f5ec;}
+      .mfbtn.active{background:#d1fae5;border-color:#059669;color:#065f46;}
 
-    /* ZOOM CONTROLS */
-    #zoomBar{display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:14px;}
-    .zbtn{width:34px;height:34px;border-radius:8px;border:1px solid #d1fae5;background:#f0fdf4;color:#065f46;font-size:1.1rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;line-height:1;}
-    .zbtn:hover{background:#d1fae5;border-color:#10B981;}
-    #zoomPct{font-size:.8rem;font-weight:700;color:#065f46;min-width:44px;text-align:center;background:#f0fdf4;border:1px solid #d1fae5;border-radius:6px;padding:4px 8px;}
-    .zpreset{padding:5px 11px;border-radius:6px;border:1px solid #d1fae5;background:#f0fdf4;color:#065f46;font-size:.72rem;font-weight:600;cursor:pointer;transition:all .2s;}
-    .zpreset:hover{background:#d1fae5;}
-    .zpreset.active{background:#059669;color:#fff;border-color:#047857;}
+      /* MAP CONTAINER */
+      #mapWrap{position:relative;}
+      #mapContainer{width:100%;background:#f8fffe;border-radius:16px;padding:8px;border:1.5px solid #e0f0ea;}
+      #mapContainer svg{width:100%;}
 
-    /* MAP WRAPPER */
-    #mapOuter{overflow:auto;border:1px solid #d1fae5;border-radius:16px;background:#f0fdf4;cursor:grab;position:relative;min-height:420px;}
-    #mapOuter:active{cursor:grabbing;}
-    #mapInner{transform-origin:top center;transition:transform .25s ease;width:100%;}
+      /* PREFEKTUR PATHS — light theme */
+      #mapContainer .geolonia-svg-map .prefecture{
+        fill:#b7e5cc;stroke:#7ecfa4;stroke-width:0.5;
+        cursor:pointer;transition:fill .2s,stroke .2s,filter .2s;
+      }
+      #mapContainer .geolonia-svg-map .prefecture:hover{
+        fill:#34d399;stroke:#059669;stroke-width:1;filter:drop-shadow(0 0 5px rgba(16,185,129,.4));
+      }
+      /* LEVEL COLORS — green light family */
+      #mapContainer .geolonia-svg-map .prefecture.lv3{fill:#059669;}
+      #mapContainer .geolonia-svg-map .prefecture.lv2{fill:#34d399;}
+      #mapContainer .geolonia-svg-map .prefecture.lv1{fill:#6ee7b7;}
+      #mapContainer .geolonia-svg-map .prefecture.lv0{fill:#d1fae5;}
+      /* SELECTED */
+      #mapContainer .geolonia-svg-map .prefecture.selected{fill:#10B981 !important;stroke:#065f46 !important;stroke-width:1.5;filter:drop-shadow(0 0 8px rgba(16,185,129,.6));}
+      /* DIMMED (filter) */
+      #mapContainer .geolonia-svg-map .prefecture.dimmed{fill:#e5e7eb !important;opacity:.45;}
+      /* BOUNDARY */
+      #mapContainer .geolonia-svg-map .boundary-line{stroke:rgba(16,185,129,.15);}
 
-    /* svg-japan plugin overrides — green only */
-    #svgJapanWrap svg{width:100%!important;height:auto!important;}
-    #svgJapanWrap .prefecture{fill:#34d399!important;stroke:#fff!important;stroke-width:0.8!important;cursor:pointer!important;transition:fill .18s!important;}
-    #svgJapanWrap .prefecture:hover{fill:#059669!important;}
-    #svgJapanWrap .prefecture.pref-sel{fill:#065f46!important;stroke:#022c22!important;stroke-width:1.2!important;}
-    #svgJapanWrap .prefecture.pref-dim{fill:#a7f3d0!important;opacity:.35!important;}
-    #svgJapanWrap .prefecture.pref-lv3{fill:#065f46!important;}
-    #svgJapanWrap .prefecture.pref-lv2{fill:#047857!important;}
-    #svgJapanWrap .prefecture.pref-lv1{fill:#10B981!important;}
-    #svgJapanWrap .prefecture.pref-lv0{fill:#34d399!important;}
-    #svgJapanWrap .prefecture.pref-dim{fill:#bbf7d0!important;opacity:.4!important;}
+      /* LEGEND */
+      .map-legend-wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px;}
+      .map-legend-item{display:flex;align-items:center;gap:6px;font-size:.72rem;color:#3d7a60;}
+      .map-legend-dot{width:11px;height:11px;border-radius:3px;flex-shrink:0;}
 
-    /* LEGEND */
-    .map-legend{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:12px;}
-    .ml-item{display:flex;align-items:center;gap:5px;font-size:.7rem;color:#374151;}
-    .ml-dot{width:12px;height:12px;border-radius:3px;}
+      /* INFO PANEL — light theme */
+      #prefPanel{background:#ffffff;border:1.5px solid #c6e8d6;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;min-height:220px;transition:all .3s;box-shadow:0 4px 20px rgba(16,185,129,.08);}
+      .pp-header{padding:18px 20px 14px;border-bottom:1px solid #d1fae5;background:#f0fdf9;}
+      .pp-flag{font-size:1.8rem;margin-bottom:5px;}
+      .pp-name{font-size:1rem;font-weight:800;color:#0A2550;margin-bottom:3px;}
+      .pp-region{font-size:.73rem;color:#6b9e87;}
+      .pp-body{padding:16px 20px;flex:1;overflow-y:auto;}
+      .pp-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;}
+      .pp-tag{padding:3px 10px;border-radius:100px;font-size:.7rem;font-weight:700;background:#d1fae5;border:1px solid #6ee7b7;color:#065f46;}
+      .pp-tag.gold{background:#fef3c7;border-color:#fcd34d;color:#92400e;}
+      .pp-stats{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:13px;}
+      .pp-stat{background:#f0fdf9;border:1px solid #d1fae5;border-radius:8px;padding:9px 11px;}
+      .pp-stat-val{font-size:.88rem;font-weight:800;color:#059669;font-family:'Noto Serif JP',serif;margin-bottom:2px;}
+      .pp-stat-lbl{font-size:.63rem;color:#6b9e87;}
+      .pp-desc{font-size:.77rem;color:#3D6A9E;line-height:1.6;margin-bottom:12px;}
+      .pp-meta{background:#f0fdf9;border:1px solid #d1fae5;border-radius:8px;padding:9px 11px;display:grid;gap:4px;}
+      .pp-meta-row{font-size:.74rem;color:#065f46;}
+      .pp-source{font-size:.63rem;color:#9dbfb0;margin-top:9px;font-style:italic;}
+      .pp-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:36px 20px;text-align:center;}
+      .pp-empty-icon{font-size:2.2rem;margin-bottom:10px;opacity:.4;}
+      .pp-empty-text{font-size:.8rem;color:#6b9e87;line-height:1.6;}
 
-    /* SIDE PANEL */
-    #sidePanel{background:#f0fdf4;border:1px solid #d1fae5;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;min-height:300px;}
-    .sp-head{padding:16px 18px 12px;border-bottom:1px solid #d1fae5;background:#ecfdf5;}
-    .sp-flag{font-size:1.6rem;margin-bottom:4px;}
-    .sp-name{font-size:.95rem;font-weight:800;color:#064e3b;margin-bottom:2px;}
-    .sp-rgn{font-size:.68rem;color:#6b7280;}
-    .sp-body{padding:14px 18px;flex:1;}
-    .sp-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:11px;}
-    .sp-tag{padding:2px 8px;border-radius:100px;font-size:.65rem;font-weight:700;background:#d1fae5;border:1px solid #a7f3d0;color:#065f46;}
-    .sp-tag.g{background:#fef3c7;border-color:#fde68a;color:#92400e;}
-    .sp-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;}
-    .sp-box{background:#fff;border:1px solid #d1fae5;border-radius:7px;padding:8px 10px;}
-    .sp-bv{font-size:.82rem;font-weight:800;color:#065f46;}
-    .sp-bl{font-size:.6rem;color:#9ca3af;}
-    .sp-note{font-size:.71rem;color:#374151;line-height:1.55;}
-    .sp-src{font-size:.6rem;color:#9ca3af;margin-top:8px;font-style:italic;}
-    .sp-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:32px 18px;text-align:center;}
-    .sp-ei{font-size:2.2rem;margin-bottom:8px;opacity:.3;}
-    .sp-et{font-size:.74rem;color:#9ca3af;line-height:1.6;}
+      @media(max-width:768px){
+        .map-layout{flex-direction:column !important;}
+        #prefPanel{min-height:auto;}
+      }
+    </style>
 
-    /* DETAIL CARDS */
-    .pref-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:14px;}
-    .pc{background:#fff;border:1px solid #d1fae5;border-radius:12px;padding:18px;transition:border-color .2s,box-shadow .2s,transform .2s;cursor:pointer;}
-    .pc:hover{border-color:#10B981;box-shadow:0 4px 18px rgba(16,185,129,.12);transform:translateY(-2px);}
-    .pc.pc-hl{border-color:#059669;box-shadow:0 0 0 3px rgba(5,150,105,.15);}
-    .pc-top{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-    .pc-flag{font-size:1.4rem;}
-    .pc-name{font-size:.86rem;font-weight:800;color:#064e3b;}
-    .pc-rgn{font-size:.62rem;color:#9ca3af;}
-    .pc-tags{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:9px;}
-    .pc-tag{padding:2px 7px;border-radius:4px;font-size:.62rem;font-weight:700;}
-    .pc-tag.gold{background:#fef3c7;color:#92400e;border:1px solid #fde68a;}
-    .pc-tag.green{background:#d1fae5;color:#065f46;border:1px solid #a7f3d0;}
-    .pc-stats{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:9px;}
-    .pc-stat{background:#f0fdf4;border-radius:5px;padding:7px 9px;border:1px solid #d1fae5;}
-    .pc-sv{font-size:.77rem;font-weight:800;color:#065f46;}
-    .pc-sl{font-size:.57rem;color:#9ca3af;}
-    .pc-desc{font-size:.72rem;color:#374151;line-height:1.55;}
-    .pc-meta{margin-top:9px;padding:8px 10px;background:#f0fdf4;border-radius:6px;border:1px solid #d1fae5;}
-    .pc-mr{font-size:.66rem;color:#374151;margin-bottom:2px;}
-    .pc-src{font-size:.57rem;color:#9ca3af;margin-top:5px;font-style:italic;}
+    <div class="map-layout" style="display:flex;gap:20px;align-items:flex-start;">
 
-    @media(max-width:768px){
-      .map-layout{flex-direction:column!important;}
-      #sidePanel{min-height:auto;}
-      .pref-cards{grid-template-columns:1fr;}
-    }
-  </style>
+      <!-- MAP -->
+      <div style="flex:1.6;min-width:0;">
+        <div id="mapContainer">
+          <div style="text-align:center;padding:60px 20px;color:#6b9e87;font-size:.85rem;">
+            🗺️ Memuat peta Jepang...
+          </div>
+        </div>
+        <div class="map-legend-wrap">
+          <div class="map-legend-item"><div class="map-legend-dot" style="background:#059669;"></div>Pusat Utama Peternakan</div>
+          <div class="map-legend-item"><div class="map-legend-dot" style="background:#34d399;"></div>Aktif</div>
+          <div class="map-legend-item"><div class="map-legend-dot" style="background:#6ee7b7;"></div>Ada Peternakan</div>
+          <div class="map-legend-item"><div class="map-legend-dot" style="background:#d1fae5;border:1px solid #a7f3d0;"></div>Minor/Umum</div>
+        </div>
+        <p style="text-align:center;font-size:.68rem;color:#9dbfb0;margin-top:8px;">Sumber peta: geolonia/japanese-prefectures (GFDL) · Data peternakan: MAFF Jepang 2022–2024</p>
+      </div>
 
-  <!-- ZOOM BAR -->
-  <div id="zoomBar">
-    <button class="zbtn" onclick="zoom(-20)" title="Zoom out">−</button>
-    <span id="zoomPct">100%</span>
-    <button class="zbtn" onclick="zoom(20)" title="Zoom in">+</button>
-    <div style="width:1px;height:24px;background:#d1fae5;margin:0 4px;"></div>
-    <button class="zpreset active" onclick="setZoom(100)">100%</button>
-    <button class="zpreset" onclick="setZoom(120)">120%</button>
-    <button class="zpreset" onclick="setZoom(150)">150%</button>
-    <button class="zpreset" onclick="setZoom(200)">200%</button>
-    <div style="width:1px;height:24px;background:#d1fae5;margin:0 4px;"></div>
-    <button class="zbtn" onclick="resetZoom()" title="Reset" style="font-size:.65rem;font-weight:700;width:auto;padding:0 10px;">Reset</button>
-  </div>
-
-  <!-- MAP + PANEL -->
-  <div class="map-layout" style="display:flex;gap:16px;align-items:flex-start;">
-
-    <!-- MAP -->
-    <div style="flex:1.7;min-width:0;">
-      <div id="mapOuter">
-        <div id="mapInner">
-          <div id="svgJapanWrap"></div>
+      <!-- INFO PANEL -->
+      <div style="flex:1;min-width:260px;max-width:320px;" id="prefPanel">
+        <div class="pp-empty">
+          <div class="pp-empty-icon">🗾</div>
+          <div class="pp-empty-text">Klik salah satu prefektur pada peta untuk melihat informasi peternakan, data, dan tips bagi calon pekerja SSW.</div>
         </div>
       </div>
-
-      <!-- LEGEND -->
-      <div class="map-legend">
-        <div class="ml-item"><div class="ml-dot" style="background:#065f46;"></div>Pusat Utama</div>
-        <div class="ml-item"><div class="ml-dot" style="background:#047857;"></div>Aktif</div>
-        <div class="ml-item"><div class="ml-dot" style="background:#10B981;"></div>Ada Peternakan</div>
-        <div class="ml-item"><div class="ml-dot" style="background:#34d399;"></div>Minor</div>
-      </div>
-      <p style="text-align:center;font-size:.63rem;color:#9ca3af;margin-top:6px;">Peta: ka215/svg-japan (MIT) · Data: MAFF Jepang 2022–2024</p>
     </div>
 
-    <!-- SIDE PANEL -->
-    <div style="flex:1;min-width:240px;max-width:295px;" id="sidePanel">
-      <div class="sp-empty">
-        <div class="sp-ei">🗾</div>
-        <div class="sp-et">Klik prefektur pada peta untuk melihat info singkat di sini.</div>
-      </div>
+    <!-- SOURCE NOTE -->
+    <div style="margin-top:22px;padding:11px 16px;background:#f0fdf9;border:1px solid #c6e8d6;border-radius:10px;font-size:.7rem;color:#6b9e87;text-align:center;">
+      📊 Data: Ministry of Agriculture, Forestry and Fisheries (MAFF) Jepang 2022–2024 · USDA Foreign Agricultural Service 2024 · PMC/NCBI Livestock Statistics Japan
     </div>
-  </div>
 
-  <!-- DETAIL SECTION -->
-  <div style="border-top:1px solid #d1fae5;margin:44px 0 28px;"></div>
-  <div style="margin-bottom:22px;">
-    <div style="font-size:1rem;font-weight:800;color:#064e3b;margin-bottom:4px;">📋 Data Lengkap Per Prefektur</div>
-    <div style="font-size:.77rem;color:#6b7280;">Berdasarkan data MAFF Jepang 2022–2024, USDA FAS 2024, dan MHLW 2024. Klik kartu untuk highlight di peta.</div>
   </div>
-  <div class="pref-cards" id="prefCards"></div>
-
-  <div style="margin-top:20px;padding:10px 14px;background:#f0fdf4;border:1px solid #d1fae5;border-radius:9px;font-size:.67rem;color:#6b7280;text-align:center;">
-    📊 Sumber: Ministry of Agriculture, Forestry and Fisheries (MAFF) Jepang 2022–2024 · USDA Foreign Agricultural Service 2024 · PMC/NCBI Livestock Statistics Japan · MHLW 2024
-  </div>
-</div>
 </section>
 
-<script src="svg-japan.min.js"></script>
 <script>
-// ── ZOOM ────────────────────────────────────────────────────
-var curZoom = 100;
-function zoom(delta){ setZoom(Math.min(300, Math.max(60, curZoom + delta))); }
-function setZoom(v){
-  curZoom = v;
-  var inner = document.getElementById('mapInner');
-  if(!inner) return;
-  inner.style.transform = 'scale('+v/100+')';
-  inner.style.transformOrigin = 'top center';
-  document.getElementById('zoomPct').textContent = v+'%';
-  document.querySelectorAll('.zpreset').forEach(function(b){
-    b.classList.toggle('active', parseInt(b.textContent)===v);
-  });
-}
-function resetZoom(){ setZoom(100); }
-
 // ── PREF DATA ────────────────────────────────────────────────
 const PD = {
-  "01":{name:"Hokkaido",kanji:"北海道",flag:"🐄",rgn:"Pulau Hokkaido — Jepang Utara",lv:3,types:["sapi-perah","sapi-potong","ayam","sayuran"],tags:[{t:"Sapi Perah #1",g:1},{t:"57% Susu Nasional",g:1},{t:"Sapi Potong",g:0}],stats:[{v:"5.130",l:"Farm Sapi Perah"},{v:"57%",l:"Produksi Susu Nasional"},{v:"¥160–200k",l:"Est. Gaji SSW/bln"},{v:"Gratis/Murah",l:"Asrama"}],desc:"Rajanya peternakan sapi perah Jepang — 57% susu nasional dari sini. Cuaca sangat dingin (salju 4–5 bulan), asrama umumnya gratis/sangat murah. Ideal untuk SSW pemula.",src:"MAFF 2020, USDA FAS 2024",a:"✅ Umumnya gratis/subsidi",k:"👥 Komunitas WNI ada",r:"⭐ Sangat direkomendasikan"},
-  "02":{name:"Aomori",kanji:"青森県",flag:"🍎",rgn:"Tohoku — Jepang Utara",lv:2,types:["ayam","sayuran"],tags:[{t:"Ayam Broiler #4",g:1},{t:"Ayam Petelur #9",g:0},{t:"Apel #1 Jepang",g:0}],stats:[{v:"8 juta+",l:"Ekor Ayam Broiler"},{v:"6,5 juta+",l:"Ekor Ayam Petelur"},{v:"¥158–192k",l:"Est. Gaji SSW/bln"},{v:"Rendah",l:"Biaya Hidup"}],desc:"Produsen ayam broiler ke-4 dan apel terbesar Jepang. Iklim dingin Tohoku, biaya hidup sangat terjangkau.",src:"MAFF via PMC/NCBI 2022",a:"✅ Tersedia",k:"👥 Ada",r:"✅ Direkomendasikan"},
-  "03":{name:"Iwate",kanji:"岩手県",flag:"🐔",rgn:"Tohoku — Jepang Timur Laut",lv:3,types:["ayam","sapi-potong"],tags:[{t:"Ayam Broiler #3",g:1},{t:"Wagyu Olympics 11x",g:1},{t:"Sapi Potong",g:0}],stats:[{v:"21 juta+",l:"Ekor Ayam Broiler"},{v:"11x",l:"Juara Wagyu Olympics"},{v:"¥160–195k",l:"Est. Gaji SSW/bln"},{v:"Sangat Rendah",l:"Biaya Hidup"}],desc:"Produsen ayam broiler ke-3 dan Wagyu premium yang 11x menang Wagyu Olympics. Udara bersih, biaya hidup sangat rendah.",src:"MAFF via PMC/NCBI 2022, CrowdCow",a:"✅ Umumnya disediakan",k:"👥 Komunitas WNI ada",r:"⭐ Sangat direkomendasikan"},
-  "04":{name:"Miyagi",kanji:"宮城県",flag:"🌾",rgn:"Tohoku — Jepang Timur Laut",lv:2,types:["sapi-potong","sayuran"],tags:[{t:"Sapi Potong",g:0},{t:"Pertanian Aktif",g:0},{t:"Kota Sendai",g:0}],stats:[{v:"¥162–195k",l:"Est. Gaji SSW/bln"},{v:"¥973",l:"UMR/jam (2024)"},{v:"Sedang",l:"Biaya Hidup"},{v:"Ada",l:"Komunitas WNI"}],desc:"Prefektur Tohoku dengan kota Sendai yang modern. Sektor peternakan aktif, biaya seimbang dengan fasilitas kota.",src:"MAFF 2024, isojepang.com",a:"✅ Tersedia",k:"👥 Aktif",r:"✅ Direkomendasikan"},
-  "05":{name:"Akita",kanji:"秋田県",flag:"🌾",rgn:"Tohoku — Jepang Barat",lv:1,types:["sapi-potong","sayuran"],tags:[{t:"Beras Premium",g:0},{t:"Peternakan Ada",g:0}],stats:[{v:"¥951",l:"UMR/jam (2024)"},{v:"¥158–190k",l:"Est. Gaji SSW/bln"},{v:"Rendah",l:"Biaya Hidup"},{v:"Ada",l:"Peternakan"}],desc:"Terkenal beras premium Akita Komachi dan saké. Peternakan dan pertanian aktif, biaya hidup sangat rendah.",src:"MHLW 2024, MAFF",a:"✅ Tersedia",k:"👥 Ada",r:"✅ Direkomendasikan"},
-  "06":{name:"Yamagata",kanji:"山形県",flag:"🍒",rgn:"Tohoku — Jepang Barat",lv:1,types:["sapi-potong","sayuran"],tags:[{t:"Buah Premium",g:0},{t:"Peternakan Ada",g:0}],stats:[{v:"¥955",l:"UMR/jam (2024)"},{v:"¥158–192k",l:"Est. Gaji SSW/bln"},{v:"Rendah",l:"Biaya Hidup"},{v:"Tersedia",l:"Asrama"}],desc:"Terkenal buah premium (ceri, apel, anggur) dan pertanian aktif. Peternakan sapi ada, biaya hidup sangat rendah.",src:"MHLW 2024, MAFF",a:"✅ Tersedia",k:"👥 Ada",r:"✅ Direkomendasikan"},
-  "07":{name:"Fukushima",kanji:"福島県",flag:"🍑",rgn:"Tohoku — Jepang Timur",lv:2,types:["sapi-potong","sayuran"],tags:[{t:"Sapi Potong",g:0},{t:"Pertanian Buah",g:0},{t:"Peternakan Aktif",g:0}],stats:[{v:"¥163–192k",l:"Est. Gaji SSW/bln"},{v:"¥955",l:"UMR/jam (2024)"},{v:"Rendah",l:"Biaya Hidup"},{v:"Tersedia",l:"Asrama"}],desc:"Pertanian buah premium (persik, pir) dan peternakan sapi. Biaya hidup sangat rendah. Area peternakan aman, dimonitor ketat pemerintah.",src:"MAFF 2024",a:"✅ Tersedia",k:"👥 Ada",r:"✅ Direkomendasikan"},
-  "08":{name:"Ibaraki",kanji:"茨城県",flag:"🥚",rgn:"Kanto — Jepang Tengah",lv:2,types:["ayam","sayuran"],tags:[{t:"Ayam Petelur #1",g:1},{t:"Sayuran #1 Kanto",g:0},{t:"Dekat Tokyo",g:0}],stats:[{v:"15,4 juta+",l:"Ekor Ayam Petelur"},{v:"#1",l:"Produksi Telur Nasional"},{v:"¥162–200k",l:"Est. Gaji SSW/bln"},{v:"Sedang",l:"Biaya Hidup"}],desc:"Produsen telur terbesar di Jepang. Dekat Tokyo, akses fasilitas mudah.",src:"MAFF via PMC/NCBI 2022",a:"⚠️ Tergantung perusahaan",k:"👥 Aktif",r:"✅ Direkomendasikan"},
-  "09":{name:"Tochigi",kanji:"栃木県",flag:"🥛",rgn:"Kanto — Jepang Tengah",lv:1,types:["sapi-perah","sayuran"],tags:[{t:"Sapi Perah Aktif",g:0},{t:"Dekat Tokyo",g:0}],stats:[{v:"¥1.004",l:"UMR/jam (2024)"},{v:"¥165–200k",l:"Est. Gaji SSW/bln"},{v:"Sedang",l:"Biaya Hidup"},{v:"Ada",l:"Komunitas WNI"}],desc:"Peternakan sapi perah di area Nikko. Lebih terjangkau dari Tokyo meski dekat ibu kota.",src:"MHLW 2024, MAFF",a:"✅ Tersedia",k:"👥 Ada",r:"✅ Direkomendasikan"},
-  "12":{name:"Chiba",kanji:"千葉県",flag:"🥚",rgn:"Kanto — Jepang Tengah",lv:2,types:["ayam","sayuran"],tags:[{t:"Ayam Petelur #2",g:1},{t:"Sayuran Utama",g:0},{t:"Dekat Tokyo",g:0}],stats:[{v:"12,9 juta+",l:"Ekor Ayam Petelur"},{v:"#2",l:"Produksi Telur Nasional"},{v:"¥165–205k",l:"Est. Gaji SSW/bln"},{v:"Agak Mahal",l:"Biaya Hidup"}],desc:"Produsen telur ke-2. Berbatasan Tokyo, akses fasilitas sangat mudah.",src:"MAFF via PMC/NCBI 2022",a:"⚠️ Tergantung perusahaan",k:"👥 Besar",r:"✅ Cocok berpengalaman"},
-  "15":{name:"Niigata",kanji:"新潟県",flag:"🌾",rgn:"Chubu — Pesisir Jepang Laut",lv:1,types:["sapi-potong","sayuran"],tags:[{t:"Beras Koshihikari",g:0},{t:"Peternakan Ada",g:0}],stats:[{v:"¥987",l:"UMR/jam (2024)"},{v:"¥162–192k",l:"Est. Gaji SSW/bln"},{v:"Rendah",l:"Biaya Hidup"},{v:"Ada",l:"Komunitas"}],desc:"Penghasil beras Koshihikari terbaik Jepang. Peternakan aktif, biaya rendah, salju lebat musim dingin.",src:"MHLW 2024",a:"✅ Tersedia",k:"👥 Ada",r:"✅ Direkomendasikan"},
-  "20":{name:"Nagano",kanji:"長野県",flag:"🏔️",rgn:"Chubu — Jepang Tengah",lv:1,types:["sapi-perah","sayuran"],tags:[{t:"Sapi Perah",g:0},{t:"Sayuran Dataran Tinggi",g:0}],stats:[{v:"¥998",l:"UMR/jam (2024)"},{v:"¥163–198k",l:"Est. Gaji SSW/bln"},{v:"Sedang",l:"Biaya Hidup"},{v:"Tersedia",l:"Asrama"}],desc:"Peternakan sapi perah dan sayuran dataran tinggi. Udara bersih, pemandangan Alpen Jepang.",src:"MHLW 2024, MAFF",a:"✅ Tersedia",k:"👥 Ada",r:"✅ Direkomendasikan"},
-  "22":{name:"Shizuoka",kanji:"静岡県",flag:"🍵",rgn:"Chubu — Jepang Tengah",lv:2,types:["sapi-potong","sayuran"],tags:[{t:"Pertanian Modern",g:0},{t:"Teh & Buah Premium",g:0}],stats:[{v:"¥1.034",l:"UMR/jam (2024)"},{v:"¥170–205k",l:"Est. Gaji SSW/bln"},{v:"Sedang",l:"Biaya Hidup"},{v:"Ada",l:"Komunitas"}],desc:"Pertanian teh, buah premium, dan peternakan modern. Antara Tokyo–Osaka, UMR tinggi, biaya lebih terjangkau dari Tokyo.",src:"MHLW 2024, isojepang.com",a:"⚠️ Tergantung perusahaan",k:"👥 Ada",r:"✅ Direkomendasikan"},
-  "23":{name:"Aichi",kanji:"愛知県",flag:"🥚",rgn:"Chubu — Jepang Tengah",lv:2,types:["ayam","sapi-potong"],tags:[{t:"Ayam Petelur #5",g:1},{t:"UMR Tinggi",g:0}],stats:[{v:"9,8 juta+",l:"Ekor Ayam Petelur"},{v:"¥1.077",l:"UMR/jam (2024)"},{v:"¥175–210k",l:"Est. Gaji SSW/bln"},{v:"Sedang",l:"Biaya Hidup"}],desc:"Pusat industri otomotif (Toyota), UMR tinggi. Peternakan aktif di area rural.",src:"MAFF via PMC/NCBI 2022, MHLW 2024",a:"⚠️ Tergantung perusahaan",k:"👥 Besar",r:"✅ Direkomendasikan"},
-  "40":{name:"Fukuoka",kanji:"福岡県",flag:"🌊",rgn:"Kyushu — Jepang Selatan",lv:2,types:["ayam","sayuran"],tags:[{t:"Kota Terbesar Kyushu",g:0},{t:"Komunitas WNI Besar",g:0}],stats:[{v:"¥992",l:"UMR/jam (2024)"},{v:"¥165–195k",l:"Est. Gaji SSW/bln"},{v:"Sedang",l:"Biaya Hidup"},{v:"Sangat Besar",l:"Komunitas WNI"}],desc:"Kota terbesar Kyushu dengan komunitas WNI paling aktif. Peternakan aktif di area rural, fasilitas kota lengkap.",src:"MHLW 2024, isojepang.com",a:"⚠️ Tergantung perusahaan",k:"👥 Sangat aktif",r:"✅ Direkomendasikan"},
-  "43":{name:"Kumamoto",kanji:"熊本県",flag:"🐷",rgn:"Kyushu — Jepang Selatan",lv:2,types:["babi","sapi-potong","sayuran"],tags:[{t:"Peternakan Babi",g:0},{t:"Sapi Potong",g:0}],stats:[{v:"¥898",l:"UMR/jam (2024)"},{v:"¥158–190k",l:"Est. Gaji SSW/bln"},{v:"Rendah",l:"Biaya Hidup"},{v:"Tersedia",l:"Asrama"}],desc:"Peternakan babi, sapi potong, dan sayuran aktif. Biaya hidup sangat rendah, iklim hangat.",src:"MAFF 2024, MHLW 2024",a:"✅ Tersedia",k:"👥 Ada",r:"✅ Direkomendasikan"},
-  "45":{name:"Miyazaki",kanji:"宮崎県",flag:"🥩",rgn:"Kyushu — Jepang Selatan",lv:3,types:["ayam","sapi-potong"],tags:[{t:"Ayam Broiler #2",g:1},{t:"Wagyu Premium",g:1},{t:"Iklim Hangat",g:0}],stats:[{v:"27,6 juta+",l:"Ekor Ayam Broiler (#2)"},{v:"Top 3",l:"Output Peternakan Nasional"},{v:"¥158–193k",l:"Est. Gaji SSW/bln"},{v:"Rendah",l:"Biaya Hidup"}],desc:"Produsen ayam broiler ke-2 dan Wagyu terbaik Jepang. Iklim hangat cerah — ideal untuk yang tidak tahan dingin.",src:"MAFF via PMC/NCBI 2022",a:"✅ Tersedia",k:"👥 Ada",r:"⭐ Sangat direkomendasikan"},
-  "46":{name:"Kagoshima",kanji:"鹿児島県",flag:"🐔",rgn:"Kyushu — Jepang Selatan",lv:3,types:["ayam","sapi-potong","babi"],tags:[{t:"Ayam Broiler #1",g:1},{t:"Sapi Potong #1",g:1},{t:"Ayam Petelur #3",g:1}],stats:[{v:"28 juta+",l:"Ekor Ayam Broiler (#1)"},{v:"5.630",l:"Farm Sapi Potong (#1)"},{v:"¥158–195k",l:"Est. Gaji SSW/bln"},{v:"Rendah",l:"Biaya Hidup"}],desc:"Raja peternakan Kyushu — ayam broiler #1 dan sapi potong #1 di Jepang. Iklim hangat subtropis, biaya rendah.",src:"MAFF via PMC/NCBI 2022, Statista 2023",a:"✅ Umumnya tersedia",k:"👥 Komunitas aktif",r:"⭐ Sangat direkomendasikan"},
-  "47":{name:"Okinawa",kanji:"沖縄県",flag:"🏝️",rgn:"Kepulauan Ryukyu — Jepang Selatan",lv:1,types:["sapi-potong","babi"],tags:[{t:"Sapi Potong",g:0},{t:"Babi",g:0},{t:"Iklim Tropis",g:0}],stats:[{v:"¥896",l:"UMR/jam (2024)"},{v:"¥152–185k",l:"Est. Gaji SSW/bln"},{v:"Sedang",l:"Biaya Hidup"},{v:"Ada",l:"Komunitas"}],desc:"Kepulauan tropis paling selatan — iklim paling mirip Indonesia! Peternakan sapi dan babi aktif.",src:"MHLW 2024, MAFF",a:"✅ Tersedia",k:"👥 Ada",r:"✅ Cocok adaptasi cuaca"}
+  "01":{name:"Hokkaido",flag:"🐄",region:"Pulau Hokkaido — Jepang Utara",lv:3,types:["sapi-perah","sapi-potong","ayam","sayuran"],tags:[{t:"Sapi Perah #1",g:1},{t:"57% Susu Nasional",g:1},{t:"Sapi Potong",g:0},{t:"Ayam Broiler #5",g:0}],stats:[{v:"5.130",l:"Farm Sapi Perah"},{v:"57%",l:"Produksi Susu Nasional"},{v:"¥160–200k",l:"Est. Gaji SSW/bln"},{v:"Gratis/Murah",l:"Asrama"}],desc:"Hokkaido adalah rajanya peternakan sapi perah Jepang — 57% susu nasional berasal dari sini. Cuaca sangat dingin (salju 4–5 bulan), namun asrama umumnya gratis atau sangat murah. Sangat direkomendasikan untuk SSW pemula.",src:"MAFF Jepang 2020, USDA FAS 2024",a:"✅ Umumnya gratis/subsidi",k:"👥 Komunitas WNI ada",r:"⭐ Sangat direkomendasikan"},
+  "02":{name:"Aomori",flag:"🍎",region:"Tohoku — Jepang Utara",lv:2,types:["ayam","sayuran"],tags:[{t:"Ayam Broiler #4",g:1},{t:"Ayam Petelur #9",g:0},{t:"Apel #1 Jepang",g:0}],stats:[{v:"8 juta+",l:"Ekor Ayam Broiler"},{v:"6,5 juta+",l:"Ekor Ayam Petelur"},{v:"¥158–192k",l:"Est. Gaji SSW/bln"},{v:"Rendah",l:"Biaya Hidup"}],desc:"Aomori adalah produsen ayam broiler terbesar ke-4 dan ayam petelur ke-9 di Jepang. Juga penghasil apel terbesar Jepang. Iklim dingin Tohoku, biaya hidup sangat terjangkau.",src:"MAFF via PMC/NCBI 2022",a:"✅ Tersedia",k:"👥 Ada komunitas",r:"✅ Direkomendasikan"},
+  "03":{name:"Iwate",flag:"🐔",region:"Tohoku — Jepang Timur Laut",lv:3,types:["ayam","sapi-potong"],tags:[{t:"Ayam Broiler #3",g:1},{t:"Wagyu Olympics 11x",g:1},{t:"Sapi Potong",g:0}],stats:[{v:"21 juta+",l:"Ekor Ayam Broiler"},{v:"11x",l:"Juara Wagyu Olympics"},{v:"¥160–195k",l:"Est. Gaji SSW/bln"},{v:"Sangat Rendah",l:"Biaya Hidup"}],desc:"Iwate adalah produsen ayam broiler terbesar ke-3 dan produsen Wagyu premium yang 11 kali memenangkan Wagyu Olympics. Iklim sejuk, udara bersih. Biaya hidup sangat rendah.",src:"MAFF via PMC/NCBI 2022, CrowdCow",a:"✅ Umumnya disediakan",k:"👥 Komunitas WNI ada",r:"⭐ Sangat direkomendasikan"},
+  "04":{name:"Miyagi",flag:"🌾",region:"Tohoku — Jepang Timur Laut",lv:2,types:["sapi-potong","sayuran"],tags:[{t:"Sapi Potong",g:0},{t:"Pertanian Aktif",g:0},{t:"Kota Sendai",g:0}],stats:[{v:"¥162–195k",l:"Est. Gaji SSW/bln"},{v:"¥973",l:"UMR per jam (2024)"},{v:"Sedang",l:"Biaya Hidup"},{v:"Ada",l:"Komunitas WNI"}],desc:"Miyagi adalah prefektur Tohoku dengan pusat kota Sendai yang modern. Sektor pertanian dan peternakan aktif. Balance baik antara fasilitas kota dan biaya terjangkau.",src:"MAFF Jepang 2024, isojepang.com",a:"✅ Tersedia di banyak tempat",k:"👥 Komunitas aktif",r:"✅ Direkomendasikan"},
+  "05":{name:"Akita",flag:"🌾",region:"Tohoku — Jepang Barat",lv:1,types:["sapi-potong","sayuran"],tags:[{t:"Beras Premium",g:0},{t:"Peternakan Ada",g:0}],stats:[{v:"¥951",l:"UMR per jam (2024)"},{v:"¥158–190k",l:"Est. Gaji SSW/bln"},{v:"Rendah",l:"Biaya Hidup"},{v:"Ada",l:"Peternakan"}],desc:"Akita terkenal dengan beras premium dan saké terbaik Jepang. Peternakan sapi dan pertanian aktif. Biaya hidup sangat rendah.",src:"MHLW 2024, MAFF Jepang",a:"✅ Tersedia",k:"👥 Ada",r:"✅ Direkomendasikan"},
+  "06":{name:"Yamagata",flag:"🍒",region:"Tohoku — Jepang Barat",lv:1,types:["sapi-potong","sayuran"],tags:[{t:"Buah Premium",g:0},{t:"Peternakan Ada",g:0}],stats:[{v:"¥955",l:"UMR per jam (2024)"},{v:"¥158–192k",l:"Est. Gaji SSW/bln"},{v:"Rendah",l:"Biaya Hidup"},{v:"Tersedia",l:"Asrama"}],desc:"Yamagata terkenal dengan buah-buahan premium (ceri, apel, anggur) dan pertanian aktif. Peternakan sapi juga ada. Biaya hidup sangat rendah.",src:"MHLW 2024, MAFF Jepang",a:"✅ Tersedia",k:"👥 Ada",r:"✅ Direkomendasikan"},
+  "07":{name:"Fukushima",flag:"🍑",region:"Tohoku — Jepang Timur",lv:2,types:["sapi-potong","sayuran"],tags:[{t:"Sapi Potong",g:0},{t:"Pertanian Buah",g:0},{t:"Peternakan Aktif",g:0}],stats:[{v:"¥163–192k",l:"Est. Gaji SSW/bln"},{v:"¥955",l:"UMR per jam (2024)"},{v:"Rendah",l:"Biaya Hidup"},{v:"Tersedia",l:"Asrama"}],desc:"Fukushima terkenal dengan buah premium (persik, pir) dan peternakan sapi. Biaya hidup sangat rendah. Area peternakan sudah dinyatakan aman dan dimonitor ketat pemerintah.",src:"MAFF Jepang 2024",a:"✅ Tersedia",k:"👥 Ada",r:"✅ Direkomendasikan"},
+  "08":{name:"Ibaraki",flag:"🥚",region:"Kanto — Jepang Tengah",lv:2,types:["ayam","sayuran"],tags:[{t:"Ayam Petelur #1",g:1},{t:"Sayuran #1 Kanto",g:0},{t:"Dekat Tokyo",g:0}],stats:[{v:"15,4 juta+",l:"Ekor Ayam Petelur"},{v:"#1",l:"Produksi Telur Nasional"},{v:"¥162–200k",l:"Est. Gaji SSW/bln"},{v:"Sedang",l:"Biaya Hidup"}],desc:"Ibaraki adalah produsen telur terbesar di Jepang dengan 15,4 juta ekor ayam petelur. Dekat Tokyo sehingga akses ke fasilitas kota sangat mudah.",src:"MAFF via PMC/NCBI 2022, e-Stat Japan",a:"⚠️ Tergantung perusahaan",k:"👥 Komunitas aktif",r:"✅ Direkomendasikan"},
+  "09":{name:"Tochigi",flag:"🥛",region:"Kanto — Jepang Tengah",lv:1,types:["sapi-perah","sayuran"],tags:[{t:"Sapi Perah Aktif",g:0},{t:"Dekat Tokyo",g:0}],stats:[{v:"¥1.004",l:"UMR per jam (2024)"},{v:"¥165–200k",l:"Est. Gaji SSW/bln"},{v:"Sedang",l:"Biaya Hidup"},{v:"Ada",l:"Komunitas WNI"}],desc:"Tochigi dikenal dengan peternakan sapi perah di area pegunungan Nikko. Biaya hidup lebih terjangkau dari Tokyo meski lokasinya dekat ibu kota.",src:"MHLW 2024, MAFF Jepang",a:"✅ Tersedia",k:"👥 Ada",r:"✅ Direkomendasikan"},
+  "12":{name:"Chiba",flag:"🥚",region:"Kanto — Jepang Tengah",lv:2,types:["ayam","sayuran"],tags:[{t:"Ayam Petelur #2",g:1},{t:"Sayuran Utama",g:0},{t:"Dekat Tokyo",g:0}],stats:[{v:"12,9 juta+",l:"Ekor Ayam Petelur"},{v:"#2",l:"Produksi Telur Nasional"},{v:"¥165–205k",l:"Est. Gaji SSW/bln"},{v:"Agak Mahal",l:"Biaya Hidup"}],desc:"Chiba adalah produsen telur terbesar ke-2 di Jepang, berbatasan langsung dengan Tokyo. Biaya hidup lebih tinggi, namun akses ke fasilitas sangat mudah.",src:"MAFF via PMC/NCBI 2022",a:"⚠️ Tergantung perusahaan",k:"👥 Komunitas besar",r:"✅ Cocok berpengalaman"},
+  "15":{name:"Niigata",flag:"🌾",region:"Chubu — Pesisir Jepang Laut",lv:1,types:["sapi-potong","sayuran"],tags:[{t:"Beras Koshihikari",g:0},{t:"Peternakan Ada",g:0}],stats:[{v:"¥987",l:"UMR per jam (2024)"},{v:"¥162–192k",l:"Est. Gaji SSW/bln"},{v:"Rendah",l:"Biaya Hidup"},{v:"Ada",l:"Komunitas WNI"}],desc:"Niigata terkenal sebagai penghasil beras premium Koshihikari terbaik Jepang. Sektor peternakan juga aktif. Iklim dingin dengan salju lebat di musim dingin.",src:"MHLW 2024",a:"✅ Tersedia",k:"👥 Ada",r:"✅ Direkomendasikan"},
+  "20":{name:"Nagano",flag:"🏔️",region:"Chubu — Jepang Tengah",lv:1,types:["sapi-perah","sayuran"],tags:[{t:"Sapi Perah",g:0},{t:"Sayuran Dataran Tinggi",g:0}],stats:[{v:"¥998",l:"UMR per jam (2024)"},{v:"¥163–198k",l:"Est. Gaji SSW/bln"},{v:"Sedang",l:"Biaya Hidup"},{v:"Tersedia",l:"Asrama"}],desc:"Nagano dikenal dengan pertanian sayuran dataran tinggi dan peternakan sapi perah. Udara bersih dan pemandangan pegunungan. Gaya hidup lebih tenang dibanding kota besar.",src:"MHLW 2024, MAFF Jepang",a:"✅ Tersedia",k:"👥 Ada",r:"✅ Direkomendasikan"},
+  "22":{name:"Shizuoka",flag:"🍵",region:"Chubu — Jepang Tengah",lv:2,types:["sapi-potong","sayuran"],tags:[{t:"Pertanian Modern",g:0},{t:"Teh & Buah Premium",g:0},{t:"Dekat Fuji",g:0}],stats:[{v:"¥1.034",l:"UMR per jam (2024)"},{v:"¥170–205k",l:"Est. Gaji SSW/bln"},{v:"Sedang",l:"Biaya Hidup"},{v:"Ada",l:"Komunitas WNI"}],desc:"Shizuoka terkenal dengan teh, buah-buahan premium, dan peternakan modern. Terletak antara Tokyo dan Osaka dengan UMR tinggi dan biaya lebih terjangkau dari Tokyo.",src:"MHLW 2024, isojepang.com",a:"⚠️ Tergantung perusahaan",k:"👥 Ada",r:"✅ Direkomendasikan"},
+  "23":{name:"Aichi",flag:"🥚",region:"Chubu — Jepang Tengah",lv:2,types:["ayam","sapi-potong"],tags:[{t:"Ayam Petelur #5",g:1},{t:"UMR Tinggi",g:0},{t:"Industri Maju",g:0}],stats:[{v:"9,8 juta+",l:"Ekor Ayam Petelur"},{v:"¥1.077",l:"UMR per jam (2024)"},{v:"¥175–210k",l:"Est. Gaji SSW/bln"},{v:"Sedang",l:"Biaya Hidup"}],desc:"Aichi adalah pusat industri otomotif Jepang (Toyota) dengan UMR tinggi. Sektor peternakan aktif di area rural dengan gaji kompetitif.",src:"MAFF via PMC/NCBI 2022, MHLW 2024",a:"⚠️ Tergantung perusahaan",k:"👥 Komunitas besar",r:"✅ Direkomendasikan"},
+  "40":{name:"Fukuoka",flag:"🌊",region:"Kyushu — Jepang Selatan",lv:2,types:["ayam","sayuran"],tags:[{t:"Kota Terbesar Kyushu",g:0},{t:"Peternakan Aktif",g:0},{t:"Komunitas WNI Besar",g:0}],stats:[{v:"¥992",l:"UMR per jam (2024)"},{v:"¥165–195k",l:"Est. Gaji SSW/bln"},{v:"Sedang",l:"Biaya Hidup"},{v:"Sangat Besar",l:"Komunitas WNI"}],desc:"Fukuoka adalah kota terbesar di Kyushu dengan komunitas WNI paling aktif. Sektor peternakan aktif di area rural. Biaya moderat dengan akses fasilitas kota lengkap.",src:"MHLW 2024, isojepang.com",a:"⚠️ Tergantung perusahaan",k:"👥 Komunitas sangat aktif",r:"✅ Direkomendasikan"},
+  "43":{name:"Kumamoto",flag:"🐷",region:"Kyushu — Jepang Selatan",lv:2,types:["babi","sapi-potong","sayuran"],tags:[{t:"Peternakan Babi",g:0},{t:"Sapi Potong",g:0},{t:"Sayuran Aktif",g:0}],stats:[{v:"¥898",l:"UMR per jam (2024)"},{v:"¥158–190k",l:"Est. Gaji SSW/bln"},{v:"Rendah",l:"Biaya Hidup"},{v:"Tersedia",l:"Asrama"}],desc:"Kumamoto adalah prefektur peternakan dan pertanian aktif di Kyushu — terkenal dengan babi, sapi potong, dan sayuran. Biaya hidup sangat rendah, iklim hangat khas Kyushu.",src:"MAFF Jepang 2024, MHLW 2024",a:"✅ Tersedia",k:"👥 Ada",r:"✅ Direkomendasikan"},
+  "45":{name:"Miyazaki",flag:"🥩",region:"Kyushu — Jepang Selatan",lv:3,types:["ayam","sapi-potong"],tags:[{t:"Ayam Broiler #2",g:1},{t:"Wagyu Premium",g:1},{t:"Iklim Hangat",g:0}],stats:[{v:"27,6 juta+",l:"Ekor Ayam Broiler (#2)"},{v:"Top 3",l:"Output Peternakan Nasional"},{v:"¥158–193k",l:"Est. Gaji SSW/bln"},{v:"Rendah",l:"Biaya Hidup"}],desc:"Miyazaki adalah produsen ayam broiler terbesar ke-2 di Jepang dan produsen Wagyu terbaik. Iklim hangat cerah sepanjang tahun — pilihan ideal bagi yang tidak tahan cuaca dingin.",src:"MAFF via PMC/NCBI 2022, connectiu.com",a:"✅ Tersedia",k:"👥 Ada komunitas",r:"⭐ Sangat direkomendasikan"},
+  "46":{name:"Kagoshima",flag:"🐔",region:"Kyushu — Jepang Selatan",lv:3,types:["ayam","sapi-potong","babi"],tags:[{t:"Ayam Broiler #1",g:1},{t:"Sapi Potong #1",g:1},{t:"Ayam Petelur #3",g:1}],stats:[{v:"28 juta+",l:"Ekor Ayam Broiler (#1)"},{v:"5.630",l:"Farm Sapi Potong (#1)"},{v:"¥158–195k",l:"Est. Gaji SSW/bln"},{v:"Rendah",l:"Biaya Hidup"}],desc:"Kagoshima adalah raja peternakan Kyushu — produsen ayam broiler (#1) dan sapi potong (#1) di Jepang. Iklim hangat subtropis, biaya hidup rendah, komunitas WNI aktif.",src:"MAFF via PMC/NCBI 2022, Statista 2023",a:"✅ Umumnya tersedia",k:"👥 Komunitas aktif",r:"⭐ Sangat direkomendasikan"},
+  "47":{name:"Okinawa",flag:"🏝️",region:"Kepulauan Ryukyu — Jepang Selatan",lv:1,types:["sapi-potong","babi"],tags:[{t:"Sapi Potong",g:0},{t:"Babi",g:0},{t:"Iklim Tropis",g:0}],stats:[{v:"¥896",l:"UMR per jam (2024)"},{v:"¥152–185k",l:"Est. Gaji SSW/bln"},{v:"Sedang",l:"Biaya Hidup"},{v:"Ada",l:"Komunitas WNI"}],desc:"Okinawa adalah kepulauan tropis paling selatan Jepang — iklimnya paling mirip Indonesia! Peternakan sapi dan babi aktif. Cocok bagi yang kesulitan adaptasi cuaca dingin.",src:"MHLW 2024, MAFF Jepang",a:"✅ Tersedia",k:"👥 Ada",r:"✅ Cocok adaptasi cuaca"}
 };
 
-const LV = {3:"pref-lv3",2:"pref-lv2",1:"pref-lv1",0:"pref-lv0"};
-let mapReady = false;
+const LV_CLASS = ["lv0","lv1","lv2","lv3"];
 
-// ── INIT MAP ────────────────────────────────────────────────
-function initMap(){
-  var wrap = document.getElementById('svgJapanWrap');
-  if(!wrap) return;
-  if(typeof svgJapan === 'undefined'){
-    wrap.innerHTML = '<div style="padding:40px;text-align:center;color:#ef4444;font-size:.82rem;">⚠️ File svg-japan.min.js belum ter-load. Pastikan file sudah diupload ke repository dan nama filenya tepat.</div>';
-    return;
-  }
+// Load SVG from geolonia CDN
+async function loadMap(){
   try {
-    var mapInst = svgJapan({ element: '#svgJapanWrap' });
-    // attach click to each prefecture after render
-    function attachClicks(){
-      var prefs = document.querySelectorAll('#svgJapanWrap .prefecture');
-      if(prefs.length === 0){ setTimeout(attachClicks, 200); return; }
-      prefs.forEach(function(el){
-        el.addEventListener('click', function(){
-          var code = String(el.dataset.code||'').padStart(2,'0');
-          selPref(code);
-        });
-        el.style.cursor = 'pointer';
+    const res = await fetch("https://raw.githubusercontent.com/geolonia/japanese-prefectures/master/map.svg");
+    if(!res.ok) throw new Error("fetch failed");
+    const svgText = await res.text();
+    const container = document.getElementById("mapContainer");
+    container.innerHTML = svgText;
+
+    // Apply level colors and click handlers
+    const groups = container.querySelectorAll(".prefecture");
+    groups.forEach(g => {
+      const code = g.getAttribute("data-code");
+      const d = PD[code];
+      if(d) {
+        g.classList.add(LV_CLASS[d.lv]);
+      } else {
+        g.classList.add("lv0");
+      }
+      g.style.cursor = "pointer";
+      g.addEventListener("click", () => showPref(code));
+      g.addEventListener("mouseover", () => {
+        const nm = d ? d.name : (g.querySelector("title") ? g.querySelector("title").textContent : "Prefektur");
+        showTooltip(nm, event);
       });
-      applyLevels();
-    }
-    setTimeout(attachClicks, 400);
-  } catch(e){
-    document.getElementById('svgJapanWrap').innerHTML =
-      '<div style="padding:40px;text-align:center;color:#ef4444;font-size:.82rem;">⚠️ Error: '+e.message+'</div>';
+    });
+  } catch(e) {
+    document.getElementById("mapContainer").innerHTML =
+      '<div style="text-align:center;padding:40px;color:#9dbfb0;font-size:.82rem;">⚠️ Gagal memuat peta. Pastikan koneksi internet aktif lalu refresh halaman.</div>';
   }
 }
 
-window.addEventListener('load', initMap);
+function showTooltip(name, e){ /* tooltip sederhana via title */ }
 
-function applyLevels(){
-  const svgEl = document.querySelector('#svgJapanWrap svg');
-  if(!svgEl) return;
-  svgEl.querySelectorAll('.prefecture').forEach(el => {
-    const code = String(el.dataset.code||'').padStart(2,'0');
-    const d = PD[code];
-    el.classList.remove('pref-lv0','pref-lv1','pref-lv2','pref-lv3');
-    el.classList.add(d ? LV[d.lv] : 'pref-lv0');
-  });
-}
-
-function selPref(code){
-  document.querySelectorAll('#svgJapanWrap .prefecture').forEach(p=>{
-    p.classList.remove('pref-sel');
-  });
-  const prefEl = document.querySelector('#svgJapanWrap .prefecture[data-code="'+parseInt(code)+'"]');
-  if(prefEl) prefEl.classList.add('pref-sel');
-
-  document.querySelectorAll('.pc').forEach(c=>c.classList.remove('pc-hl'));
-  const card = document.getElementById('card-'+code);
-  if(card){card.classList.add('pc-hl');card.scrollIntoView({behavior:'smooth',block:'nearest'});}
+function showPref(code) {
+  // Remove selected from all
+  document.querySelectorAll("#mapContainer .prefecture").forEach(g => g.classList.remove("selected"));
+  const el = document.querySelector(`#mapContainer .prefecture[data-code="${code}"]`);
+  if(el) el.classList.add("selected");
 
   const d = PD[code];
-  const panel = document.getElementById('sidePanel');
+  const panel = document.getElementById("prefPanel");
+
   if(!d){
-    panel.innerHTML='<div class="sp-empty"><div class="sp-ei">🗾</div><div class="sp-et">Data belum tersedia untuk prefektur ini.</div></div>';
+    panel.innerHTML = `<div class="pp-empty"><div class="pp-empty-icon">🗾</div><div class="pp-empty-text">Data detail untuk prefektur ini belum tersedia. Umumnya ada kegiatan pertanian skala kecil. Konsultasikan ke lembaga pengirim resmi.</div></div>`;
     return;
   }
-  const tagsH = d.tags.map(t=>`<span class="sp-tag ${t.g?'g':''}">${t.t}</span>`).join('');
-  const statsH = d.stats.map(s=>`<div class="sp-box"><div class="sp-bv">${s.v}</div><div class="sp-bl">${s.l}</div></div>`).join('');
-  panel.innerHTML = `<div class="sp-head"><div class="sp-flag">${d.flag}</div><div class="sp-name">${d.name}</div><div class="sp-rgn">${d.rgn}</div></div><div class="sp-body"><div class="sp-tags">${tagsH}</div><div class="sp-grid">${statsH}</div><div class="sp-note">${d.desc}</div><div class="sp-src">Sumber: ${d.src}<br>${d.a} &nbsp;·&nbsp; ${d.k} &nbsp;·&nbsp; ${d.r}</div></div>`;
+
+  const tagsH = d.tags.map(t=>`<span class="pp-tag ${t.g?'gold':''}">${t.t}</span>`).join('');
+  const statsH = d.stats.map(s=>`<div class="pp-stat"><div class="pp-stat-val">${s.v}</div><div class="pp-stat-lbl">${s.l}</div></div>`).join('');
+
+  panel.innerHTML = `
+    <div class="pp-header">
+      <div class="pp-flag">${d.flag}</div>
+      <div class="pp-name">${d.name}</div>
+      <div class="pp-region">${d.region}</div>
+    </div>
+    <div class="pp-body">
+      <div class="pp-tags">${tagsH}</div>
+      <div class="pp-stats">${statsH}</div>
+      <div class="pp-desc">${d.desc}</div>
+      <div class="pp-meta">
+        <div class="pp-meta-row">${d.a}</div>
+        <div class="pp-meta-row">${d.k}</div>
+        <div class="pp-meta-row">${d.r}</div>
+      </div>
+      <div class="pp-source">Sumber: ${d.src}</div>
+    </div>`;
 }
 
-function mf(type, btn){
-  document.querySelectorAll('.mfbtn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('#svgJapanWrap .prefecture').forEach(el=>{
-    const code = String(el.dataset.code||'').padStart(2,'0');
+function filterMap(type, btn) {
+  document.querySelectorAll(".mfbtn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  document.querySelectorAll("#mapContainer .prefecture").forEach(g => {
+    const code = g.getAttribute("data-code");
     const d = PD[code];
-    if(type==='all'){el.classList.remove('pref-dim');}
-    else{const has=d&&d.types&&d.types.includes(type);el.classList.toggle('pref-dim',!has);}
-  });
-  buildCards(type);
-}
-
-function buildCards(filter){
-  const wrap = document.getElementById('prefCards');
-  wrap.innerHTML='';
-  Object.entries(PD).forEach(([code,d])=>{
-    if(filter!=='all' && !(d.types||[]).includes(filter)) return;
-    const tagsH = d.tags.map(t=>`<span class="pc-tag ${t.g?'gold':'green'}">${t.t}</span>`).join('');
-    const statsH = d.stats.map(s=>`<div class="pc-stat"><div class="pc-sv">${s.v}</div><div class="pc-sl">${s.l}</div></div>`).join('');
-    const el = document.createElement('div');
-    el.className='pc'; el.id='card-'+code;
-    el.innerHTML=`<div class="pc-top"><div class="pc-flag">${d.flag}</div><div><div class="pc-name">${d.name} <span style="font-size:.65rem;color:#9ca3af;">${d.kanji}</span></div><div class="pc-rgn">${d.rgn}</div></div></div><div class="pc-tags">${tagsH}</div><div class="pc-stats">${statsH}</div><div class="pc-desc">${d.desc}</div><div class="pc-meta"><div class="pc-mr">${d.a}</div><div class="pc-mr">${d.k}</div><div class="pc-mr">${d.r}</div></div><div class="pc-src">Sumber: ${d.src}</div>`;
-    el.onclick=()=>selPref(code);
-    wrap.appendChild(el);
+    if(type === "all"){
+      g.classList.remove("dimmed");
+    } else {
+      const has = d && d.types && d.types.includes(type);
+      g.classList.toggle("dimmed", !has);
+    }
   });
 }
 
-buildCards('all');
+loadMap();
 </script>
+
 
 <!-- =============================================
      SECTION 8: QUIZ
