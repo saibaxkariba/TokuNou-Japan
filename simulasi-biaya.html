@@ -137,7 +137,7 @@
     .nenkin-note strong { color:#C4B5FD; }
 
     /* CTA */
-    .cta-back { text-align:center; padding:40px 0 20px; }
+    .cta-back { text-align:center; padding:40px 0 100px; }
     .btn-primary { display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,var(--gold),#D97706); color:#1A1A2E; font-weight:800; font-size:.88rem; padding:13px 26px; border-radius:10px; text-decoration:none; box-shadow:0 4px 20px rgba(245,158,11,.3); transition:all .2s; }
     .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(245,158,11,.4); }
     .btn-outline { display:inline-flex; align-items:center; gap:7px; border:1px solid var(--border); color:var(--text2); font-weight:600; font-size:.85rem; padding:12px 22px; border-radius:10px; text-decoration:none; margin-left:10px; transition:all .2s; }
@@ -167,7 +167,7 @@
 <section class="hero">
   <div class="hero-eyebrow">🧮 Kalkulator Interaktif</div>
   <h1>Simulasi Biaya Hidup<br><span>Pekerja SSW di Jepang</span></h1>
-  <p class="hero-sub">Hitung gaji bersih, estimasi pengeluaran, dan potensi tabungan kamu secara realistis — berdasarkan prefektur dan gaya hidup yang bisa kamu atur sendiri.</p>
+  <p class="hero-sub">Hitung gaji bersih, estimasi pengeluaran, dan potensi tabungan kamu secara realistis. Sesuaikan prefektur dan gaya hidup sesuka kamu.</p>
   <div class="hero-sources">
     <span>📊 Sumber:</span>
     <span>MHLW Jepang 2024–25</span>
@@ -197,8 +197,8 @@
     <div class="card-title">Atur estimasi penghasilan bulanan</div>
     <div class="card-sub">Gaji SSW peternakan ¥150.000–¥210.000/bln kotor. Lembur bisa +¥20.000–¥50.000/bln terutama saat musim panen.</div>
     <div class="slider-row">
-      <div class="slider-head"><span class="slider-name">💴 Gaji Pokok (per bulan)</span><span class="slider-val" id="lbl-gaji">¥165.000</span></div>
-      <input type="range" min="140000" max="230000" step="5000" value="165000" id="sl-gaji" oninput="hitung()">
+      <div class="slider-head"><span class="slider-name">💴 Gaji Pokok (per bulan)</span><span class="slider-val" id="lbl-gaji">¥220.000</span></div>
+      <input type="range" min="170000" max="300000" step="5000" value="220000" id="sl-gaji" oninput="hitung()">
       <div class="slider-desc">Range: ¥140.000 (pemula) — ¥230.000 (berpengalaman + bahasa baik). Sumber: MHLW, edukator.id, izumi.co.id</div>
     </div>
     <div class="slider-row">
@@ -282,7 +282,7 @@
         </thead>
         <tbody>
           <tr><td><strong>🗼 Tokyo</strong></td><td>1.163</td><td>190.000–230.000</td><td>100.000–130.000</td><td><span class="tag-mahal">Termahal</span></td></tr>
-          <tr><td><strong>🏭 Kanagawa</strong></td><td>1.162</td><td>185.000–220.000</td><td>95.000–125.000</td><td><span class="tag-mahal">Mahal</span></td></tr>
+          <tr><td><strong>🏭 Kanagawa</strong></td><td>1.162</td><td>230.000–270.000</td><td>95.000–125.000</td><td><span class="tag-mahal">Mahal</span></td></tr>
           <tr><td><strong>🏭 Aichi</strong></td><td>1.077</td><td>175.000–210.000</td><td>85.000–110.000</td><td><span class="tag-hemat">Seimbang</span></td></tr>
           <tr><td><strong>🌿 Shizuoka</strong></td><td>1.034</td><td>170.000–205.000</td><td>80.000–105.000</td><td><span class="tag-hemat">Seimbang</span></td></tr>
           <tr><td><strong>🌊 Fukuoka</strong></td><td>992</td><td>165.000–195.000</td><td>75.000–100.000</td><td><span class="tag-hemat">Hemat</span></td></tr>
@@ -323,28 +323,28 @@
 <!-- STICKY RESULT -->
 <div class="result-section">
   <div class="result-inner">
-    <div class="res-item gross"><div class="res-label">💴 Gaji Kotor</div><div class="res-yen" id="r-gross">¥185.000</div><div class="res-idr" id="r-gross-idr">≈ Rp 19,8 jt</div></div>
+    <div class="res-item gross"><div class="res-label">💴 Gaji Kotor</div><div class="res-yen" id="r-gross">¥220.000</div><div class="res-idr" id="r-gross-idr">≈ Rp 23,5 jt</div></div>
     <div class="res-div"></div>
-    <div class="res-item net"><div class="res-label">💵 Gaji Bersih</div><div class="res-yen" id="r-net">¥148.000</div><div class="res-idr" id="r-net-idr">≈ Rp 15,8 jt</div></div>
+    <div class="res-item net"><div class="res-label">💵 Gaji Bersih</div><div class="res-yen" id="r-net">¥174.000</div><div class="res-idr" id="r-net-idr">≈ Rp 18,6 jt</div></div>
     <div class="res-div"></div>
-    <div class="res-item spend"><div class="res-label">🧾 Total Pengeluaran</div><div class="res-yen" id="r-spend">¥76.000</div><div class="res-idr" id="r-spend-idr">≈ Rp 8,1 jt</div></div>
+    <div class="res-item spend"><div class="res-label">🧾 Total Pengeluaran</div><div class="res-yen" id="r-spend">¥80.000</div><div class="res-idr" id="r-spend-idr">≈ Rp 8,6 jt</div></div>
     <div class="res-div"></div>
-    <div class="res-item save"><div class="res-label">🏦 Tabungan / Bln</div><div class="res-yen" id="r-save">¥72.000</div><div class="res-idr" id="r-save-idr">≈ Rp 277 jt / 3 thn</div></div>
+    <div class="res-item save"><div class="res-label">🏦 Tabungan / Bln</div><div class="res-yen" id="r-save">¥94.000</div><div class="res-idr" id="r-save-idr">≈ Rp 362 jt / 3 thn</div></div>
   </div>
 </div>
 
 <script>
 const PREFS = [
-  { id:'hokkaido',  name:'Hokkaido',  flag:'🐄', umr:960,  gajiBase:165000, sewa:22000, makan:26000, transport:5000,  note:'Pusat peternakan sapi perah terbesar Jepang. Asrama sering gratis/sangat murah. Biaya hidup terendah, ideal untuk SSW peternakan.' },
-  { id:'iwate',     name:'Iwate',     flag:'🌾', umr:952,  gajiBase:162000, sewa:25000, makan:27000, transport:6000,  note:'Prefektur Tohoku dengan peternakan & pertanian aktif. Biaya hidup sangat rendah, komunitas WNI ada di sana.' },
-  { id:'miyagi',    name:'Miyagi',    flag:'🌿', umr:973,  gajiBase:165000, sewa:30000, makan:29000, transport:7000,  note:'Kota Sendai jadi pusat. Balance antara fasilitas kota dan biaya yang masih terjangkau.' },
-  { id:'fukushima', name:'Fukushima', flag:'🍑', umr:955,  gajiBase:163000, sewa:27000, makan:28000, transport:7000,  note:'Pusat pertanian buah & peternakan. Biaya hidup rendah, alam indah dan udara bersih.' },
-  { id:'shizuoka',  name:'Shizuoka',  flag:'🍵', umr:1034, gajiBase:172000, sewa:38000, makan:32000, transport:9000,  note:'Dikenal dengan teh & pertanian modern. Dekat Tokyo tapi biaya lebih terjangkau.' },
-  { id:'aichi',     name:'Aichi',     flag:'🏭', umr:1077, gajiBase:178000, sewa:43000, makan:34000, transport:11000, note:'Pusat industri otomotif. Peternakan di area rural Aichi lebih terjangkau dari kawasan industri.' },
-  { id:'osaka',     name:'Osaka',     flag:'🏙️', umr:1114, gajiBase:182000, sewa:52000, makan:37000, transport:13000, note:'Kota besar kedua Jepang. Biaya hidup tinggi, tapi peluang lembur dan akses komunitas WNI sangat besar.' },
-  { id:'fukuoka',   name:'Fukuoka',   flag:'🌊', umr:992,  gajiBase:167000, sewa:33000, makan:30000, transport:8000,  note:'Kota terbesar di Kyushu. Biaya moderat, paling populer di kalangan pekerja Indonesia.' },
-  { id:'kanagawa',  name:'Kanagawa',  flag:'🗻', umr:1162, gajiBase:188000, sewa:58000, makan:37000, transport:14000, note:'Berbatasan Tokyo dengan UMR sangat tinggi. Biaya sewa mahal, tapi penghasilan juga lebih besar.' },
-  { id:'tokyo',     name:'Tokyo',     flag:'🗼', umr:1163, gajiBase:195000, sewa:63000, makan:39000, transport:15000, note:'UMR tertinggi di Jepang. Biaya hidup paling mahal — sangat jarang ada SSW peternakan di sini.' },
+  { id:'hokkaido',  name:'Hokkaido',  flag:'🐄', umr:960,  gajiBase:220000, sewa:22000, makan:26000, transport:5000,  note:'Pusat peternakan sapi perah terbesar Jepang. Asrama sering gratis/sangat murah. Biaya hidup terendah, ideal untuk SSW peternakan.' },
+  { id:'iwate',     name:'Iwate',     flag:'🌾', umr:952,  gajiBase:215000, sewa:25000, makan:27000, transport:6000,  note:'Prefektur Tohoku dengan peternakan & pertanian aktif. Biaya hidup sangat rendah, komunitas WNI ada di sana.' },
+  { id:'miyagi',    name:'Miyagi',    flag:'🌿', umr:973,  gajiBase:220000, sewa:30000, makan:29000, transport:7000,  note:'Kota Sendai jadi pusat. Balance antara fasilitas kota dan biaya yang masih terjangkau.' },
+  { id:'fukushima', name:'Fukushima', flag:'🍑', umr:955,  gajiBase:217000, sewa:27000, makan:28000, transport:7000,  note:'Pusat pertanian buah & peternakan. Biaya hidup rendah, alam indah dan udara bersih.' },
+  { id:'shizuoka',  name:'Shizuoka',  flag:'🍵', umr:1034, gajiBase:228000, sewa:38000, makan:32000, transport:9000,  note:'Dikenal dengan teh & pertanian modern. Dekat Tokyo tapi biaya lebih terjangkau.' },
+  { id:'aichi',     name:'Aichi',     flag:'🏭', umr:1077, gajiBase:235000, sewa:43000, makan:34000, transport:11000, note:'Pusat industri otomotif. Peternakan di area rural Aichi lebih terjangkau dari kawasan industri.' },
+  { id:'osaka',     name:'Osaka',     flag:'🏙️', umr:1114, gajiBase:240000, sewa:52000, makan:37000, transport:13000, note:'Kota besar kedua Jepang. Biaya hidup tinggi, tapi peluang lembur dan akses komunitas WNI sangat besar.' },
+  { id:'fukuoka',   name:'Fukuoka',   flag:'🌊', umr:992,  gajiBase:222000, sewa:33000, makan:30000, transport:8000,  note:'Kota terbesar di Kyushu. Biaya moderat, paling populer di kalangan pekerja Indonesia.' },
+  { id:'kanagawa',  name:'Kanagawa',  flag:'🗻', umr:1162, gajiBase:248000, sewa:58000, makan:37000, transport:14000, note:'Berbatasan Tokyo dengan UMR sangat tinggi. Biaya sewa mahal, tapi penghasilan juga lebih besar.' },
+  { id:'tokyo',     name:'Tokyo',     flag:'🗼', umr:1163, gajiBase:258000, sewa:63000, makan:39000, transport:15000, note:'UMR tertinggi di Jepang. Biaya hidup paling mahal — sangat jarang ada SSW peternakan di sini.' },
 ];
 
 const BIAYA_ITEMS = [
