@@ -2118,6 +2118,34 @@
     color: #c0392b;
     border: 1px solid rgba(192,57,43,.15);
   }
+
+  .pelajari-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    padding: 9px 18px;
+    border-radius: 50px;
+    background: #0A2550;
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 600;
+    font-family: 'Sora', sans-serif;
+    text-decoration: none;
+    transition: background .22s ease, transform .22s ease, box-shadow .22s ease;
+    box-shadow: 0 3px 12px rgba(10,37,80,.25);
+  }
+  .pelajari-card-link:hover {
+    background: #1A5DAD;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(10,37,80,.3);
+  }
+  .pelajari-card-link svg {
+    transition: transform .22s ease;
+  }
+  .pelajari-card-link:hover svg {
+    transform: translateX(3px);
+  }
 </style>
 
 <section id="pelajari">
@@ -2135,6 +2163,12 @@
         <span class="pelajari-card-tag">Dasar</span>
         <div class="pelajari-card-title">Sistem Tokutei Ginou</div>
         <div class="pelajari-card-desc">Apa itu program SSW, siapa yang bisa mendaftar, berapa lama kontrak, dan apa bedanya dengan TKI biasa.</div>
+        <a href="sistem-tokutei-ginou.html" class="pelajari-card-link">
+          Pelajari Selengkapnya
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M3 7h8M7.5 4l3.5 3-3.5 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
       </div>
 
       <div class="pelajari-card">
